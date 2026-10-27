@@ -1,0 +1,286 @@
+\usepackage[a4paper,top=2.6cm,bottom=2.4cm,inner=2.4cm,outer=2.2cm,headheight=16pt,headsep=0.8cm,footskip=1.1cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{array,booktabs,tabularx,multirow}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,positioning,shapes.geometric,decorations.pathreplacing,patterns,shadows,fadings,3d,backgrounds}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tocloft}
+\usepackage{setspace}
+\usepackage{footmisc}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\usepackage{hyperref}
+\usepackage{xepersian}
+
+\definecolor{ink}{HTML}{1F2933}
+\definecolor{muted}{HTML}{5B6670}
+\definecolor{primary}{HTML}{1D4E89}
+\definecolor{primarylight}{HTML}{E8F0FA}
+\definecolor{defcolor}{HTML}{1D4E89}
+\definecolor{defbg}{HTML}{EEF4FB}
+\definecolor{thmcolor}{HTML}{0F766E}
+\definecolor{thmbg}{HTML}{ECF8F6}
+\definecolor{lemcolor}{HTML}{3F6212}
+\definecolor{lembg}{HTML}{F3F8EA}
+\definecolor{excolor}{HTML}{B45309}
+\definecolor{exbg}{HTML}{FFF7EB}
+\definecolor{notecolor}{HTML}{6D28D9}
+\definecolor{notebg}{HTML}{F5F0FF}
+\definecolor{warncolor}{HTML}{B91C1C}
+\definecolor{warnbg}{HTML}{FDF0F0}
+\definecolor{proofcolor}{HTML}{64748B}
+\definecolor{proofbg}{HTML}{F8FAFC}
+\definecolor{intuitcolor}{HTML}{0369A1}
+\definecolor{intuitbg}{HTML}{EFF8FD}
+\definecolor{sumcolor}{HTML}{334155}
+\definecolor{sumbg}{HTML}{F1F5F9}
+\definecolor{accent}{HTML}{E07A1F}
+
+\settextfont[Path=fonts/,Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Regular,ItalicFeatures={FakeSlant=0.18},BoldItalicFont=*-Bold,BoldItalicFeatures={FakeSlant=0.18},Scale=0.94]{Vazirmatn}
+\setlatintextfont[Scale=1.0]{Latin Modern Roman}
+\setlatinsansfont{Latin Modern Sans}
+\setlatinmonofont{Latin Modern Mono}
+\defpersianfont\headfont[Path=fonts/,Extension=.ttf,UprightFont=*-Black,BoldFont=*-Black,Scale=0.94]{Vazirmatn}
+\defpersianfont\semifont[Path=fonts/,Extension=.ttf,UprightFont=*-SemiBold,BoldFont=*-Bold,Scale=0.94]{Vazirmatn}
+\defpersianfont\mediumfont[Path=fonts/,Extension=.ttf,UprightFont=*-Medium,BoldFont=*-Bold,Scale=0.94]{Vazirmatn}
+\defpersianfont\lightfont[Path=fonts/,Extension=.ttf,UprightFont=*-Light,BoldFont=*-Medium,Scale=0.94]{Vazirmatn}
+
+\linespread{1.42}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em plus 0.2em minus 0.1em}
+\color{ink}
+\SepMark{-}
+
+\hypersetup{colorlinks=true,linkcolor=primary,urlcolor=primary,citecolor=primary,pdftitle={Linear Algebra Notes},pdfauthor={CE282 Linear Algebra Notes}}
+
+\newcommand{\en}[1]{\lr{#1}}
+\newcommand{\term}[2]{\textbf{\textcolor{primary}{#1}}\,{\small(\lr{#2})}}
+\newcommand{\enterm}[1]{{\small(\lr{#1})}}
+\newcommand{\hl}[1]{\textcolor{primary}{\semifont #1}}
+\newcommand{\fa}[1]{\rl{#1}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Rn}{\mathbb{R}^n}
+\newcommand{\Rm}{\mathbb{R}^m}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vc}{\mathbf{c}}
+\newcommand{\vd}{\mathbf{d}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\vp}{\mathbf{p}}
+\newcommand{\vq}{\mathbf{q}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\vs}{\mathbf{s}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vy}{\mathbf{y}}
+\newcommand{\vz}{\mathbf{z}}
+\newcommand{\zero}{\mathbf{0}}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator{\tr}{trace}
+\DeclareMathOperator{\RREF}{RREF}
+\DeclareMathOperator{\ColRank}{ColRank}
+\DeclareMathOperator{\RowRank}{RowRank}
+\DeclareMathOperator{\dist}{dist}
+\newcommand{\Col}{C}
+\newcommand{\Nul}{N}
+\newcommand{\Row}{R}
+\newcommand{\inner}[2]{\left\langle #1,#2\right\rangle}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\T}{^{\mathsf{T}}}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\coord}[2]{\left[#1\right]_{#2}}
+\newcommand{\aug}[2]{\left[\,#1\;\middle|\;#2\,\right]}
+\newcommand{\rowop}[1]{\xrightarrow{\;#1\;}}
+\newcommand{\Ri}[1]{R_{#1}}
+
+\newcounter{boxnum}[chapter]
+\makeatletter
+\renewcommand{\theboxnum}{\thechapter\@SepMark\arabic{boxnum}}
+\makeatother
+
+\tcbset{
+  needskip/.style 2 args={before={\par\needspace{#2}\ifvmode\addvspace{\glueexpr#1-\parskip}\nointerlineskip\fi\lineskip=0pt\noindent}},
+  jozvebase/.style={
+    enhanced, sharp corners=downhill, arc=3mm, boxrule=0pt,
+    left=4mm, right=4mm, top=4.6mm, bottom=2.6mm,
+    needskip={1.1em}{5\baselineskip}, after skip=1.1em,
+    fonttitle=\semifont\normalsize, coltitle=white,
+    attach boxed title to top right={xshift=-4mm,yshift=-3.2mm},
+    boxed title style={sharp corners, arc=2mm, boxrule=0pt, left=2.4mm, right=2.4mm, top=0.6mm, bottom=0.6mm},
+    drop fuzzy shadow=black!25,
+  },
+}
+
+\newcommand{\boxtitle}[2]{#1\ifx\relax#2\relax\else\ {\mediumfont(#2)}\fi}
+
+\newtcolorbox{definition}[1][]{jozvebase, colback=defbg, colframe=defcolor,
+  borderline east={3pt}{0pt}{defcolor},
+  boxed title style={colback=defcolor},
+  step=boxnum, title={\boxtitle{تعریف \theboxnum}{#1}}}
+
+\newtcolorbox{theorem}[1][]{jozvebase, colback=thmbg, colframe=thmcolor,
+  borderline east={3pt}{0pt}{thmcolor},
+  boxed title style={colback=thmcolor},
+  step=boxnum, title={\boxtitle{قضیه \theboxnum}{#1}}}
+
+\newtcolorbox{lemma}[1][]{jozvebase, colback=lembg, colframe=lemcolor,
+  borderline east={3pt}{0pt}{lemcolor},
+  boxed title style={colback=lemcolor},
+  step=boxnum, title={\boxtitle{لم \theboxnum}{#1}}}
+
+\newtcolorbox{corollary}[1][]{jozvebase, colback=lembg, colframe=lemcolor,
+  borderline east={3pt}{0pt}{lemcolor},
+  boxed title style={colback=lemcolor},
+  step=boxnum, title={\boxtitle{نتیجه \theboxnum}{#1}}}
+
+\newtcolorbox{example}[1][]{jozvebase, colback=exbg, colframe=excolor,
+  borderline east={3pt}{0pt}{excolor},
+  boxed title style={colback=excolor},
+  step=boxnum, title={\boxtitle{مثال \theboxnum}{#1}}}
+
+\newtcolorbox{note}[1][]{jozvebase, colback=notebg, colframe=notecolor,
+  borderline east={3pt}{0pt}{notecolor},
+  boxed title style={colback=notecolor},
+  title={\boxtitle{نکته}{#1}}}
+
+\newtcolorbox{warning}[1][]{jozvebase, colback=warnbg, colframe=warncolor,
+  borderline east={3pt}{0pt}{warncolor},
+  boxed title style={colback=warncolor},
+  title={\boxtitle{مراقب باشید!}{#1}}}
+
+\newtcolorbox{intuition}[1][]{jozvebase, colback=intuitbg, colframe=intuitcolor,
+  borderline east={3pt}{0pt}{intuitcolor},
+  boxed title style={colback=intuitcolor},
+  title={\boxtitle{شهود}{#1}}}
+
+\newtcolorbox{summary}[1][]{jozvebase, breakable, colback=sumbg, colframe=sumcolor,
+  borderline east={3pt}{0pt}{sumcolor},
+  boxed title style={colback=sumcolor},
+  title={\boxtitle{جمع‌بندی}{#1}}}
+
+\newtcolorbox{exercise}[1][]{jozvebase, colback=white, colframe=excolor!70!black,
+  boxrule=0.6pt, drop fuzzy shadow=black!0,
+  boxed title style={colback=excolor!70!black},
+  step=boxnum, title={\boxtitle{تمرین \theboxnum}{#1}}}
+
+\newcommand{\qedsymbolbox}{\textcolor{proofcolor}{$\blacksquare$}}
+\newtcolorbox{proof}[1][]{enhanced, breakable, frame hidden, sharp corners,
+  colback=proofbg, left=4.5mm, right=4mm, top=2mm, bottom=2mm,
+  needskip={0.6em}{4\baselineskip}, after skip=1.1em,
+  borderline east={1.6pt}{0pt}{proofcolor!70},
+  before upper={{\semifont\textcolor{proofcolor}{اثبات\ifx\relax#1\relax\else\ #1\fi.}}\ },
+  after upper={\par\nobreak\hfill\qedsymbolbox}}
+
+\newtcolorbox{solution}[1][]{enhanced, breakable, frame hidden, sharp corners,
+  colback=exbg!55!white, left=4.5mm, right=4mm, top=2mm, bottom=2mm,
+  needskip={0.4em}{4\baselineskip}, after skip=1.1em,
+  borderline east={1.6pt}{0pt}{excolor!60},
+  before upper={{\semifont\textcolor{excolor}{پاسخ\ifx\relax#1\relax\else\ #1\fi.}}\ },
+  after upper={\par\nobreak\hfill\textcolor{excolor!80}{$\square$}}}
+
+\newtcolorbox{keyformula}[1][]{enhanced, colback=primarylight, colframe=primary, boxrule=0.8pt, arc=2mm,
+  left=3mm,right=3mm,top=-1.5mm,bottom=0.5mm, before skip=0.9em, after skip=0.9em, width=\linewidth, #1}
+
+\titleformat{\chapter}[display]
+  {\normalfont}
+  {}
+  {0pt}
+  {\chapterheadstyle}
+\titlespacing*{\chapter}{0pt}{-2.2cm}{1.2cm}
+
+\newcommand{\chapterheadstyle}[1]{%
+  \begin{tcolorbox}[enhanced, colback=primary, colframe=primary, arc=4mm, boxrule=0pt,
+     left=7mm, right=7mm, top=6mm, bottom=6mm, drop fuzzy shadow=black!35,
+     overlay={\node[anchor=west, text=white, opacity=0.18, font=\fontsize{90}{90}\selectfont\headfont] at ([xshift=4mm]frame.west) {\thechapter};}]
+    {\color{white}\lightfont\large \chapname\ \thechapter}\par\vspace{2mm}
+    {\color{white}\headfont\fontsize{26}{36}\selectfont #1}
+  \end{tcolorbox}}
+
+\titleformat{name=\chapter,numberless}[display]
+  {\normalfont}
+  {}
+  {0pt}
+  {\chapterheadstylenonum}
+\newcommand{\chapterheadstylenonum}[1]{%
+  \begin{tcolorbox}[enhanced, colback=primary, colframe=primary, arc=4mm, boxrule=0pt,
+     left=7mm, right=7mm, top=6mm, bottom=6mm, drop fuzzy shadow=black!35]
+    {\color{white}\headfont\fontsize{24}{34}\selectfont #1}
+  \end{tcolorbox}}
+
+\titleformat{\section}
+  {\headfont\Large\color{primary}}
+  {\tikz[baseline=(n.base)]\node[fill=primary,text=white,rounded corners=2mm,inner xsep=2.2mm,inner ysep=1.2mm,font=\semifont\normalsize](n){\thesection};}
+  {0.7em}
+  {}
+\titlespacing*{\section}{0pt}{1.8em}{0.9em}
+
+\titleformat{\subsection}
+  {\semifont\large\color{primary!85!black}}
+  {\textcolor{accent}{\thesubsection}}
+  {0.6em}
+  {}
+\titlespacing*{\subsection}{0pt}{1.3em}{0.5em}
+
+\titleformat{\subsubsection}
+  {\semifont\normalsize\color{ink}}
+  {}
+  {0em}
+  {\textcolor{accent}{$\blacktriangleleft$}\ }
+\titlespacing*{\subsubsection}{0pt}{1em}{0.3em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{primary!40}\leaders\hrule height \headrulewidth\hfill}}
+\fancyhead[RE,LO]{\small\color{muted}\nouppercase{\rightmark}}
+\fancyhead[LE,RO]{\small\color{muted}\nouppercase{\leftmark}}
+\fancyfoot[C]{\small\tikz[baseline=(p.base)]\node[fill=primary!10,text=primary,rounded corners=1.5mm,inner xsep=2mm,inner ysep=1mm](p){\semifont\thepage};}
+\newcommand{\chapname}{فصل}
+\renewcommand{\chaptermark}[1]{\markboth{\chapname\ \thechapter: #1}{}}
+\makeatletter
+\renewcommand*{\cleardoublepage}{\clearpage\if@twoside\ifodd\c@page\else\hbox{}\thispagestyle{empty}\newpage\fi\fi}
+\makeatother
+\renewcommand{\sectionmark}[1]{\markright{\thesection\quad #1}}
+\fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}\renewcommand{\headrule}{}%
+  \fancyfoot[C]{\small\tikz[baseline=(p.base)]\node[fill=primary!10,text=primary,rounded corners=1.5mm,inner xsep=2mm,inner ysep=1mm](p){\semifont\thepage};}}
+
+\setlist{itemsep=0.25em,topsep=0.4em,parsep=0.15em}
+\setlist[itemize,1]{label={\textcolor{accent}{\small$\blacktriangleleft$}}}
+\setlist[itemize,2]{label={\textcolor{primary}{\scriptsize$\bullet$}}}
+
+\renewcommand{\cftchapfont}{\semifont}
+\renewcommand{\cftchappagefont}{\semifont}
+\renewcommand{\cftsecfont}{\normalfont}
+\setlength{\cftbeforechapskip}{0.9em}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+\setcounter{tocdepth}{1}
+\renewcommand{\cfttoctitlefont}{\headfont\fontsize{26}{36}\selectfont\color{primary}}
+\renewcommand{\cftaftertoctitle}{\par\vspace{-0.6em}{\color{accent}\rule{\linewidth}{1.2pt}}}
+
+\renewcommand{\arraystretch}{1.15}
+\setlength{\arraycolsep}{4pt}
+\allowdisplaybreaks[2]
+\raggedbottom
+\pretocmd{\section}{\needspace{13\baselineskip}}{}{}
+\pretocmd{\subsection}{\needspace{7\baselineskip}}{}{}
+\pretocmd{\subsubsection}{\needspace{6\baselineskip}}{}{}

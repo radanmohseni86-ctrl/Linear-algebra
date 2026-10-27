@@ -1,0 +1,47 @@
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[primary] (current page.north west) rectangle ([yshift=-17.5cm]current page.north east);
+  \begin{scope}
+    \clip (current page.north west) rectangle ([yshift=-17.5cm]current page.north east);
+    \foreach \i in {-12,...,12} {
+      \draw[white, opacity=0.07, line width=0.5pt] ([xshift=\i cm]current page.north) -- ([xshift=\i cm, yshift=-17.5cm]current page.north);
+    }
+    \foreach \j in {0,...,18} {
+      \draw[white, opacity=0.07, line width=0.5pt] ([yshift=-\j cm]current page.north west) -- ([yshift=-\j cm]current page.north east);
+    }
+    \coordinate (O) at ([xshift=-5.6cm, yshift=-16.4cm]current page.north);
+    \fill[white, opacity=0.10] (O) -- ++(4.6,1.3) -- ++(1.4,3.0) -- ++(-4.6,-1.3) -- cycle;
+    \draw[white, opacity=0.35, dashed] ($(O)+(4.6,1.3)$) -- ++(1.4,3.0);
+    \draw[white, opacity=0.35, dashed] ($(O)+(1.4,3.0)$) -- ++(4.6,1.3);
+    \draw[-{Latex[length=4mm]}, line width=1.6pt, white] (O) -- ++(4.6,1.3);
+    \draw[-{Latex[length=4mm]}, line width=1.6pt, white] (O) -- ++(1.4,3.0);
+    \draw[-{Latex[length=4mm]}, line width=2pt, accent] (O) -- ++(6,4.3);
+    \node[white, font=\Large] at ($(O)+(5.0,1.0)$) {$\mathbf{u}$};
+    \node[white, font=\Large] at ($(O)+(0.95,3.2)$) {$\mathbf{v}$};
+    \node[accent!60!white, font=\Large] at ($(O)+(6.9,4.5)$) {$\mathbf{u}+\mathbf{v}$};
+    \fill[white] (O) circle (2.2pt);
+  \end{scope}
+  \node[anchor=north east, text=white, align=right] at ([xshift=-2.2cm, yshift=-3.2cm]current page.north east)
+    {\rl{\lightfont\Large جزوه‌ی درس}};
+  \node[anchor=north east, text=white] at ([xshift=-2.2cm, yshift=-4.3cm]current page.north east)
+    {\rl{\headfont\fontsize{50}{60}\selectfont جبر خطی}};
+  \node[anchor=north east, text=white] at ([xshift=-2.2cm, yshift=-6.9cm]current page.north east)
+    {\rl{\lightfont\Large از دستگاه معادلات خطی تا فضای ضرب داخلی}};
+  \node[anchor=north east, text=accent!70!white] at ([xshift=-2.2cm, yshift=-8.1cm]current page.north east)
+    {\lr{\normalfont\large Linear Algebra \,---\, Lecture Notes}};
+  \fill[accent] ([yshift=-17.5cm]current page.north west) rectangle ([yshift=-17.75cm]current page.north east);
+
+  \node[anchor=north east, align=right, text width=15cm] at ([xshift=-2.2cm, yshift=-19.2cm]current page.north east) {\rl{%
+    {\semifont\Large\color{primary} بر پایه‌ی اسلایدهای درس جبر خطی (\lr{CE282})}\\[4mm]
+    {\large\color{ink} دانشکده‌ی مهندسی کامپیوتر \,|\, دانشگاه صنعتی شریف}\\[2mm]
+    {\large\color{muted} نیم‌سال اول ۱۴۰۵--۱۴۰۶}\\[6mm]
+    {\color{muted} اسلایدهای درس: حمیدرضا ربیعی و مریم رمضانی}}};
+
+  \node[anchor=south, text width=16cm, align=center] at ([yshift=2.2cm]current page.south) {\rl{%
+    {\small\color{muted}
+    دستگاه معادلات \;\textbullet\; فرم پلکانی و \lr{LU} \;\textbullet\; فضای برداری \;\textbullet\; زیرفضا\\[1mm]
+    استقلال خطی \;\textbullet\; پایه و بُعد \;\textbullet\; رتبه و چهار زیرفضای اساسی \;\textbullet\; ضرب داخلی و نُرم}}};
+\end{tikzpicture}
+\end{titlepage}
+\cleardoublepage

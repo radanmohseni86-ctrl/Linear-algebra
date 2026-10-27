@@ -1,0 +1,561 @@
+\chapter{پایه و بُعد}
+\label{ch:basis}
+
+در فصل قبل دیدیم که می‌توان بردارهای اضافی را از یک مجموعه‌ی مولد حذف کرد تا به مجموعه‌ای مستقل برسیم. چنین مجموعه‌ای که هم \textbf{تولید می‌کند} و هم \textbf{مستقل} است، \emph{پایه} نام دارد. پایه مثل «دستگاه مختصات» یک فضاست: هر بردار به‌طور یکتا بر حسب آن نوشته می‌شود. نکته‌ی شگفت‌انگیز این است که همه‌ی پایه‌های یک فضا تعداد عضو یکسانی دارند؛ این عدد، \emph{بُعد} فضاست.
+
+\section{انگیزه}
+دوباره مسئله‌ی قیمت خانه را در نظر بگیرید. داده‌ها را در یک جدول می‌نویسیم: هر سطر یک خانه و هر ستون یک ویژگی است.
+\begin{center}
+\small
+\begin{tabular}{c|ccccccccc}
+\toprule
+ & \lr{\#Room} & \lr{Size\_p1} & \lr{Size\_p2} & \lr{Size\_p3} & \lr{Size\_p4} & \lr{Size} & \lr{Age} & \lr{Floor} & \lr{Is\_near\_park}\\
+\midrule
+\fa{خانه‌ی ۱} & & & & & & & & & \\
+\fa{خانه‌ی ۲} & & & & & & & & & \\
+$\vdots$ & & & & & & & & & \\
+\fa{خانه‌ی $N$} & & & & & & & & & \\
+\bottomrule
+\end{tabular}
+\end{center}
+ستون \lr{Size} مجموع چهار ستون \lr{Size\_p1} تا \lr{Size\_p4} است، پس اضافه است. پرسش‌های این فصل:
+\begin{itemize}
+  \item کوچک‌ترین مجموعه از ستون‌ها که همه‌ی اطلاعات را دارد چیست؟ (\textbf{پایه})
+  \item چند ویژگی واقعاً مستقل داریم؟ (\textbf{بُعد})
+  \item هر ستون دیگر را چطور بر حسب این ستون‌های اصلی بنویسیم؟ (\textbf{مختصات})
+\end{itemize}
+
+\section{پایه}
+
+\begin{intuition}
+مجموعه‌ای از $n$ بردار مستقل خطی در $\R^n$ یک \emph{پایه} برای $\R^n$ است. به‌طور کلی، پایه ترکیبی از دو ویژگی است: مجموعه‌ی $\{\vv_1,\dots,\vv_n\}$ یک پایه برای یک زیرفضاست اگر
+\begin{enumerate}
+  \item آن زیرفضا را \textbf{تولید کند} (پوشش دهد)، و
+  \item \textbf{مستقل خطی} باشد.
+\end{enumerate}
+شرط اول یعنی «به اندازه‌ی کافی بردار داریم» و شرط دوم یعنی «بردار اضافه نداریم».
+\end{intuition}
+
+\begin{definition}[پایه]
+فرض کنید $H$ زیرفضایی از فضای برداری $V$ باشد. مجموعه‌ی اندیس‌دار $\mathcal{B}=\{\vb_1,\dots,\vb_n\}$ از بردارهای $V$ یک \term{پایه}{Basis} برای $H$ است اگر:
+\begin{enumerate}
+  \item $\mathcal{B}$ مستقل خطی باشد، و
+  \item زیرفضای تولیدشده توسط $\mathcal{B}$ همان $H$ باشد؛ یعنی $H=\Span\{\vb_1,\dots,\vb_n\}$.
+\end{enumerate}
+\end{definition}
+
+\begin{example}[پایه‌ی استاندارد $\R^n$]
+نشان دهید $\{\ve_1,\dots,\ve_n\}$ (ستون‌های $I_n$) یک پایه برای $\R^n$ است.
+\end{example}
+\begin{solution}
+\textbf{تولید:} هر $\vx=(x_1,\dots,x_n)$ برابر است با $x_1\ve_1+\dots+x_n\ve_n$. \quad
+\textbf{استقلال:} $c_1\ve_1+\dots+c_n\ve_n=(c_1,\dots,c_n)=\zero$ فقط وقتی که همه‌ی $c_i$ها صفر باشند. به این پایه، \term{پایه‌ی استاندارد}{Standard Basis} $\R^n$ می‌گوییم.
+\end{solution}
+
+\begin{example}[کدام یکتاست؟]
+کدام یک از این‌ها یکتاست؟
+\begin{enumerate}
+  \item نمایش یک بردار بر حسب یک پایه‌ی مشخص.
+  \item پایه‌های $\R^2$.
+  \item پایه‌های $\R^2$ که بردارهایشان طول ۱ دارند.
+\end{enumerate}
+\end{example}
+\begin{solution}
+\begin{enumerate}
+  \item \textbf{یکتاست.} وقتی پایه ثابت شد، ضرایب (مختصات) به‌طور یکتا تعیین می‌شوند (قضیه‌ی \ref{thm:unique-coeffs}، چون پایه مستقل است).
+  \item \textbf{یکتا نیست.} بی‌شمار پایه وجود دارد: هر دو بردار مستقل خطی (غیرهم‌راستا) در $\R^2$ یک پایه‌اند (این را در قضیه‌ی \ref{thm:basis-props} ثابت می‌کنیم).
+  \item \textbf{یکتا نیست.} مثلاً $\{(\cos\theta,\sin\theta),\ (-\sin\theta,\cos\theta)\}$ برای هر زاویه‌ی $\theta$ یک پایه با بردارهای یکه است (دوران‌های پایه‌ی استاندارد).
+\end{enumerate}
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[->, gray] (-0.5,0)--(2.4,0); \draw[->, gray] (0,-0.5)--(0,2.2);
+  \draw[->, very thick, primary] (0,0)--(1.5,0) node[below] {$\ve_1$};
+  \draw[->, very thick, primary] (0,0)--(0,1.5) node[left] {$\ve_2$};
+  \node at (1,-0.9) {\small \fa{پایه‌ی استاندارد}};
+  \begin{scope}[xshift=4.5cm]
+  \draw[->, gray] (-0.5,0)--(2.4,0); \draw[->, gray] (0,-0.5)--(0,2.2);
+  \draw[->, very thick, excolor] (0,0)--(1.6,0.8) node[right] {$\vb_1$};
+  \draw[->, very thick, excolor] (0,0)--(-0.4,1.4) node[left] {$\vb_2$};
+  \node at (1,-0.9) {\small \fa{یک پایه‌ی دیگر}};
+  \end{scope}
+  \begin{scope}[xshift=9cm]
+  \draw[->, gray] (-0.5,0)--(2.4,0); \draw[->, gray] (0,-0.5)--(0,2.2);
+  \draw[->, very thick, thmcolor] (0,0)--(1.3,0.75) node[right] {$\vu_1$};
+  \draw[->, very thick, thmcolor] (0,0)--(-0.75,1.3) node[left] {$\vu_2$};
+  \node at (1,-0.9) {\small \fa{پایه‌ی یکه‌ی دوران‌یافته}};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\end{solution}
+
+\subsection{پایه‌های فضای چندجمله‌ای‌ها و ماتریس‌ها}
+\begin{warning}
+یک فضای برداری می‌تواند پایه‌هایی داشته باشد که \emph{ظاهرشان} هیچ شباهتی به هم ندارد!
+\end{warning}
+
+\begin{example}[پایه در $P_n(\R)$]
+\begin{enumerate}
+  \item پایه‌ی استاندارد $P_n(\R)$ چیست؟
+  \item آیا $\{1-x,\ 1+x,\ x^2\}$ پایه‌ای برای $P_2(\R)$ است؟
+\end{enumerate}
+\end{example}
+\begin{solution}
+\textbf{۱.} پایه‌ی استاندارد $\{1,x,x^2,\dots,x^n\}$ است. هر چندجمله‌ای $p\in P_n(\R)$ به‌طور یکتا ترکیب خطی این تک‌جمله‌ای‌هاست: $p(x)=a_0\cdot1+a_1\cdot x+\dots+a_n\cdot x^n$. این مجموعه $P_n$ را تولید می‌کند (تعریف $P_n$) و مستقل است (قضیه‌ی \ref{thm:monomials-indep}).
+
+\textbf{۲. بله.}
+\begin{itemize}
+  \item \textbf{استقلال} را در فصل قبل ثابت کردیم.
+  \item \textbf{تولید:} برای چندجمله‌ای دلخواه $a+bx+cx^2$ باید ضرایب را پیدا کنیم. با کمی محاسبه:
+  \[
+  a+bx+cx^2=\frac{a-b}{2}(1-x)+\frac{a+b}{2}(1+x)+c\,x^2 .
+  \]
+  (بررسی: $\frac{a-b}{2}+\frac{a+b}{2}=a$ و $-\frac{a-b}{2}+\frac{a+b}{2}=b$.)
+\end{itemize}
+پس این سه چندجمله‌ای یک پایه برای $P_2(\R)$ هستند. (بعداً می‌بینیم که فقط با دانستن $\dim P_2=3$، استقلال به‌تنهایی کافی بود.)
+\end{solution}
+
+\begin{example}[پایه‌ی $M_{2\times 2}$]
+ماتریس‌های
+\[
+E_{11}=\begin{bmatrix}1&0\\0&0\end{bmatrix},\ E_{12}=\begin{bmatrix}0&1\\0&0\end{bmatrix},\ E_{21}=\begin{bmatrix}0&0\\1&0\end{bmatrix},\ E_{22}=\begin{bmatrix}0&0\\0&1\end{bmatrix}
+\]
+یک پایه برای $M_{2\times2}(\R)$ هستند، چون
+$\begin{bmatrix}a&b\\c&d\end{bmatrix}=aE_{11}+bE_{12}+cE_{21}+dE_{22}$
+و این ترکیب فقط وقتی ماتریس صفر است که $a=b=c=d=0$. به‌طور کلی $\{E_{ij}\}$ (ماتریسی با ۱ در جای $(i,j)$ و صفر در بقیه) پایه‌ی استاندارد $M_{m\times n}$ است.
+\end{example}
+
+\subsection{استخراج پایه از یک مجموعه‌ی مولد}
+\begin{theorem}[قضیه‌ی مجموعه‌ی مولد]\label{thm:spanning-set}
+فرض کنید $S=\{\vv_1,\dots,\vv_p\}$ زیرفضای $H\neq\{\zero\}$ را تولید کند. آن‌گاه زیرمجموعه‌ای از $S$ یک پایه برای $H$ است.
+\end{theorem}
+\begin{proof}
+اگر $S$ مستقل باشد، خودش پایه است. وگرنه $S$ وابسته است و (طبق قضیه‌ی \ref{thm:dep-char}) یک بردار از $S$ ترکیب خطی بقیه است؛ طبق قضیه‌ی \ref{thm:remove-dependent} می‌توانیم آن را حذف کنیم و مجموعه‌ی باقی‌مانده هنوز $H$ را تولید می‌کند. این کار را تکرار می‌کنیم. چون $S$ متناهی است، این روند پایان می‌یابد. نمی‌توانیم همه‌ی بردارها را حذف کنیم، چون $H\neq\{\zero\}$ و مجموعه‌ی باقی‌مانده باید $H$ را تولید کند. پس در پایان یک زیرمجموعه‌ی \emph{مستقل} از $S$ داریم که $H$ را تولید می‌کند؛ یعنی یک پایه.
+\end{proof}
+
+\section{بُعد}
+
+\begin{intuition}
+\begin{itemize}
+  \item بُعدِ یک بردار، تعداد محورهای مختصاتی است که آن بردار در آن‌ها زندگی می‌کند.
+  \item اگر یک فضای برداری با تعداد \emph{متناهی} بردار تولید شود، آن را \textbf{متناهی‌البُعد} می‌نامیم؛ وگرنه \textbf{نامتناهی‌البُعد} است.
+  \item تعداد بردارهای یک پایه‌ی فضای متناهی‌البُعد $V$ را \textbf{بُعد} $V$ می‌نامیم و با $\dim V$ نشان می‌دهیم.
+\end{itemize}
+اما برای این‌که تعریف آخر معنی داشته باشد، باید ثابت کنیم \emph{همه‌ی} پایه‌ها تعداد عضو یکسانی دارند. کلید این کار قضیه‌ی زیر است.
+\end{intuition}
+
+\begin{theorem}[مستقل‌ها حداکثر به تعداد مولدها]\label{thm:indep-le-span}
+فرض کنید فضای برداری $V$ توسط مجموعه‌ی متناهی $\{\vx_1,\dots,\vx_m\}$ تولید شود. آن‌گاه هر مجموعه‌ی مستقل خطی در $V$ متناهی است و \textbf{حداکثر $m$ عضو} دارد. به‌طور خلاصه:
+\begin{center}
+\hl{تعداد بردارهای مستقل \ $\le$ \ تعداد بردارهای مولد}
+\end{center}
+\end{theorem}
+\begin{proof}
+کافی است نشان دهیم هر مجموعه‌ی $\{\vy_1,\dots,\vy_n\}$ در $V$ با $n>m$ عضو، وابسته است. (آن‌وقت یک مجموعه‌ی مستقل نامتناهی هم نمی‌تواند وجود داشته باشد، چون هر $m+1$ عضو آن باید مستقل باشند.)
+
+چون $\vx_1,\dots,\vx_m$ فضا را تولید می‌کنند، هر $\vy_i$ ترکیب خطی آن‌هاست:
+\[
+\vy_i=a_{i1}\vx_1+a_{i2}\vx_2+\dots+a_{im}\vx_m=\sum_{j=1}^m a_{ij}\vx_j\qquad(i=1,\dots,n).
+\]
+حالا ترکیب خطی دلخواه $\vy_i$ها را حساب می‌کنیم:
+\[
+c_1\vy_1+\dots+c_n\vy_n=\sum_{i=1}^n c_i\sum_{j=1}^m a_{ij}\vx_j=\sum_{j=1}^m\Big(\sum_{i=1}^n a_{ij}c_i\Big)\vx_j .
+\]
+یعنی
+\[
+c_1\vy_1+\dots+c_n\vy_n=(c_1a_{11}+\dots+c_na_{n1})\vx_1+\dots+(c_1a_{1m}+\dots+c_na_{nm})\vx_m .
+\]
+حالا ضرایب $c_1,\dots,c_n$ را طوری انتخاب می‌کنیم که \emph{همه‌ی} ضرایب $\vx_j$ها صفر شوند:
+\[
+\sum_{i=1}^n a_{ij}c_i=0,\qquad j=1,\dots,m .
+\]
+این یک دستگاه \textbf{همگن} با $m$ معادله و $n$ مجهول ($c_1,\dots,c_n$) است. چون $n>m$، طبق نتیجه‌ی \ref{cor:more-unknowns} یک جواب نابدیهی دارد. با این ضرایب (که همه صفر نیستند):
+\[
+c_1\vy_1+\dots+c_n\vy_n=0\vx_1+\dots+0\vx_m=\zero .
+\]
+پس $\vy_1,\dots,\vy_n$ وابسته‌ی خطی‌اند.
+\end{proof}
+
+\begin{corollary}
+اگر $V$ توسط $m$ بردار تولید شود، هر پایه‌ی $V$ متناهی است و حداکثر $m$ عضو دارد.
+\end{corollary}
+
+\begin{theorem}[همه‌ی پایه‌ها هم‌اندازه‌اند]\label{thm:bases-same-size}
+اگر $V$ یک فضای برداری متناهی‌البُعد باشد، هر دو پایه‌ی $V$ تعداد عضو یکسانی دارند.
+\end{theorem}
+\begin{proof}
+فرض کنید $\mathcal{B}_1=\{\vx_1,\dots,\vx_m\}$ و $\mathcal{B}_2=\{\vy_1,\dots,\vy_n\}$ دو پایه‌ی $V$ باشند.
+\begin{itemize}
+  \item چون $\mathcal{B}_1$ فضا را تولید می‌کند و $\mathcal{B}_2$ مستقل است، طبق قضیه‌ی \ref{thm:indep-le-span}: $n\le m$.
+  \item چون $\mathcal{B}_2$ فضا را تولید می‌کند و $\mathcal{B}_1$ مستقل است: $m\le n$.
+\end{itemize}
+پس $m=n$.
+\end{proof}
+
+\begin{definition}[بُعد]
+فضای برداری $V$:
+\begin{enumerate}
+  \item \term{متناهی‌البُعد}{Finite-Dimensional} است اگر یک پایه‌ی متناهی داشته باشد. در این صورت \term{بُعد}{Dimension} آن، $\dim V$، تعداد بردارهای یکی از پایه‌های آن است (طبق قضیه‌ی \ref{thm:bases-same-size} مهم نیست کدام پایه).
+  \item \term{نامتناهی‌البُعد}{Infinite-Dimensional} است اگر پایه‌ی متناهی نداشته باشد؛ می‌نویسیم $\dim V=\infty$.
+\end{enumerate}
+\end{definition}
+
+\begin{note}
+بُعد زیرفضای صفر $\{\zero\}$ برابر \textbf{صفر} است: پایه‌ی آن مجموعه‌ی تهی است (طبق قرارداد $\Span\emptyset=\{\zero\}$ و مجموعه‌ی تهی مستقل است).
+\end{note}
+
+\begin{theorem}\label{thm:dim-bounds}
+فرض کنید $V$ پایه‌ای با $m$ عضو داشته باشد ($\dim V=m$). آن‌گاه:
+\begin{enumerate}[label=(\alph*)]
+  \item هر مجموعه با \textbf{بیش از $m$} بردار در $V$ وابسته‌ی خطی است؛
+  \item هیچ مجموعه با \textbf{کمتر از $m$} بردار نمی‌تواند $V$ را تولید کند.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\textbf{(آ)} پایه، $V$ را با $m$ بردار تولید می‌کند. طبق قضیه‌ی \ref{thm:indep-le-span} هر مجموعه‌ی مستقل در $V$ حداکثر $m$ عضو دارد؛ پس مجموعه‌ای با بیش از $m$ عضو باید وابسته باشد.
+
+\textbf{(ب)} با برهان خلف: فرض کنید $S=\{\vy_1,\dots,\vy_k\}$ با $k<m$ فضای $V$ را تولید کند. طبق قضیه‌ی \ref{thm:spanning-set} (با حذف بردارهای وابسته) زیرمجموعه‌ای از $S$ پایه‌ی $V$ است که حداکثر $k<m$ عضو دارد. اما هر پایه‌ی $V$ دقیقاً $m$ عضو دارد. تناقض. (حالت $V=\{\zero\}$ بدیهی است چون آن‌جا $m=0$.)
+\end{proof}
+
+\begin{example}[بُعد چند فضای آشنا]
+پایه و بُعد این فضاها را مشخص کنید: $\F^n$، $P_p$، $M_{m,n}$، $P$ (همه‌ی چندجمله‌ای‌ها)، $\mathcal{F}$ (همه‌ی توابع $\R\to\R$) و $C$ (همه‌ی توابع پیوسته).
+\end{example}
+\begin{solution}
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{lll}
+\toprule
+\textbf{فضای برداری} & \textbf{یک پایه} & \textbf{بُعد}\\
+\midrule
+$\F^n$ (مثلاً $\R^n$، $\C^n$) & $\{\ve_1,\ve_2,\dots,\ve_n\}$ & $n$\\
+$P_p$ (چندجمله‌ای‌های درجه‌ی حداکثر $p$) & $\{1,x,x^2,\dots,x^p\}$ & $p+1$ \ \textcolor{warncolor}{(نه $p$!)}\\
+$M_{m,n}$ (ماتریس‌های $m\times n$) & $\{E_{11},E_{12},\dots,E_{mn}\}$ & $mn$\\
+$P$ (همه‌ی چندجمله‌ای‌ها) & $\{1,x,x^2,x^3,\dots\}$ & $\infty$\\
+$\mathcal{F}$ (همه‌ی توابع) & \textcolor{warncolor}{؟؟} & $\infty$\\
+$C$ (همه‌ی توابع پیوسته) & \textcolor{warncolor}{؟؟} & $\infty$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{چرا $P$ نامتناهی‌البُعد است؟} اگر $P$ پایه‌ای متناهی با $d$ عضو داشت، طبق قضیه‌ی \ref{thm:dim-bounds}(آ) هر $d+1$ عضو آن وابسته بودند؛ اما $\{1,x,\dots,x^d\}$ شامل $d+1$ عضو مستقل است (قضیه‌ی \ref{thm:monomials-indep}). همین استدلال برای $\mathcal{F}$ و $C$ هم کار می‌کند، چون چندجمله‌ای‌ها توابعی پیوسته‌اند و این دو فضا هم مجموعه‌های مستقلِ به هر اندازه‌ی دلخواه دارند.
+
+\textbf{علامت سؤال‌ها:} می‌توان ثابت کرد (با ابزاری از نظریه‌ی مجموعه‌ها به نام لم زُرن) که $\mathcal{F}$ و $C$ هم پایه دارند، اما هیچ‌کس نمی‌تواند چنین پایه‌ای را صریحاً بنویسد!
+\end{solution}
+
+\section{زیرفضاهای فضای متناهی‌البُعد}
+
+\begin{lemma}[افزودن بردار بیرون از پوشش]\label{lem:adjoin}
+فرض کنید $S=\{\vv_1,\dots,\vv_n\}$ یک مجموعه‌ی مستقل خطی در $V$ باشد و $\vu$ برداری در $V$ که در $\Span(S)$ نیست. آن‌گاه $S\cup\{\vu\}$ مستقل خطی است.
+\end{lemma}
+\begin{proof}
+فرض کنید
+\[
+a_1\vv_1+\dots+a_n\vv_n+c\,\vu=\zero .
+\]
+\textbf{ادعا: $c=0$.} اگر $c\neq0$ بود، می‌توانستیم $\vu$ را حل کنیم:
+\[
+\vu=-\frac1c\,(a_1\vv_1+\dots+a_n\vv_n),
+\]
+یعنی $\vu$ ترکیب خطی بردارهای $S$ بود و $\vu\in\Span(S)$؛ با فرض تناقض دارد. پس $c=0$ و معادله می‌شود $a_1\vv_1+\dots+a_n\vv_n=\zero$. چون $S$ مستقل است، $a_1=\dots=a_n=0$. پس همه‌ی ضرایب صفرند و $S\cup\{\vu\}$ مستقل است.
+\end{proof}
+
+\begin{theorem}[گسترش به پایه]\label{thm:extend-basis}
+اگر $W$ زیرفضایی از فضای متناهی‌البُعد $V$ باشد، هر زیرمجموعه‌ی مستقل خطی از $W$ متناهی است و بخشی از یک پایه‌ی (متناهیِ) $W$ است.
+\end{theorem}
+\begin{proof}
+فرض کنید $\dim V=m$. طبق قضیه‌ی \ref{thm:dim-bounds}، هر مجموعه‌ی مستقل در $V$ حداکثر $m$ عضو دارد؛ پس هر زیرمجموعه‌ی مستقل از $W$ هم متناهی است و اندازه‌اش $\le m$.
+
+حالا فرض کنید $S_0$ زیرمجموعه‌ی مستقلی از $W$ باشد. از بین همه‌ی زیرمجموعه‌های مستقلِ $W$ که $S_0$ را در خود دارند، یکی را با \textbf{بیشترین تعداد عضو} انتخاب کنید و $B$ بنامید. (چنین بیشینه‌ای وجود دارد، چون اندازه‌ها اعداد صحیحی در بازه‌ی $\{0,1,\dots,m\}$ هستند.)
+
+\textbf{ادعا: $B$ فضای $W$ را تولید می‌کند.} اگر نه، برداری مثل $\vw\in W$ هست که $\vw\notin\Span(B)$. طبق لم \ref{lem:adjoin}، $B\cup\{\vw\}$ مستقل است، $S_0$ را در خود دارد و یک عضو بیشتر از $B$ دارد؛ این با بیشینه بودن اندازه‌ی $B$ تناقض دارد.
+
+پس $B$ مستقل است و $W$ را تولید می‌کند؛ یعنی یک پایه‌ی متناهی برای $W$ است که $S_0$ را در خود دارد.
+\end{proof}
+
+\begin{definition}[زیرفضای سره]
+زیرفضای $W$ از $V$ را \term{سره}{Proper} می‌نامیم اگر $W\neq V$. مثلاً $\R^2$ تنها زیرفضای $\R^2$ است که سره نیست.
+\end{definition}
+
+\begin{corollary}\label{cor:proper-subspace}
+اگر $W$ زیرفضای سره‌ی فضای متناهی‌البُعد $V$ باشد، $W$ متناهی‌البُعد است و $\dim W<\dim V$.
+\end{corollary}
+\begin{proof}
+اگر $W=\{\zero\}$، $\dim W=0<\dim V$ (چون $V\neq W$ پس $V\neq\{\zero\}$). وگرنه یک بردار ناصفر $\vw\in W$ را در نظر بگیرید؛ $\{\vw\}$ مستقل است و طبق قضیه‌ی \ref{thm:extend-basis} بخشی از یک پایه‌ی متناهی $B$ برای $W$ است. پس $W$ متناهی‌البُعد است. $B$ در $V$ هم مستقل است، پس $\dim W=|B|\le\dim V$.
+
+حالا فرض کنید $\dim W=\dim V=m$. چون $W\neq V$، برداری $\vv\in V$ هست که $\vv\notin W=\Span(B)$. طبق لم \ref{lem:adjoin}، $B\cup\{\vv\}$ یک مجموعه‌ی مستقل با $m+1$ عضو در $V$ است؛ که با قضیه‌ی \ref{thm:dim-bounds} تناقض دارد. پس $\dim W<\dim V$.
+\end{proof}
+
+\begin{corollary}\label{cor:extend-in-V}
+در یک فضای متناهی‌البُعد $V$، هر مجموعه‌ی مستقل خطی ناتهی بخشی از یک پایه‌ی $V$ است.
+\end{corollary}
+\begin{proof}
+قضیه‌ی \ref{thm:extend-basis} را با $W=V$ به کار ببرید.
+\end{proof}
+
+\begin{example}[همه‌ی زیرفضاهای $\R^3$]
+طبق نتیجه‌ی \ref{cor:proper-subspace}، بُعد هر زیرفضای $\R^3$ یکی از اعداد ۰، ۱، ۲ یا ۳ است:
+\begin{itemize}
+  \item بُعد ۰: فقط $\{\zero\}$.
+  \item بُعد ۱: پوشش یک بردار ناصفر، یعنی خط گذرنده از مبدأ.
+  \item بُعد ۲: پوشش دو بردار مستقل، یعنی صفحه‌ی گذرنده از مبدأ.
+  \item بُعد ۳: طبق نتیجه‌ی بالا فقط خود $\R^3$ (چون زیرفضای سره بُعد کمتری دارد).
+\end{itemize}
+این همان ادعایی است که در فصل زیرفضا بدون اثبات گفتیم.
+\end{example}
+
+\subsection{بُعد جمع دو زیرفضا}
+\begin{theorem}[فرمول بُعد]\label{thm:dim-formula}
+اگر $W_1$ و $W_2$ زیرفضاهای متناهی‌البُعدِ فضای برداری $V$ باشند، آن‌گاه $W_1+W_2$ متناهی‌البُعد است و
+\begin{keyformula}
+\[
+\dim W_1+\dim W_2=\dim(W_1\cap W_2)+\dim(W_1+W_2).
+\]
+\end{keyformula}
+\end{theorem}
+\begin{proof}
+$W_1\cap W_2$ زیرفضای $W_1$ است و در نتیجه متناهی‌البُعد. فرض کنید $\{\vv_1,\dots,\vv_m\}$ پایه‌ای برای $W_1\cap W_2$ باشد؛ پس $\dim(W_1\cap W_2)=m$.
+\begin{itemize}
+  \item این پایه را (طبق قضیه‌ی \ref{thm:extend-basis}) به پایه‌ای برای $W_1$ گسترش می‌دهیم: $\{\vv_1,\dots,\vv_m,\vu_1,\dots,\vu_j\}$؛ پس $\dim W_1=m+j$.
+  \item همین‌طور به پایه‌ای برای $W_2$: $\{\vv_1,\dots,\vv_m,\vw_1,\dots,\vw_k\}$؛ پس $\dim W_2=m+k$.
+\end{itemize}
+ادعا می‌کنیم
+\[
+\mathcal{B}=\{\vv_1,\dots,\vv_m,\ \vu_1,\dots,\vu_j,\ \vw_1,\dots,\vw_k\}
+\]
+پایه‌ای برای $W_1+W_2$ است. اگر این ثابت شود، $W_1+W_2$ متناهی‌البُعد است و
+\[
+\dim(W_1+W_2)=m+j+k=(m+j)+(m+k)-m=\dim W_1+\dim W_2-\dim(W_1\cap W_2).
+\]
+
+\textbf{۱. تولید.} هر بردار $W_1$ ترکیب خطی $\vv$ها و $\vu$هاست و هر بردار $W_2$ ترکیب خطی $\vv$ها و $\vw$ها. پس هر عضو $W_1+W_2$ (که به شکل $\vx_1+\vx_2$ با $\vx_1\in W_1$ و $\vx_2\in W_2$ است) ترکیب خطی اعضای $\mathcal{B}$ است. برعکس، همه‌ی اعضای $\mathcal{B}$ در $W_1+W_2$ هستند. پس $\Span\mathcal{B}=W_1+W_2$.
+
+\textbf{۲. استقلال.} فرض کنید
+\[
+a_1\vv_1+\dots+a_m\vv_m+b_1\vu_1+\dots+b_j\vu_j+c_1\vw_1+\dots+c_k\vw_k=\zero .
+\]
+جمله‌های $\vw$ را به یک طرف می‌بریم:
+\[
+\underbrace{c_1\vw_1+\dots+c_k\vw_k}_{\in W_2}=\underbrace{-(a_1\vv_1+\dots+a_m\vv_m+b_1\vu_1+\dots+b_j\vu_j)}_{\in W_1}.
+\]
+پس این بردار هم در $W_1$ و هم در $W_2$ است، یعنی در $W_1\cap W_2$؛ و در نتیجه ترکیب خطی $\vv_1,\dots,\vv_m$ است:
+\[
+c_1\vw_1+\dots+c_k\vw_k=d_1\vv_1+\dots+d_m\vv_m\qquad\text{\fa{برای اعدادی مثل}}\ d_i .
+\]
+یعنی $d_1\vv_1+\dots+d_m\vv_m-c_1\vw_1-\dots-c_k\vw_k=\zero$. اما $\{\vv_1,\dots,\vv_m,\vw_1,\dots,\vw_k\}$ پایه‌ی $W_2$ و در نتیجه مستقل است؛ پس همه‌ی $c_i$ها (و $d_i$ها) صفرند. حالا معادله‌ی اولیه می‌شود
+\[
+a_1\vv_1+\dots+a_m\vv_m+b_1\vu_1+\dots+b_j\vu_j=\zero ,
+\]
+و چون $\{\vv_1,\dots,\vv_m,\vu_1,\dots,\vu_j\}$ پایه‌ی $W_1$ و مستقل است، همه‌ی $a_i$ها و $b_i$ها هم صفرند. پس $\mathcal{B}$ مستقل است.
+\end{proof}
+
+\begin{intuition}
+این فرمول شبیه اصل شمول و عدم شمول در شمارش است: $|A\cup B|=|A|+|B|-|A\cap B|$. وقتی بُعدها را جمع می‌زنیم، بخش مشترک دو بار شمرده می‌شود و باید یک بار کمش کنیم.
+\end{intuition}
+
+\begin{example}
+نشان دهید دو صفحه‌ی گذرنده از مبدأ در $\R^3$ همیشه دست‌کم در یک خط مشترک‌اند.
+\end{example}
+\begin{solution}
+$\dim W_1=\dim W_2=2$ و $W_1+W_2\subseteq\R^3$، پس $\dim(W_1+W_2)\le3$. طبق فرمول بُعد:
+\[
+\dim(W_1\cap W_2)=2+2-\dim(W_1+W_2)\ge4-3=1 .
+\]
+پس اشتراکشان دست‌کم یک خط است (و اگر دو صفحه یکی باشند، بُعد اشتراک ۲ است).
+\end{solution}
+
+\begin{corollary}[بُعد جمع مستقیم]
+اگر $U\cap W=\{\zero\}$ آن‌گاه $\dim(U\oplus W)=\dim U+\dim W$.
+\end{corollary}
+
+\begin{theorem}[سه زیرفضا]\label{thm:three-subspaces}
+آیا برای سه زیرفضای متناهی‌البُعد $W_1,W_2,W_3$ رابطه‌ی «شمول و عدم شمول» برقرار است؟
+\begin{align*}
+\dim(W_1+W_2+W_3)\overset{?}{=}{}&\dim W_1+\dim W_2+\dim W_3\\
+&-\dim(W_1\cap W_2)-\dim(W_2\cap W_3)-\dim(W_1\cap W_3)\\
+&+\dim(W_1\cap W_2\cap W_3)
+\end{align*}
+\textbf{خیر}؛ اما همیشه نامساوی زیر برقرار است:
+\begin{align*}
+\dim(W_1+W_2+W_3)\le{}&\dim W_1+\dim W_2+\dim W_3\\
+&-\dim(W_1\cap W_2)-\dim(W_2\cap W_3)-\dim(W_1\cap W_3)\\
+&+\dim(W_1\cap W_2\cap W_3).
+\end{align*}
+\end{theorem}
+\begin{proof}
+\textbf{مثال نقض برای تساوی.} در $\R^2$ قرار دهید
+\[
+W_1=\Span\left\{\begin{bmatrix}1\\0\end{bmatrix}\right\},\quad
+W_2=\Span\left\{\begin{bmatrix}0\\1\end{bmatrix}\right\},\quad
+W_3=\Span\left\{\begin{bmatrix}1\\1\end{bmatrix}\right\}.
+\]
+سمت چپ: $W_1+W_2+W_3=\R^2$ پس بُعدش ۲ است. سمت راست: هر سه خط بُعد ۱ دارند و همه‌ی اشتراک‌ها $\{\zero\}$ هستند؛ پس $1+1+1-0-0-0+0=3$. و $2\neq3$.
+
+\textbf{اثبات نامساوی.} فرمول بُعد را دو بار به کار می‌بریم. اول برای $W_1$ و $W_2+W_3$:
+\[
+\dim(W_1+W_2+W_3)=\dim W_1+\dim(W_2+W_3)-\dim\big(W_1\cap(W_2+W_3)\big),
+\]
+و دوباره برای $W_2+W_3$:
+\[
+=\dim W_1+\dim W_2+\dim W_3-\dim(W_2\cap W_3)-\dim\big(W_1\cap(W_2+W_3)\big).
+\]
+حالا به جمله‌ی آخر نگاه کنید. هر عضو $W_1\cap W_2$ در $W_1$ و در $W_2+W_3$ است؛ هر عضو $W_1\cap W_3$ هم همین‌طور. پس (چون $W_1\cap(W_2+W_3)$ زیرفضاست و تحت جمع بسته است)
+\[
+(W_1\cap W_2)+(W_1\cap W_3)\subseteq W_1\cap(W_2+W_3).
+\]
+بُعد یک زیرفضا از بُعد فضای بزرگ‌تر بیشتر نیست، و با فرمول بُعد برای دو زیرفضای $W_1\cap W_2$ و $W_1\cap W_3$ (که اشتراکشان $W_1\cap W_2\cap W_3$ است):
+\[
+\dim\big(W_1\cap(W_2+W_3)\big)\ \ge\ \dim(W_1\cap W_2)+\dim(W_1\cap W_3)-\dim(W_1\cap W_2\cap W_3).
+\]
+با گذاشتن این در رابطه‌ی قبل (که با منفی ظاهر شده)، نامساوی مطلوب به دست می‌آید.
+\end{proof}
+
+\subsection{ویژگی‌های پایه در فضای متناهی‌البُعد}
+\begin{theorem}\label{thm:basis-props}
+فرض کنید $V$ فضای برداری متناهی‌البُعد روی $\F$ با $\dim V=n$ باشد. آن‌گاه:
+\begin{enumerate}
+  \item هر فهرست مستقل خطی را می‌توان به یک پایه گسترش داد (یک فهرست مستقلِ \emph{بیشینه}، مولد است).
+  \item هر فهرست مولد، یک پایه در خود دارد (یک فهرست مولدِ \emph{کمینه}، مستقل است).
+  \item هر فهرست مستقل خطی با طول $n$ یک پایه است.
+  \item هر فهرست مولد با طول $n$ یک پایه است.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\textbf{۱.} نتیجه‌ی \ref{cor:extend-in-V}.
+
+\textbf{۲.} قضیه‌ی \ref{thm:spanning-set}.
+
+\textbf{۳.} طبق بند ۱، فهرست مستقل $S$ با $n$ عضو را می‌توان به پایه‌ای گسترش داد. اما هر پایه دقیقاً $n$ عضو دارد؛ پس چیزی اضافه نشده و $S$ خودش پایه است.
+
+\textbf{۴.} طبق بند ۲، فهرست مولد $S$ با $n$ عضو پایه‌ای در خود دارد. آن پایه $n$ عضو دارد؛ پس چیزی حذف نشده و $S$ خودش پایه است.
+\end{proof}
+
+\begin{note}
+بندهای ۳ و ۴ در عمل خیلی کار را کم می‌کنند: اگر بُعد را بدانیم، برای اثبات پایه بودن کافی است \emph{فقط یکی} از دو شرط (استقلال یا تولید) را بررسی کنیم. مثلاً چون $\dim P_2=3$، استقلال $\{1-x,1+x,x^2\}$ به‌تنهایی پایه بودنش را ثابت می‌کند.
+
+تغییر پایه را بعدها در درس می‌آموزیم.
+\end{note}
+
+\section{مختصات}
+
+\begin{definition}[پایه‌ی مرتب]
+اگر $V$ متناهی‌البُعد باشد، یک \term{پایه‌ی مرتب}{Ordered Basis} برای $V$ یک \emph{دنباله‌ی} متناهی از بردارهاست که مستقل خطی است و $V$ را تولید می‌کند.
+\end{definition}
+
+\begin{warning}
+ترتیب بردارها در پایه‌ی $\mathcal{B}$ روی ترتیب مؤلفه‌های بردار مختصات اثر دارد. این کمی ناجور است (مجموعه‌ها از نظر ریاضی ترتیب ندارند) اما همه این قرارداد را پذیرفته‌اند: وقتی از مختصات حرف می‌زنیم، منظور پایه‌ی \emph{مرتب} است.
+\end{warning}
+
+\subsection{دستگاه مختصات}
+دلیل اصلی انتخاب یک \emph{پایه} برای زیرفضای $H$ (به‌جای یک مجموعه‌ی مولد معمولی) این است که هر بردار $H$ فقط به \textbf{یک} شکل ترکیب خطی بردارهای پایه است (قضیه‌ی \ref{thm:unique-coeffs}).
+
+\begin{definition}[بردار مختصات]
+فرض کنید $\mathcal{B}=\{\vb_1,\dots,\vb_p\}$ پایه‌ای برای زیرفضای $H$ باشد. برای هر $\vx\in H$، \term{مختصات}{Coordinates} $\vx$ نسبت به $\mathcal{B}$، ضرایب $c_1,\dots,c_p$ هستند که
+\[
+\vx=c_1\vb_1+\dots+c_p\vb_p ,
+\]
+و بردار
+\[
+\coord{\vx}{\mathcal{B}}=\begin{bmatrix}c_1\\ \vdots\\ c_p\end{bmatrix}\in\R^p
+\]
+را \term{بردار مختصات}{Coordinate Vector} $\vx$ نسبت به $\mathcal{B}$ (یا $\mathcal{B}$-مختصات $\vx$) می‌نامیم.
+\end{definition}
+
+\begin{example}
+بردار مختصات $p(x)=4-x+3x^2$ را نسبت به پایه‌ی $\mathcal{B}=\{1,x,x^2\}$ بیابید.
+\end{example}
+\begin{solution}
+$p(x)=4\cdot1+(-1)\cdot x+3\cdot x^2$، پس
+$\coord{p}{\mathcal{B}}=\begin{bmatrix}4\\-1\\3\end{bmatrix}$.
+\end{solution}
+
+\begin{example}
+در $\R^2$ پایه‌ی $\mathcal{B}=\{\vb_1,\vb_2\}$ با $\vb_1=(2,1)$ و $\vb_2=(-1,1)$ را در نظر بگیرید. $\coord{\vx}{\mathcal{B}}$ را برای $\vx=(4,5)$ بیابید.
+\end{example}
+\begin{solution}
+باید $c_1(2,1)+c_2(-1,1)=(4,5)$ را حل کنیم:
+\[
+\begin{cases}2c_1-c_2=4\\ c_1+c_2=5\end{cases}\ \Longrightarrow\ 3c_1=9,\quad c_1=3,\quad c_2=2 .
+\]
+پس $\coord{\vx}{\mathcal{B}}=\begin{bmatrix}3\\2\end{bmatrix}$، در حالی که مختصات استاندارد $\vx$ برابر $\begin{bmatrix}4\\5\end{bmatrix}$ است. همان نقطه، با دو «دستگاه مختصات» متفاوت:
+\begin{center}
+\begin{tikzpicture}[scale=0.62,>=Latex]
+  \begin{scope}
+    \clip (-2.2,-1.2) rectangle (6.4,6.4);
+    \foreach \k in {-8,...,8} {
+      \draw[excolor!25] ($\k*(-1,1)-6*(2,1)$)--($\k*(-1,1)+6*(2,1)$);
+      \draw[excolor!25] ($\k*(2,1)-8*(-1,1)$)--($\k*(2,1)+8*(-1,1)$);
+    }
+  \end{scope}
+  \draw[->, gray] (-2,0)--(6.4,0); \draw[->, gray] (0,-1)--(0,6.4);
+  \draw[->, very thick, excolor] (0,0)--(2,1) node[below right] {$\vb_1$};
+  \draw[->, very thick, excolor] (0,0)--(-1,1) node[left] {$\vb_2$};
+  \draw[->, thick, excolor!70] (0,0)--(6,3);
+  \draw[->, thick, excolor!70] (6,3)--(4,5);
+  \fill[warncolor] (4,5) circle (3.5pt) node[above right] {$\vx=3\vb_1+2\vb_2$};
+\end{tikzpicture}
+\end{center}
+\end{solution}
+
+\begin{intuition}[محورهای مختصات غیرعمود]
+در صفحه‌ی دکارتی آشنا، محورهای مختصات بر هم عمودند. اما در جبر خطی محورها (بردارهای پایه) \textbf{لازم نیست عمود باشند}؛ مثل شکل بالا که شبکه‌ی مختصات «کج» است. گاهی همین محورهای غیرعمود برای یک مسئله مناسب‌ترند.
+\end{intuition}
+
+\begin{theorem}[نگاشت مختصات]\label{thm:coord-map}
+اگر $\mathcal{B}$ پایه‌ی مرتبی برای $V$ با $n$ عضو باشد، برای هر $\vu,\vv\in V$ و اسکالر $c$:
+\[
+\coord{\vu+\vv}{\mathcal{B}}=\coord{\vu}{\mathcal{B}}+\coord{\vv}{\mathcal{B}},\qquad \coord{c\vu}{\mathcal{B}}=c\,\coord{\vu}{\mathcal{B}} .
+\]
+به‌علاوه بردارهای $\vu_1,\dots,\vu_k$ در $V$ مستقل خطی‌اند اگر و تنها اگر بردارهای مختصاتشان در $\F^n$ مستقل خطی باشند.
+\end{theorem}
+\begin{proof}
+اگر $\vu=\sum a_i\vb_i$ و $\vv=\sum b_i\vb_i$، آن‌گاه $\vu+\vv=\sum(a_i+b_i)\vb_i$ و $c\vu=\sum(ca_i)\vb_i$؛ چون نمایش یکتاست، بردارهای مختصات همین ضرایب‌اند.
+
+برای بخش دوم: طبق بخش اول،
+$\coord{c_1\vu_1+\dots+c_k\vu_k}{\mathcal{B}}=c_1\coord{\vu_1}{\mathcal{B}}+\dots+c_k\coord{\vu_k}{\mathcal{B}}$.
+از طرفی یک بردار صفر است اگر و تنها اگر بردار مختصاتش صفر باشد. پس $\sum c_i\vu_i=\zero$ دقیقاً وقتی است که $\sum c_i\coord{\vu_i}{\mathcal{B}}=\zero$؛ یعنی رابطه‌های وابستگی در دو طرف یکی هستند.
+\end{proof}
+
+\begin{note}
+این قضیه می‌گوید هر فضای $n$-بعدی، از نظر جبر خطی، «همان» $\F^n$ است. مثلاً برای بررسی استقلال چند چندجمله‌ای در $P_2$، کافی است بردار ضرایبشان در $\R^3$ را کنار هم بگذاریم و کاهش سطری کنیم.
+\end{note}
+
+\section{جمع‌بندی و تمرین}
+
+\begin{summary}
+\begin{itemize}
+  \item پایه = مجموعه‌ای مستقل که فضا را تولید کند. هر مجموعه‌ی مولد متناهی یک پایه در خود دارد.
+  \item تعداد بردارهای مستقل $\le$ تعداد بردارهای مولد؛ پس همه‌ی پایه‌ها هم‌اندازه‌اند و $\dim V$ خوش‌تعریف است.
+  \item $\dim\F^n=n$، $\dim P_p=p+1$، $\dim M_{m,n}=mn$ و $P$، توابع و توابع پیوسته نامتناهی‌البُعدند.
+  \item در فضای $n$-بعدی: بیش از $n$ بردار وابسته‌اند، کمتر از $n$ بردار تولید نمی‌کنند، $n$ بردار مستقل (یا $n$ بردار مولد) یک پایه‌اند.
+  \item هر مجموعه‌ی مستقل به پایه گسترش می‌یابد؛ زیرفضای سره بُعد کمتری دارد.
+  \item $\dim W_1+\dim W_2=\dim(W_1\cap W_2)+\dim(W_1+W_2)$؛ برای سه زیرفضا فقط نامساوی برقرار است.
+  \item مختصات نسبت به پایه‌ی مرتب یکتاست و $\coord{\cdot}{\mathcal{B}}$ با جمع و ضرب اسکالر سازگار است.
+\end{itemize}
+\end{summary}
+
+\begin{exercise}
+آیا $\{(1,0,1),(0,1,1),(1,1,0)\}$ پایه‌ای برای $\R^3$ است؟
+\end{exercise}
+
+\begin{exercise}
+یک پایه و بُعد زیرفضای $W=\{(x,y,z)\in\R^3:\ x+y+z=0\}$ را بیابید.
+\end{exercise}
+
+\begin{exercise}
+بُعد فضای ماتریس‌های متقارن $2\times2$ چیست؟ یک پایه برای آن بنویسید.
+\end{exercise}
+
+\begin{exercise}
+مختصات $p(x)=1+2x+3x^2$ را نسبت به پایه‌ی مرتب $\{1-x,\ 1+x,\ x^2\}$ بیابید.
+\end{exercise}
+
+\begin{exercise}
+فرض کنید $\dim V=5$ و $W_1,W_2$ دو زیرفضای سه‌بعدی $V$ باشند. نشان دهید $W_1\cap W_2\neq\{\zero\}$.
+\end{exercise}
+
+\subsection*{پاسخ‌های کوتاه}
+\begin{enumerate}
+  \item بله. با کاهش سطری ماتریسی که این بردارها ستون‌هایش هستند، سه محور به دست می‌آید ($R_3-R_1$ و سپس $R_3-R_2$ سطر $(0,0,-2)$ می‌دهد)؛ پس سه بردار مستقل در فضای سه‌بعدی‌اند و طبق قضیه‌ی \ref{thm:basis-props} پایه‌اند.
+  \item $x=-y-z$؛ پس $W=\Span\{(-1,1,0),(-1,0,1)\}$ و این دو بردار مستقل‌اند: $\dim W=2$.
+  \item ماتریس متقارن $\begin{bmatrix}a&b\\b&c\end{bmatrix}=aE_{11}+b(E_{12}+E_{21})+cE_{22}$؛ پایه: $\{E_{11},\,E_{12}+E_{21},\,E_{22}\}$ و بُعد ۳.
+  \item با فرمول مثال $P_2$ (با $a=1,b=2,c=3$): $\left(-\frac12,\ \frac32,\ 3\right)$.
+  \item $\dim(W_1\cap W_2)=3+3-\dim(W_1+W_2)\ge6-5=1$.
+\end{enumerate}

@@ -1,0 +1,662 @@
+\chapter{فرم‌های خطی، ضرب داخلی و نُرم}
+\label{ch:inner-product}
+
+در فضای برداری کلی فقط می‌توانستیم بردارها را جمع کنیم و در عدد ضرب کنیم؛ از \emph{طول}، \emph{فاصله} و \emph{زاویه} خبری نبود. در این فصل با گام‌هایی کوچک این مفاهیم هندسی را به هر فضای برداری اضافه می‌کنیم:
+\begin{center}
+\hl{فرم خطی \ $\to$ \ فرم دوخطی \ $\to$ \ ضرب داخلی \ $\to$ \ نُرم (طول) \ $\to$ \ متر (فاصله)}
+\end{center}
+
+\section{فرم خطی}
+
+\subsection{تابع خطی چیست؟}
+\begin{itemize}
+  \item نماد $f:\R^n\to\R$ یعنی $f$ تابعی است که به هر بردار $n$-تایی حقیقی یک عدد حقیقی نسبت می‌دهد.
+  \item $f(\vx)$ مقدار تابع در $\vx$ است (به $\vx$ \textbf{آرگومان} تابع می‌گوییم).
+  \item $f(\vx)=f(x_1,x_2,\dots,x_n)$؛ یعنی می‌توانیم $f$ را تابعی از $n$ متغیر عددی هم ببینیم.
+\end{itemize}
+
+\begin{definition}[تابع خطی]
+تابع $f:\R^n\to\R$ را \term{خطی}{Linear} می‌نامیم اگر دو ویژگی زیر را داشته باشد:
+\begin{itemize}
+  \item \textbf{جمع‌پذیری} \enterm{Additivity}: برای هر دو بردار $\vx,\vy$: \quad $f(\vx+\vy)=f(\vx)+f(\vy)$.
+  \item \textbf{همگنی} \enterm{Homogeneity}: برای هر بردار $\vx$ و هر عدد $\alpha\in\R$: \quad $f(\alpha\vx)=\alpha f(\vx)$.
+\end{itemize}
+به تابع خطی از یک فضای برداری به میدانش، \term{فرم خطی}{Linear Form / Linear Functional} هم می‌گوییم.
+\end{definition}
+
+\begin{definition}[اصل برهم‌نهی]
+تابع $f$ ویژگی \term{برهم‌نهی}{Superposition} دارد اگر برای هر $\vx,\vy$ و هر $\alpha,\beta$:
+\[
+f(\alpha\vx+\beta\vy)=\alpha f(\vx)+\beta f(\vy).
+\]
+\end{definition}
+
+\begin{note}
+یک تابع خطی است اگر و تنها اگر ویژگی برهم‌نهی داشته باشد: جمع‌پذیری و همگنی، برهم‌نهی را نتیجه می‌دهند ($f(\alpha\vx+\beta\vy)=f(\alpha\vx)+f(\beta\vy)=\alpha f(\vx)+\beta f(\vy)$)؛ و برعکس، با $\alpha=\beta=1$ جمع‌پذیری و با $\beta=0$ همگنی به دست می‌آید.
+\end{note}
+
+\begin{theorem}[برهم‌نهی برای چند بردار]
+اگر $f$ خطی باشد، برای هر $k$ بردار و $k$ عدد:
+\[
+f(\alpha_1\vx_1+\dots+\alpha_k\vx_k)=\alpha_1f(\vx_1)+\dots+\alpha_kf(\vx_k).
+\]
+\end{theorem}
+\begin{proof}
+با استقرا روی $k$. برای $k=1$ همان همگنی است. اگر برای $k$ درست باشد:
+\[
+f\Big(\sum_{i=1}^{k+1}\alpha_i\vx_i\Big)=f\Big(\sum_{i=1}^{k}\alpha_i\vx_i\Big)+f(\alpha_{k+1}\vx_{k+1})=\sum_{i=1}^{k}\alpha_if(\vx_i)+\alpha_{k+1}f(\vx_{k+1}).
+\]
+\end{proof}
+
+\subsection{توابع خطی و ضرب داخلی}
+\begin{theorem}\label{thm:inner-is-linear}
+تابعی که به صورت ضرب داخلی آرگومانش در یک بردار ثابت تعریف شود، خطی است: اگر $\va\in\R^n$ ثابت باشد، $f(\vx)=\va\T\vx$ خطی است.
+\end{theorem}
+\begin{proof}
+$f(\vx)=\va\T\vx=a_1x_1+a_2x_2+\dots+a_nx_n$.
+\begin{enumerate}
+  \item \textbf{جمع‌پذیری:}
+  \begin{align*}
+  f(\vx+\vy)&=\va\T(\vx+\vy)=a_1(x_1+y_1)+\dots+a_n(x_n+y_n)\\
+  &=(a_1x_1+\dots+a_nx_n)+(a_1y_1+\dots+a_ny_n)=f(\vx)+f(\vy).
+  \end{align*}
+  \item \textbf{همگنی:}
+  \[
+  \alpha f(\vx)=\alpha(a_1x_1+\dots+a_nx_n)=a_1(\alpha x_1)+\dots+a_n(\alpha x_n)=\va\T(\alpha\vx)=f(\alpha\vx).
+  \]
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}\label{thm:linear-is-inner}
+برعکس: اگر $f:\R^n\to\R$ خطی باشد، برداری ثابت مثل $\va$ وجود دارد که برای همه‌ی $\vx$ها $f(\vx)=\va\T\vx$. در واقع $\va=\big(f(\ve_1),\dots,f(\ve_n)\big)$.
+\end{theorem}
+\begin{proof}
+هر $\vx$ را بر حسب پایه‌ی استاندارد می‌نویسیم و از برهم‌نهی استفاده می‌کنیم:
+\[
+f(\vx)=f(x_1\ve_1+\dots+x_n\ve_n)=x_1f(\ve_1)+\dots+x_nf(\ve_n)
+=\begin{bmatrix}f(\ve_1)\\ \vdots\\ f(\ve_n)\end{bmatrix}^{\!\mathsf{T}}\begin{bmatrix}x_1\\ \vdots\\ x_n\end{bmatrix}.
+\]
+\end{proof}
+
+\begin{theorem}[یکتایی نمایش]\label{thm:linear-unique}
+نمایش تابع خطی $f$ به شکل $f(\vx)=\va\T\vx$ یکتاست؛ یعنی فقط یک بردار $\va$ هست که برای همه‌ی $\vx$ها $f(\vx)=\va\T\vx$.
+\end{theorem}
+\begin{proof}
+فرض کنید برای همه‌ی $\vx$ها هم $f(\vx)=\va\T\vx$ و هم $f(\vx)=\vb\T\vx$. با گذاشتن $\vx=\ve_i$:
+\[
+f(\ve_i)=\va\T\ve_i=a_i,\qquad f(\ve_i)=\vb\T\ve_i=b_i\ \Longrightarrow\ a_i=b_i\qquad(i=1,\dots,n).
+\]
+پس $\va=\vb$.
+\end{proof}
+
+\begin{example}[میانگین و بیشینه]
+آیا «میانگین» یک تابع خطی است؟ «بیشینه» چطور؟
+\end{example}
+\begin{solution}
+\textbf{میانگین خطی است:}
+\[
+\operatorname{avg}(\vx)=\frac{x_1+\dots+x_n}{n}=\frac1nx_1+\dots+\frac1nx_n=\begin{bmatrix}\frac1n\\ \vdots\\ \frac1n\end{bmatrix}^{\!\mathsf{T}}\vx ,
+\]
+که طبق قضیه‌ی \ref{thm:inner-is-linear} خطی است.
+
+\textbf{بیشینه خطی نیست.} یک مثال نقض:
+\[
+\vx=\begin{bmatrix}5\\4\\0\end{bmatrix},\ \max(\vx)=5;\qquad \vy=\begin{bmatrix}0\\7\\8\end{bmatrix},\ \max(\vy)=8;
+\]
+\[
+\max(\vx+\vy)=\max\begin{bmatrix}5\\11\\8\end{bmatrix}=11\neq5+8=13 .
+\]
+\end{solution}
+
+\begin{warning}
+تابع \emph{آفین} $f(\vx)=\va\T\vx+b$ با $b\neq0$ خطی نیست، چون هر تابع خطی باید $f(\zero)=0$ داشته باشد (همگنی با $\alpha=0$)، اما این‌جا $f(\zero)=b$.
+\end{warning}
+
+\section{فرم دوخطی}
+
+\begin{definition}[فرم دوخطی روی فضای حقیقی]
+فرض کنید $V$ و $W$ فضاهای برداری روی یک میدان $\F$ باشند. تابع $f:V\times W\to\F$ یک \term{فرم دوخطی}{Bilinear Form} است اگر:
+\begin{enumerate}[label=(\alph*)]
+  \item \textbf{در آرگومان اول خطی باشد:}
+  \begin{enumerate}[label=\roman*.]
+    \item $f(\vv_1+\vv_2,\vw)=f(\vv_1,\vw)+f(\vv_2,\vw)$،
+    \item $f(c\vv_1,\vw)=c\,f(\vv_1,\vw)$ \ برای همه‌ی $c\in\F$، $\vv_1,\vv_2\in V$ و $\vw\in W$.
+  \end{enumerate}
+  \item \textbf{در آرگومان دوم خطی باشد:}
+  \begin{enumerate}[label=\roman*.]
+    \item $f(\vv,\vw_1+\vw_2)=f(\vv,\vw_1)+f(\vv,\vw_2)$،
+    \item $f(\vv,c\vw_1)=c\,f(\vv,\vw_1)$ \ برای همه‌ی $c\in\F$، $\vv\in V$ و $\vw_1,\vw_2\in W$.
+  \end{enumerate}
+\end{enumerate}
+یعنی اگر یکی از دو آرگومان را ثابت نگه داریم، تابعِ دیگری یک فرم خطی است.
+\end{definition}
+
+\begin{example}
+ضرب داخلی معمولی $f(\vv,\vw)=\vv\T\vw$ روی $\R^n\times\R^n$ دوخطی است (قضیه‌ی \ref{thm:dot-props}). به‌طور کلی برای هر ماتریس $A_{n\times n}$، تابع $f(\vv,\vw)=\vv\T A\vw$ دوخطی است.
+\end{example}
+
+\begin{definition}[فضای دوگان]
+فرض کنید $V$ فضایی برداری روی $\F$ باشد. \term{دوگان}{Dual} $V$ که با $V^*$ نشان داده می‌شود، فضای برداری همه‌ی فرم‌های خطی روی $V$ است (با جمع و ضرب اسکالرِ نقطه‌به‌نقطه، مثل هر فضای تابعی).
+\end{definition}
+
+\begin{example}
+فرض کنید $V$ فضایی برداری روی $\F$ باشد. نشان دهید تابع $g:V^*\times V\to\F$ با تعریف
+\[
+g(f,\vv)=f(\vv)\qquad\text{\fa{برای همه‌ی}}\ f\in V^*,\ \vv\in V
+\]
+یک فرم دوخطی است.
+\end{example}
+\begin{solution}
+چهار شرط را بررسی می‌کنیم (از تعریف جمع و ضرب توابع و خطی بودن $f$):
+\begin{itemize}
+  \item $g(f_1+f_2,\vv)=(f_1+f_2)(\vv)=f_1(\vv)+f_2(\vv)=g(f_1,\vv)+g(f_2,\vv)$.
+  \item $g(cf,\vv)=(cf)(\vv)=c\,f(\vv)=c\,g(f,\vv)$.
+  \item $g(f,\vv_1+\vv_2)=f(\vv_1+\vv_2)=f(\vv_1)+f(\vv_2)=g(f,\vv_1)+g(f,\vv_2)$.
+  \item $g(f,c\vv)=f(c\vv)=c\,f(\vv)=c\,g(f,\vv)$.
+\end{itemize}
+\end{solution}
+
+\begin{definition}[فرم دوخطی متقارن]
+فرم دوخطی $f:V\times V\to\F$ روی فضای حقیقی $V$ را \term{متقارن}{Symmetric} می‌نامیم اگر برای همه‌ی $\vv,\vw\in V$:
+\[
+f(\vv,\vw)=f(\vw,\vv).
+\]
+\end{definition}
+
+\subsection{هر فرم دوخطی از یک ماتریس می‌آید}
+\begin{theorem}\label{thm:bilinear-matrix}
+هر فرم دوخطی $f:\R^n\times\R^n\to\R$ از یک ماتریس به دست می‌آید: ماتریسی مثل $A$ هست که برای همه‌ی $\vv,\vw$:
+\[
+f(\vv,\vw)=\vv\T A\vw,\qquad A_{ij}=f(\ve_i,\ve_j).
+\]
+به‌علاوه $f$ متقارن است اگر و تنها اگر $A$ متقارن باشد ($A\T=A$).
+\end{theorem}
+\begin{proof}
+$\vv=\sum_iv_i\ve_i$ و $\vw=\sum_jw_j\ve_j$ را می‌نویسیم و از خطی بودن در هر دو آرگومان استفاده می‌کنیم:
+\[
+f(\vv,\vw)=f\Big(\sum_iv_i\ve_i,\ \sum_jw_j\ve_j\Big)=\sum_i\sum_jv_iw_j\,f(\ve_i,\ve_j)=\sum_i\sum_jv_i\,a_{ij}\,w_j=\vv\T A\vw ,
+\]
+که تساوی آخر همان تعریف ضرب ماتریسی است. اگر $f$ متقارن باشد، $a_{ij}=f(\ve_i,\ve_j)=f(\ve_j,\ve_i)=a_{ji}$. برعکس اگر $A\T=A$، چون $\vv\T A\vw$ یک عدد است و با ترانهاده‌اش برابر است:
+$f(\vv,\vw)=\vv\T A\vw=(\vv\T A\vw)\T=\vw\T A\T\vv=\vw\T A\vv=f(\vw,\vv)$.
+\end{proof}
+
+\begin{definition}[ماتریس وابسته]
+اگر $V$ متناهی‌البُعد، $\mathcal{B}=\{\vb_1,\dots,\vb_n\}$ پایه‌ای برای $V$ و $f:V\times V\to\F$ یک فرم دوخطی باشد، \term{ماتریس وابسته}{Associated Matrix} $f$ نسبت به $\mathcal{B}$ ماتریس $[f]_{\mathcal{B}}\in\F^{n\times n}$ است که درایه‌ی $(i,j)$ آن $f(\vb_i,\vb_j)$ است. در این صورت (با همان استدلال قضیه‌ی قبل):
+\[
+f(\vv,\vw)=\coord{\vv}{\mathcal{B}}\T\,[f]_{\mathcal{B}}\,\coord{\vw}{\mathcal{B}} .
+\]
+\end{definition}
+
+\begin{note}
+ماتریس وابسته \textbf{به پایه بستگی دارد}: اگر پایه را عوض کنیم، ماتریس عوض می‌شود. اگر $P=\begin{bmatrix}\vb_1&\cdots&\vb_n\end{bmatrix}$ (ستون‌ها، بردارهای پایه‌ی $\mathcal{B}$ در مختصات استاندارد) و $A=[f]_{\text{\fa{استاندارد}}}$، آن‌گاه
+\[
+[f]_{\mathcal{B}}=P\T AP,
+\]
+چون درایه‌ی $(i,j)$ سمت راست برابر $\vb_i\T A\vb_j=f(\vb_i,\vb_j)$ است.
+\end{note}
+
+\begin{example}
+برای فرم دوخطی
+$f\left(\begin{bmatrix}a\\b\end{bmatrix},\begin{bmatrix}c\\d\end{bmatrix}\right)=2ac+4ad-bc$
+روی $\R^2$، ماتریس $[f]_{\mathcal{B}}$ را نسبت به پایه‌ی $\mathcal{B}=\left\{\begin{bmatrix}2\\1\end{bmatrix},\begin{bmatrix}-1\\4\end{bmatrix}\right\}$ و $[f]_{\mathcal{P}}$ را نسبت به پایه‌ی استاندارد $\mathcal{P}=\left\{\begin{bmatrix}1\\0\end{bmatrix},\begin{bmatrix}0\\1\end{bmatrix}\right\}$ بیابید.
+\end{example}
+\begin{solution}
+\textbf{پایه‌ی استاندارد:} $f(\ve_1,\ve_1)=2$ ($a=1,b=0,c=1,d=0$)، $f(\ve_1,\ve_2)=4$، $f(\ve_2,\ve_1)=-1$، $f(\ve_2,\ve_2)=0$. پس
+\[
+[f]_{\mathcal{P}}=\begin{bmatrix}2&4\\-1&0\end{bmatrix}.
+\]
+\textbf{پایه‌ی $\mathcal{B}$:} با $\vb_1=(2,1)$ و $\vb_2=(-1,4)$:
+\begin{align*}
+f(\vb_1,\vb_1)&=2(2)(2)+4(2)(1)-(1)(2)=8+8-2=14,\\
+f(\vb_1,\vb_2)&=2(2)(-1)+4(2)(4)-(1)(-1)=-4+32+1=29,\\
+f(\vb_2,\vb_1)&=2(-1)(2)+4(-1)(1)-(4)(2)=-4-4-8=-16,\\
+f(\vb_2,\vb_2)&=2(-1)(-1)+4(-1)(4)-(4)(-1)=2-16+4=-10.
+\end{align*}
+پس
+\[
+[f]_{\mathcal{B}}=\begin{bmatrix}14&29\\-16&-10\end{bmatrix}.
+\]
+(می‌توانید با فرمول $P\T[f]_{\mathcal{P}}P$ و $P=\begin{bmatrix}2&-1\\1&4\end{bmatrix}$ هم به همین نتیجه برسید.)\footnote{در اسلایدهای درس درایه‌ی $(2,2)$ برابر $20$ نوشته شده بود؛ محاسبه‌ی دقیق (به دو روش) عدد $-10$ را می‌دهد.}
+\end{solution}
+
+\section{فرم دوخطی روی فضای مختلط}
+
+روی اعداد مختلط یک مشکل داریم: اگر بخواهیم از فرم دوخطی برای ساختن «طول» استفاده کنیم، $f(\vv,\vv)$ باید عددی حقیقی و نامنفی باشد. اما مثلاً با $f(\vv,\vw)=\vv\T\vw$ روی $\C$: \ $f(i,i)=i\cdot i=-1<0$! راه‌حل این است که در آرگومان دوم \emph{مزدوج} بگیریم.
+
+\begin{definition}[فرم «دوخطی» روی فضای مختلط]
+فرض کنید $V$ و $W$ فضاهای برداری روی $\C$ باشند. تابع $f:V\times W\to\C$ یک فرم دوخطی (به بیان دقیق‌تر \term{فرم یک‌ونیم‌خطی}{Sesquilinear Form}) است اگر:
+\begin{enumerate}[label=(\alph*)]
+  \item \textbf{در آرگومان اول خطی باشد:}
+  $f(\vv_1+\vv_2,\vw)=f(\vv_1,\vw)+f(\vv_2,\vw)$ و $f(\lambda\vv_1,\vw)=\lambda f(\vv_1,\vw)$.
+  \item \textbf{در آرگومان دوم مزدوج-خطی باشد:}
+  $f(\vv,\vw_1+\vw_2)=f(\vv,\vw_1)+f(\vv,\vw_2)$ و $f(\vv,\lambda\vw_1)=\textcolor{warncolor}{\conj{\lambda}}f(\vv,\vw_1)$،
+\end{enumerate}
+برای همه‌ی $\lambda\in\C$ و بردارهای مربوط.
+\end{definition}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{cc}
+\toprule
+\textbf{فرم دوخطی روی $\R^n$} & \textbf{فرم دوخطی روی $\C^n$}\\
+\midrule
+\underline{خطی} در متغیر اول & \underline{خطی} در متغیر اول\\
+\underline{خطی} در متغیر دوم & \underline{مزدوج-خطی} در متغیر دوم\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{ضرب داخلی}
+
+\subsection{ضرب داخلی روی فضای حقیقی}
+\begin{definition}[ضرب داخلی حقیقی]
+یک \term{ضرب داخلی}{Inner Product} روی فضای برداری حقیقی $V$، یک \textbf{فرم دوخطی متقارنِ مثبت معین} است؛ یعنی تابعی $\inner{\cdot}{\cdot}:V\times V\to\R$ که برای همه‌ی $\vu,\vv,\vw\in V$ و $c\in\R$:
+\begin{enumerate}
+  \item $\inner{\vv}{\vv}=0$ اگر و تنها اگر $\vv=\zero$.
+  \item $\inner{\vw}{\vv}=\inner{\vv}{\vw}$ \ (تقارن).
+  \item $\inner{\vu+\vv}{\vw}=\inner{\vu}{\vw}+\inner{\vv}{\vw}$.
+  \item $\inner{c\vw}{\vu}=c\inner{\vw}{\vu}$.
+  \item $\inner{\vv}{\vv}\ge0$.
+\end{enumerate}
+\end{definition}
+
+\begin{note}[چرا فقط خطی بودن در آرگومان اول؟]
+در تعریف فرم دوخطی چهار شرط داشتیم (دو تا برای هر آرگومان)؛ این‌جا فقط دو شرط (۳ و ۴) برای آرگومان اول آمده است. دلیلش این است که \textbf{تقارن}، خطی بودن در آرگومان دوم را خودبه‌خود نتیجه می‌دهد:
+\begin{itemize}
+  \item با شرط‌های ۲، ۴ و دوباره ۲:
+  $\inner{\vw}{c\vu}=\inner{c\vu}{\vw}=c\inner{\vu}{\vw}=c\inner{\vw}{\vu}$.
+  \item با شرط‌های ۲، ۳ و دوباره ۲:
+  $\inner{\vw}{\vu+\vv}=\inner{\vu+\vv}{\vw}=\inner{\vu}{\vw}+\inner{\vv}{\vw}=\inner{\vw}{\vu}+\inner{\vw}{\vv}$.
+\end{itemize}
+\end{note}
+
+\begin{theorem}
+برای هر $\vv\in V$: \quad $\inner{\zero}{\vv}=\inner{\vv}{\zero}=0$.
+\end{theorem}
+\begin{proof}
+برای یک بردار دلخواه $\vu$، $\zero=0\vu$؛ پس با شرط ۴: $\inner{\zero}{\vv}=\inner{0\vu}{\vv}=0\inner{\vu}{\vv}=0$. با تقارن، $\inner{\vv}{\zero}=0$ هم هست.
+\end{proof}
+
+\subsection{ضرب داخلی در حالت کلی (حقیقی یا مختلط)}
+\begin{definition}[ضرب داخلی کلی]
+فرض کنید $\F=\R$ یا $\F=\C$ و $V$ فضایی برداری روی $\F$ باشد. یک ضرب داخلی روی $V$ تابعی $\inner{\cdot}{\cdot}:V\times V\to\F$ است که برای همه‌ی $c\in\F$ و $\vv,\vw,\vx\in V$:
+\begin{enumerate}[label=(\alph*)]
+  \item $\inner{\vv}{\vw}=\conj{\inner{\vw}{\vv}}$ \hfill (تقارن مزدوج)
+  \item $\inner{\vv+c\vx}{\vw}=\inner{\vv}{\vw}+c\inner{\vx}{\vw}$ \hfill (خطی بودن در آرگومان اول)
+  \item $\inner{\vv}{\vv}\ge0$ و تساوی فقط وقتی $\vv=\zero$ \hfill (مثبت معین بودن)
+\end{enumerate}
+\end{definition}
+
+\begin{note}
+\begin{itemize}
+  \item از (آ) با $\vw=\vv$ داریم $\inner{\vv}{\vv}=\conj{\inner{\vv}{\vv}}$؛ پس $\inner{\vv}{\vv}$ همیشه حقیقی است و شرط (ج) معنی دارد.
+  \item از (آ) و (ب): $\inner{\vv}{c\vw}=\conj{\inner{c\vw}{\vv}}=\conj{c\inner{\vw}{\vv}}=\conj{c}\,\inner{\vv}{\vw}$؛ یعنی ضرب داخلی مختلط در آرگومان دوم \emph{مزدوج-خطی} است.
+  \item روی $\R$ مزدوج کردن کاری نمی‌کند و همان تعریف حقیقی به دست می‌آید.
+\end{itemize}
+\end{note}
+
+\subsection{نمونه‌های مهم ضرب داخلی}
+\begin{example}[ضرب داخلی استاندارد بردارها]
+\begin{itemize}
+  \item روی $\R^n$: \quad $\inner{\vx}{\vy}=\vx\T\vy=\sum_{i=1}^n x_iy_i$. شرط‌ها همان ویژگی‌های قضیه‌ی \ref{thm:dot-props} هستند.
+  \item روی $\C^n$: \quad $\inner{\vv}{\vw}=\sum_{i=1}^n v_i\,\conj{w_i}$. مثبت بودن: $\inner{\vv}{\vv}=\sum v_i\conj{v_i}=\sum\abs{v_i}^2\ge0$ و فقط برای $\vv=\zero$ صفر است.
+\end{itemize}
+\end{example}
+
+\begin{warning}[دو قرارداد متفاوت]
+در اسلایدهای درس، ضرب داخلی روی $\C^n$ به شکل $\inner{\vv}{\vw}=\vv^*\vw=\sum_i\conj{v_i}\,w_i$ نوشته شده است ($\vv^*=\conj{\vv}\T$). این تعریف در آرگومان \emph{دوم} خطی و در آرگومان \emph{اول} مزدوج-خطی است؛ یعنی با شرط (ب) تعریف بالا (خطی در آرگومان اول) دقیقاً جور نیست. هر دو قرارداد رایج‌اند (ریاضی‌دان‌ها معمولاً اولی و فیزیک‌دان‌ها و برخی کتاب‌های مهندسی دومی را به کار می‌برند) و هر دو ضرب داخلی معتبرند؛ فقط باید در یک متن، یکی را ثابت نگه داشت. در این جزوه از قرارداد «خطی در آرگومان اول»، یعنی $\sum v_i\conj{w_i}=\vw^*\vv$، استفاده می‌کنیم.
+\end{warning}
+
+\begin{example}[ضرب داخلی ماتریس‌ها]
+ضرب داخلی استاندارد روی $\R^{m\times n}$ این است:
+\[
+\inner{X}{Y}=\tr(X\T Y)=\sum_{i}\sum_{j}X_{ij}Y_{ij},
+\]
+که $\tr$ (رد ماتریس) مجموع درایه‌های قطری است. تساوی دوم این‌طور ثابت می‌شود:
+$\tr(X\T Y)=\sum_j(X\T Y)_{jj}=\sum_j\sum_i(X\T)_{ji}Y_{ij}=\sum_j\sum_iX_{ij}Y_{ij}$.
+پس این همان ضرب داخلی معمولی است اگر ماتریس را یک بردار بلند $mn$-تایی ببینیم. ضرب داخلی دو ماتریس زیر را حساب کنید:
+\[
+U=\begin{bmatrix}1&2\\1&0\end{bmatrix},\qquad V=\begin{bmatrix}1&-1\\1&1\end{bmatrix}.
+\]
+\end{example}
+\begin{solution}
+\[
+\inner{U}{V}=\tr(U\T V)=\tr\left(\begin{bmatrix}1&1\\2&0\end{bmatrix}\begin{bmatrix}1&-1\\1&1\end{bmatrix}\right)=\tr\begin{bmatrix}2&0\\2&-2\end{bmatrix}=2+(-2)=0 .
+\]
+(با فرمول درایه‌به‌درایه: $1\cdot1+2\cdot(-1)+1\cdot1+0\cdot1=0$.) پس $U$ و $V$ بر هم \textbf{عمود}اند.
+\end{solution}
+
+\begin{example}[ضرب داخلی توابع]
+فرض کنید $a<b$ و $C[a,b]$ فضای توابع پیوسته روی بازه‌ی $[a,b]$ باشد. تابع
+\[
+\inner{f}{g}=\int_a^b f(x)\,g(x)\,dx\qquad(f,g\in C[a,b])
+\]
+یک ضرب داخلی روی $C[a,b]$ است.
+\end{example}
+\begin{solution}
+تقارن و خطی بودن از ویژگی‌های انتگرال می‌آیند: $\int fg=\int gf$ و $\int(f_1+cf_2)g=\int f_1g+c\int f_2g$. مثبت بودن: $\inner{f}{f}=\int_a^bf(x)^2dx\ge0$ چون $f^2\ge0$.
+
+\textbf{مثبت معین بودن:} فرض کنید $\int_a^bf^2=0$ اما $f(x_0)\neq0$ برای یک $x_0$. چون $f$ پیوسته است، در یک بازه‌ی کوچک به طول $\delta>0$ اطراف $x_0$ داریم $f(x)^2>\frac12f(x_0)^2$؛ پس انتگرال دست‌کم $\delta\cdot\frac12f(x_0)^2>0$ است؛ تناقض. پس $f\equiv0$. (این‌جا پیوستگی واقعاً لازم است!)
+\end{solution}
+
+\begin{example}[ضرب داخلی چندجمله‌ای‌ها]
+نشان دهید این‌ها ضرب داخلی‌اند:
+\begin{enumerate}
+  \item روی $P_n$ (درجه‌ی حداکثر $n$): \quad $\inner{p}{q}=p(0)q(0)+p(1)q(1)+\dots+p(n)q(n)$.
+  \item روی $P$: \quad $\inner{p}{q}=p(0)q(0)+\int_{-1}^{1}p'(x)q'(x)\,dx$.
+  \item روی $P$: \quad $\inner{p}{q}=\int_0^\infty p(x)q(x)e^{-x}\,dx$.
+\end{enumerate}
+\end{example}
+\begin{solution}
+در هر سه، تقارن و خطی بودن به‌سادگی از خطی بودن مقداردهی، مشتق و انتگرال می‌آیند و $\inner{p}{p}\ge0$ روشن است. فقط شرط «$\inner{p}{p}=0\Rightarrow p=0$» را بررسی می‌کنیم:
+\begin{enumerate}
+  \item $\inner{p}{p}=\sum_{k=0}^np(k)^2=0$ یعنی $p(0)=p(1)=\dots=p(n)=0$: چندجمله‌ای با درجه‌ی حداکثر $n$ که $n+1$ ریشه دارد، صفر است. (\textbf{دقت:} روی $P_{n+1}$ این ضرب داخلی نیست؛ مثلاً $p(x)=x(x-1)\cdots(x-n)$ ناصفر است اما $\inner{p}{p}=0$.)
+  \item $\inner{p}{p}=p(0)^2+\int_{-1}^1(p')^2=0$ یعنی $p(0)=0$ و $\int(p')^2=0$؛ از دومی (مثل مثال قبل) $p'\equiv0$ روی $[-1,1]$، پس $p$ ثابت است و چون $p(0)=0$، $p\equiv0$.
+  \item انتگرال همگراست چون $e^{-x}$ از هر چندجمله‌ای سریع‌تر به صفر می‌رود. اگر $\int_0^\infty p^2e^{-x}=0$، چون $p^2e^{-x}$ پیوسته و نامنفی است، روی $[0,\infty)$ صفر است؛ پس $p$ بی‌شمار ریشه دارد و $p\equiv0$.
+\end{enumerate}
+\end{solution}
+
+\section{فضای ضرب داخلی}
+\begin{definition}[فضای ضرب داخلی]
+یک \term{فضای ضرب داخلی}{Inner Product Space} عبارت است از یک فضای برداری متناهی‌البُعدِ حقیقی یا مختلط $V$ همراه با یک ضرب داخلی روی $V$.
+\begin{itemize}
+  \item اگر میدان \textbf{حقیقی} باشد، به آن \term{فضای اقلیدسی}{Euclidean Space} می‌گوییم.
+  \item اگر میدان \textbf{مختلط} باشد، به آن \term{فضای یکانی}{Unitary Space} می‌گوییم.
+\end{itemize}
+\end{definition}
+
+\section{نُرم}
+
+\subsection{چرا نُرم؟}
+یادگیری ماشین بردارها، ماتریس‌ها و تانسورها را واحدهای اصلی نمایش داده می‌داند. دو دلیل اصلی برای استفاده از نُرم:
+\begin{itemize}
+  \item تخمین این‌که یک بردار/ماتریس/تانسور چقدر \textbf{بزرگ} است؛ مثلاً اختلاف دو تانسور چقدر بزرگ است.
+  \item تخمین این‌که یک تانسور چقدر به دیگری \textbf{نزدیک} است؛ مثلاً یک تصویر چقدر به تصویر دیگر شبیه است.
+\end{itemize}
+
+\subsection{ضرب داخلی، نُرم و متر}
+\begin{center}
+\begin{tikzpicture}[>=Latex, box/.style={draw=primary, fill=primarylight, rounded corners=2mm, minimum width=2.5cm, minimum height=0.95cm, font=\small}]
+  \node[box] (ip) at (11.4,0) {\fa{ضرب داخلی}};
+  \node[box] (nm) at (5.7,0) {\fa{نُرم}};
+  \node[box] (mt) at (0,0) {\fa{متر (فاصله)}};
+  \draw[->, thick] (ip.west)--(nm.east) node[midway, above, font=\scriptsize] {\fa{القا می‌کند}} node[midway, below=2pt, font=\small] {$\norm{\vx}=\sqrt{\inner{\vx}{\vx}}$};
+  \draw[->, thick] (nm.west)--(mt.east) node[midway, above, font=\scriptsize] {\fa{القا می‌کند}} node[midway, below=2pt, font=\small] {$d(\vx,\vy)=\norm{\vx-\vy}$};
+  \begin{scope}[xshift=5.7cm, yshift=-3.6cm]
+    \fill[excolor!25] (0,0) circle (2.3);
+    \fill[thmcolor!30] (0,-0.35) circle (1.65);
+    \fill[primary!25] (0,-0.75) circle (1.05);
+    \node[font=\small] at (0,1.75) {\fa{فضاهای متری}};
+    \node[font=\small] at (0,0.85) {\fa{فضاهای نُرم‌دار}};
+    \node[font=\small, align=center] at (0,-0.75) {\fa{فضاهای}\\ \fa{ضرب داخلی}};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+  \item با داشتن یک ضرب داخلی $\inner{A}{B}$ می‌توان یک نُرم ساخت: $\norm{A}^2=\inner{A}{A}$.
+  \item با داشتن یک نُرم $\norm{A}$ می‌توان یک متر ساخت: فاصله‌ی $A$ و $B$ را $\norm{A-B}$ بگیرید.
+  \item پس هر فضای ضرب داخلی، نُرم‌دار است و هر فضای نُرم‌دار، متری است (اما نه برعکس).
+\end{itemize}
+
+\begin{definition}[نُرم]
+یک \term{نُرم}{Norm} روی فضای برداری $V$ (روی $\R$ یا $\C$) تابعی $\norm{\cdot}:V\to\R$ است که برای همه‌ی $\vx,\vy\in V$ و اسکالر $\alpha$:
+\begin{enumerate}
+  \item \textbf{همگنی مطلق:} $\norm{\alpha\vx}=\abs{\alpha}\,\norm{\vx}$.
+  \item \textbf{نامساوی مثلث (زیرجمعی):} $\norm{\vx+\vy}\le\norm{\vx}+\norm{\vy}$.
+  \item \textbf{مثبت معین (جداکننده):} اگر $\norm{\vx}=0$ آن‌گاه $\vx=\zero$. \ (با بند ۱: برای هر $\vx$، $\norm{\vx}=0$ اگر و تنها اگر $\vx=\zero$.)
+  \item \textbf{نامنفی بودن:} $\norm{\vx}\ge0$.
+\end{enumerate}
+فضای برداری همراه با یک نُرم را \term{فضای نُرم‌دار}{Normed Linear Space} می‌نامیم.
+\end{definition}
+
+\begin{note}
+بند ۴ در واقع از بقیه نتیجه می‌شود: $0=\norm{\zero}=\norm{\vx-\vx}\le\norm{\vx}+\norm{-\vx}=2\norm{\vx}$.
+\end{note}
+
+\subsection{نامساوی کوشی-شوارتز}
+برای این‌که ثابت کنیم هر ضرب داخلی یک نُرم می‌سازد، به یکی از مهم‌ترین نامساوی‌های ریاضی نیاز داریم.
+
+\begin{theorem}[نامساوی کوشی-شوارتز]\label{thm:cauchy-schwarz}
+در هر فضای ضرب داخلی، با تعریف $\norm{\vx}=\sqrt{\inner{\vx}{\vx}}$، برای همه‌ی $\vx,\vy$:
+\[
+\abs{\inner{\vx}{\vy}}\le\norm{\vx}\,\norm{\vy}.
+\]
+تساوی فقط وقتی برقرار است که یکی از دو بردار مضرب دیگری باشد.
+\end{theorem}
+\begin{proof}
+اگر $\vy=\zero$، دو طرف صفرند. فرض کنید $\vy\neq\zero$، پس $\inner{\vy}{\vy}>0$. ایده: از $\vx$ «سایه‌اش روی $\vy$» را کم می‌کنیم و از نامنفی بودن طول باقی‌مانده استفاده می‌کنیم. قرار دهید
+\[
+\lambda=\frac{\inner{\vx}{\vy}}{\inner{\vy}{\vy}},\qquad \vz=\vx-\lambda\vy .
+\]
+با خطی بودن در آرگومان اول و مزدوج-خطی بودن در آرگومان دوم:
+\[
+0\le\inner{\vz}{\vz}=\inner{\vx}{\vx}-\conj{\lambda}\inner{\vx}{\vy}-\lambda\inner{\vy}{\vx}+\lambda\conj{\lambda}\inner{\vy}{\vy}.
+\]
+حالا هر جمله را حساب می‌کنیم (با $\inner{\vy}{\vx}=\conj{\inner{\vx}{\vy}}$ و $z\conj z=\abs z^2$):
+\[
+\conj{\lambda}\inner{\vx}{\vy}=\frac{\abs{\inner{\vx}{\vy}}^2}{\norm{\vy}^2},\qquad
+\lambda\inner{\vy}{\vx}=\frac{\abs{\inner{\vx}{\vy}}^2}{\norm{\vy}^2},\qquad
+\lambda\conj{\lambda}\inner{\vy}{\vy}=\frac{\abs{\inner{\vx}{\vy}}^2}{\norm{\vy}^2}.
+\]
+پس
+\[
+0\le\norm{\vx}^2-\frac{\abs{\inner{\vx}{\vy}}^2}{\norm{\vy}^2}
+\ \Longrightarrow\ \abs{\inner{\vx}{\vy}}^2\le\norm{\vx}^2\norm{\vy}^2 ,
+\]
+و با جذر گرفتن حکم ثابت می‌شود. تساوی یعنی $\inner{\vz}{\vz}=0$، یعنی $\vz=\zero$ و $\vx=\lambda\vy$.
+\end{proof}
+
+\begin{note}[زاویه بین دو بردار]
+در فضای ضرب داخلی حقیقی، کوشی-شوارتز می‌گوید $-1\le\frac{\inner{\vx}{\vy}}{\norm{\vx}\norm{\vy}}\le1$. پس می‌توانیم زاویه‌ی بین دو بردار ناصفر را در هر فضایی (حتی فضای توابع!) تعریف کنیم:
+\[
+\cos\theta=\frac{\inner{\vx}{\vy}}{\norm{\vx}\,\norm{\vy}} .
+\]
+این تعمیم همان رابطه‌ی قضیه‌ی \ref{thm:dot-angle} است. دو بردار را \term{متعامد}{Orthogonal} می‌نامیم اگر $\inner{\vx}{\vy}=0$.
+\end{note}
+
+\subsection{ضرب داخلی، نُرم می‌سازد}
+\begin{theorem}\label{thm:inner-norm}
+برای هر ضرب داخلی $\inner{\cdot}{\cdot}$، تابع $f(\vx)=\sqrt{\inner{\vx}{\vx}}$ یک نُرم است.
+\end{theorem}
+\begin{proof}
+\textbf{مثبت معین بودن:} طبق ویژگی‌های ضرب داخلی، $\inner{\vx}{\vx}\ge0$ برای همه‌ی $\vx$؛ پس $f(\vx)=\sqrt{\inner{\vx}{\vx}}\ge0$. همچنین $\inner{\vx}{\vx}=0$ اگر و تنها اگر $\vx=\zero$؛ پس $f(\vx)=0\iff\vx=\zero$.
+
+\textbf{همگنی مطلق:} برای هر اسکالر $\alpha$:
+\[
+f(\alpha\vx)=\sqrt{\inner{\alpha\vx}{\alpha\vx}}=\sqrt{\alpha\conj{\alpha}\inner{\vx}{\vx}}=\sqrt{\abs{\alpha}^2\inner{\vx}{\vx}}=\abs{\alpha}\sqrt{\inner{\vx}{\vx}}=\abs{\alpha}f(\vx).
+\]
+(در فضای حقیقی $\alpha\conj\alpha=\alpha^2$.)
+
+\textbf{نامساوی مثلث:} بسط می‌دهیم:
+\[
+f(\vx+\vy)^2=\inner{\vx+\vy}{\vx+\vy}=\inner{\vx}{\vx}+\inner{\vy}{\vy}+\inner{\vx}{\vy}+\inner{\vy}{\vx}.
+\]
+چون $\inner{\vy}{\vx}=\conj{\inner{\vx}{\vy}}$، مجموع دو جمله‌ی آخر $2\operatorname{Re}\inner{\vx}{\vy}$ است (در فضای حقیقی همان $2\inner{\vx}{\vy}$). با $\operatorname{Re}z\le\abs z$ و کوشی-شوارتز:
+\[
+f(\vx+\vy)^2\le f(\vx)^2+f(\vy)^2+2\abs{\inner{\vx}{\vy}}\le f(\vx)^2+f(\vy)^2+2f(\vx)f(\vy)=\big(f(\vx)+f(\vy)\big)^2 .
+\]
+با جذر گرفتن (دو طرف نامنفی‌اند): $f(\vx+\vy)\le f(\vx)+f(\vy)$. هر سه اصل نُرم برقرار است.
+\end{proof}
+
+\begin{note}[هر نُرمی از ضرب داخلی نمی‌آید]
+هر ضرب داخلی یک نُرم می‌سازد، اما هر نُرمی از یک ضرب داخلی نمی‌آید (نُرم ۲ را با نُرم بیشینه مقایسه کنید). دلیل: هر نُرمی که از ضرب داخلی بیاید، \textbf{قانون متوازی‌الاضلاع} را دارد:
+\[
+\norm{\vx+\vy}^2+\norm{\vx-\vy}^2=2\norm{\vx}^2+2\norm{\vy}^2 ,
+\]
+(با بسط دو جمله‌ی سمت چپ، جمله‌های $\pm2\operatorname{Re}\inner{\vx}{\vy}$ با هم ساده می‌شوند). اما برای نُرم بیشینه $\norm{\vx}_\infty=\max_i\abs{x_i}$ و $\vx=(1,0)$، $\vy=(0,1)$:
+$\norm{\vx+\vy}_\infty^2+\norm{\vx-\vy}_\infty^2=1+1=2$ در حالی که $2\cdot1+2\cdot1=4$. پس نُرم بیشینه از هیچ ضرب داخلی‌ای نمی‌آید.
+\end{note}
+
+\subsection{نُرم اقلیدسی}
+\begin{definition}[نُرم اقلیدسی]
+نُرم‌ها توابع خاصی هستند که می‌توان آن‌ها را «فاصله‌ی بردار تا مبدأ» تعبیر کرد. برای $\vv\in V$، \term{نُرم اقلیدسی}{Euclidean Norm} (یا نُرم القاشده از ضرب داخلی) را این‌طور تعریف می‌کنیم:
+\[
+\norm{\vv}=\sqrt{\inner{\vv}{\vv}} .
+\]
+\end{definition}
+
+\begin{note}
+\begin{itemize}
+  \item در $\R^n$: نُرم اقلیدسی (نُرم ۲، نُرم $\ell_2$، طول) برابر است با
+  $\norm{\vx}=\sqrt{x_1^2+x_2^2+\dots+x_n^2}=\sqrt{\vx\T\vx}$.
+  \item برداری که طولش ۱ باشد \term{بردار یکه}{Unit Vector} نام دارد.
+  \item \textbf{نرمال‌سازی}: تقسیم یک بردار ناصفر بر طولش، $\frac{\vv}{\norm{\vv}}$، یک بردار یکه در همان جهت می‌دهد (چون طبق همگنی $\norm{\frac{\vv}{\norm\vv}}=\frac{1}{\norm\vv}\norm\vv=1$).
+  \item نُرم یک اسکالر نامنفی است.
+  \item در $\R^2$ این رابطه از قضیه‌ی فیثاغورس می‌آید. در $\R^3$ هم با دو بار استفاده از فیثاغورس: قطر کف یک مکعب‌مستطیل $\sqrt{x^2+y^2}$ است و قطر فضایی $\sqrt{(x^2+y^2)+z^2}$.
+  \item \textbf{شکل $\norm{\vx}_2=1$ چیست؟} در $\R^2$ دایره‌ی واحد و در $\R^3$ کره‌ی واحد.
+\end{itemize}
+\end{note}
+
+\begin{intuition}[«دایره‌ی واحد» در نُرم‌های مختلف]
+در $\R^n$ چند نُرم پرکاربرد داریم:
+\[
+\norm{\vx}_1=\sum_i\abs{x_i},\qquad \norm{\vx}_2=\sqrt{\sum_ix_i^2},\qquad \norm{\vx}_\infty=\max_i\abs{x_i}.
+\]
+مجموعه‌ی بردارهای با نُرم ۱ («دایره‌ی واحد») در هر کدام شکل متفاوتی دارد:
+\begin{center}
+\begin{tikzpicture}[scale=1.05]
+  \draw[->, gray] (-1.6,0)--(1.7,0); \draw[->, gray] (0,-1.5)--(0,1.6);
+  \draw[very thick, excolor] (1,0)--(0,1)--(-1,0)--(0,-1)--cycle;
+  \draw[very thick, primary] (0,0) circle (1);
+  \draw[very thick, thmcolor] (-1,-1) rectangle (1,1);
+  \node[excolor, font=\small] at (2.5,0.35) {$\norm{\vx}_1=1$};
+  \node[primary, font=\small] at (2.5,-0.15) {$\norm{\vx}_2=1$};
+  \node[thmcolor, font=\small] at (2.5,-0.65) {$\norm{\vx}_\infty=1$};
+\end{tikzpicture}
+\end{center}
+\end{intuition}
+
+\begin{example}[نُرم یک چندجمله‌ای]
+با ضرب داخلی $\inner{p}{q}=\int_0^1p(x)q(x)\,dx$، نُرم یک چندجمله‌ای برابر است با
+\[
+\norm{p}=\sqrt{\int_0^1p(x)^2\,dx}.
+\]
+مثلاً $\norm{x}=\sqrt{\int_0^1x^2dx}=\frac{1}{\sqrt3}$ و $\norm{1+x}=\sqrt{\int_0^1(1+2x+x^2)dx}=\sqrt{1+1+\frac13}=\sqrt{\frac73}$.
+\end{example}
+
+\begin{theorem}[نُرم مجموع]\label{thm:norm-sum}
+برای بردارهای $\vx,\vy\in\R^n$:
+\[
+\norm{\vx+\vy}^2=\norm{\vx}^2+2\,\vx\T\vy+\norm{\vy}^2 .
+\]
+\end{theorem}
+\begin{proof}
+\[
+\norm{\vx+\vy}^2=(\vx+\vy)\T(\vx+\vy)=\vx\T\vx+\vx\T\vy+\vy\T\vx+\vy\T\vy=\norm{\vx}^2+2\,\vx\T\vy+\norm{\vy}^2 ,
+\]
+چون $\vy\T\vx=\vx\T\vy$.
+\end{proof}
+
+\begin{corollary}[قضیه‌ی فیثاغورس]
+$\vx$ و $\vy$ در $\R^n$ بر هم عمودند اگر و تنها اگر $\norm{\vx+\vy}^2=\norm{\vx}^2+\norm{\vy}^2$.
+\end{corollary}
+
+\section{متر و فاصله}
+
+\begin{definition}[متر]
+فرض کنید $V$ فضایی برداری روی $\R$ باشد. تابع $d:V\times V\to\R$ را یک \term{متر}{Metric} یا \textbf{تابع فاصله} روی $V$ و $(V,d)$ را یک \term{فضای متری}{Metric Space} می‌نامیم اگر برای همه‌ی $\vu,\vv,\vw\in V$:
+\begin{enumerate}[label=(\roman*)]
+  \item $d(\vv,\vw)\ge0$ و $d(\vv,\vw)=0$ اگر و تنها اگر $\vv=\vw$؛
+  \item $d(\vv,\vw)=d(\vw,\vv)$ \ (تقارن)؛
+  \item $d(\vv,\vw)\le d(\vv,\vu)+d(\vu,\vw)$ \ (نامساوی مثلث).
+\end{enumerate}
+\end{definition}
+\begin{note}
+در اسلایدها شرط (ii) به اشتباه $d(v,w)=d(v,w)$ تایپ شده بود؛ شرط درست، تقارن $d(\vv,\vw)=d(\vw,\vv)$ است.
+\end{note}
+
+\begin{definition}[فاصله‌ی اقلیدسی]
+فاصله‌ی دو بردار $n$-تایی نشان می‌دهد آن دو بردار چقدر «نزدیک» یا «دور» از هم‌اند:
+\[
+\dist(\va,\vb)=\norm{\va-\vb}.
+\]
+\end{definition}
+\begin{center}
+\begin{tikzpicture}[scale=0.8,>=Latex]
+  \draw[step=1, gray!40] (0,0) grid (4,3);
+  \fill[warncolor] (1,1) circle (2pt) node[left] {$\va$};
+  \fill[warncolor] (3,2) circle (2pt) node[above] {$\vb$};
+  \draw[->, thick, primary] (1,1)--(2.95,1.975);
+  \node[primary, font=\small] at (2.6,1.05) {$\norm{\va-\vb}$};
+\end{tikzpicture}
+\end{center}
+
+\begin{theorem}[هر نُرم، یک متر می‌سازد]
+اگر $\norm{\cdot}$ یک نُرم روی $V$ باشد، $d(\vx,\vy)=\norm{\vx-\vy}$ یک متر است.
+\end{theorem}
+\begin{proof}
+\textbf{(i)} $d(\vx,\vy)=\norm{\vx-\vy}\ge0$ و صفر است اگر و تنها اگر $\vx-\vy=\zero$، یعنی $\vx=\vy$.
+\textbf{(ii)} $d(\vy,\vx)=\norm{\vy-\vx}=\norm{(-1)(\vx-\vy)}=\abs{-1}\,\norm{\vx-\vy}=d(\vx,\vy)$.
+\textbf{(iii)} $d(\vx,\vz)=\norm{(\vx-\vy)+(\vy-\vz)}\le\norm{\vx-\vy}+\norm{\vy-\vz}=d(\vx,\vy)+d(\vy,\vz)$.
+\end{proof}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{cc}
+\toprule
+\textbf{نُرم (فضای نُرم‌دار)} & \textbf{تابع فاصله (فضای متری)}\\
+\midrule
+$\norm{\vx-\vy}\ge0$ & $\dist(\vx,\vy)\ge0$\\
+$\norm{\vx-\vy}=0\Rightarrow\vx=\vy$ & $\dist(\vx,\vy)=0\Rightarrow\vx=\vy$\\
+$\norm{\lambda(\vx-\vy)}=\abs{\lambda}\,\norm{\vx-\vy}$ & $\dist(\vx,\vy)=\dist(\vy,\vx)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{note}[هر متری از یک نُرم نمی‌آید]
+متر «گسسته» $d(\vx,\vy)=1$ برای $\vx\neq\vy$ و $d(\vx,\vx)=0$ هر سه شرط متر را دارد، اما از هیچ نُرمی نمی‌آید: اگر $d(\vx,\vy)=\norm{\vx-\vy}$ بود، باید $d(2\vx,\zero)=2\,d(\vx,\zero)$ می‌شد، اما برای $\vx\neq\zero$ دو طرف به ترتیب ۱ و ۲ هستند.
+\end{note}
+
+\begin{example}[بازگشت به کدگذاری یک‌داغ]
+فاصله‌ی اقلیدسی هر دو کلمه‌ی متفاوت در کدگذاری یک‌داغ برابر است با
+$\norm{\ve_i-\ve_j}=\sqrt{1^2+(-1)^2}=\sqrt2$.
+پس با معیار فاصله هم همه‌ی کلمه‌ها به یک اندازه از هم دورند؛ همان عیبی که در فصل ۱ با ضرب داخلی دیدیم.
+\end{example}
+
+\section{جمع‌بندی و تمرین}
+
+\begin{summary}
+\begin{itemize}
+  \item تابع خطی $f:\R^n\to\R$ دقیقاً به شکل $f(\vx)=\va\T\vx$ است و $\va=(f(\ve_1),\dots,f(\ve_n))$ یکتاست.
+  \item فرم دوخطی در هر دو آرگومان خطی است و روی $\R^n$ به شکل $\vv\T A\vw$ با $A_{ij}=f(\ve_i,\ve_j)$ است؛ ماتریس آن به پایه بستگی دارد: $[f]_{\mathcal B}=P\T AP$.
+  \item روی $\C$ در آرگومان دوم مزدوج می‌گیریم تا $\inner{\vv}{\vv}$ حقیقی و نامنفی شود.
+  \item ضرب داخلی = فرم (یک‌ونیم‌)خطی، (مزدوج‌)متقارن و مثبت معین. نمونه‌ها: $\vx\T\vy$، $\tr(X\T Y)$، $\int fg$.
+  \item کوشی-شوارتز: $\abs{\inner{\vx}{\vy}}\le\norm\vx\norm\vy$؛ زاویه: $\cos\theta=\frac{\inner\vx\vy}{\norm\vx\norm\vy}$.
+  \item ضرب داخلی $\to$ نُرم $\to$ متر، اما برعکسشان لزوماً نه (نُرم بیشینه، متر گسسته).
+  \item نُرم: همگنی مطلق، نامساوی مثلث، مثبت معین. متر: نامنفی و جداکننده، متقارن، نامساوی مثلث.
+\end{itemize}
+\end{summary}
+
+\begin{exercise}
+آیا $f(\vx)=x_1x_2$ روی $\R^2$ خطی است؟
+\end{exercise}
+
+\begin{exercise}
+ماتریس فرم دوخطی $f(\vv,\vw)=v_1w_1-2v_1w_2+3v_2w_2$ روی $\R^2$ (نسبت به پایه‌ی استاندارد) را بنویسید. آیا متقارن است؟
+\end{exercise}
+
+\begin{exercise}
+آیا $\inner{\vx}{\vy}=x_1y_1-x_2y_2$ یک ضرب داخلی روی $\R^2$ است؟
+\end{exercise}
+
+\begin{exercise}
+در $C[0,1]$ با ضرب داخلی $\inner{f}{g}=\int_0^1fg$، زاویه‌ی بین توابع $1$ و $x$ را بیابید.
+\end{exercise}
+
+\begin{exercise}
+نامساوی کوشی-شوارتز را برای $\vx=(1,2,2)$ و $\vy=(3,0,4)$ بررسی کنید.
+\end{exercise}
+
+\begin{exercise}
+نُرم‌های $\ell_1$، $\ell_2$ و $\ell_\infty$ بردار $(3,-4)$ را حساب کنید.
+\end{exercise}
+
+\subsection*{پاسخ‌های کوتاه}
+\begin{enumerate}
+  \item خیر: $f(2\vx)=4x_1x_2=4f(\vx)\neq2f(\vx)$ (مثلاً برای $\vx=(1,1)$).
+  \item $A=\begin{bmatrix}1&-2\\0&3\end{bmatrix}$؛ متقارن نیست چون $A_{12}=-2\neq0=A_{21}$.
+  \item خیر؛ مثبت معین نیست: $\inner{(0,1)}{(0,1)}=-1<0$.
+  \item $\inner{1}{x}=\frac12$، $\norm{1}=1$، $\norm{x}=\frac1{\sqrt3}$؛ پس $\cos\theta=\frac{1/2}{1/\sqrt3}=\frac{\sqrt3}{2}$ و $\theta=30^\circ$.
+  \item $\inner{\vx}{\vy}=3+0+8=11$، $\norm\vx=3$، $\norm\vy=5$ و $11\le15$.
+  \item $\norm{\cdot}_1=7$، $\norm{\cdot}_2=5$، $\norm{\cdot}_\infty=4$.
+\end{enumerate}
