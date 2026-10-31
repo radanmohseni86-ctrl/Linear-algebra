@@ -1,57 +1,35 @@
 \chapter{دستگاه معادلات خطی، بردار و ماتریس}
 \label{ch:linear-equations}
 
-نقطه‌ی شروع جبر خطی یک سؤال ساده است: \emph{چند معادله‌ی خطی با چند مجهول داریم؛ جوابشان چیست؟} برای پاسخ دادن به این سؤال، دو ابزار اصلی این درس یعنی \textbf{بردار} و \textbf{ماتریس} را معرفی می‌کنیم و می‌بینیم که حل دستگاه چیزی جز چند «عمل سطری» ساده نیست؛ عمل‌هایی که خودشان را هم می‌شود با ضرب ماتریس‌ها نوشت.
+نقطه‌ی شروع درس یک سؤال ساده است: \emph{چند معادله‌ی خطی با چند مجهول داریم؛ جوابشان چیست؟} در این فصل بردار و ماتریس را معرفی می‌کنیم و می‌بینیم که حل دستگاه با چند «عمل سطری» ساده انجام می‌شود؛ عمل‌هایی که خودشان ضرب ماتریس‌ها هستند.
 
 \section{دستگاه معادلات خطی}
 
-\subsection{معادله‌ی خطی چیست؟}
-معادله‌ای مثل
-\[
-a_1x_1+a_2x_2+\dots+a_nx_n=b
-\]
-که در آن $a_1,\dots,a_n$ و $b$ عددهای ثابت و $x_1,\dots,x_n$ مجهول هستند، یک \term{معادله‌ی خطی}{Linear Equation} است. «خطی» یعنی هر مجهول فقط با توان یک و فقط ضرب در یک عدد ثابت ظاهر می‌شود؛ نه ضرب دو مجهول در هم، نه توان، نه تابعی مثل $\sin$.
-
-\begin{example}[خطی یا غیرخطی؟]
-\begin{itemize}
-  \item $4x_1-5x_2+2=x_1$ خطی است (می‌شود آن را به شکل $3x_1-5x_2=-2$ نوشت).
-  \item $x_2=2\sqrt{6}\,x_1+\pi x_3$ خطی است (ضرایب می‌توانند هر عدد حقیقی باشند).
-  \item $x_1x_2=1$، \ $x_1^2+x_2=3$ و $\sin x_1+x_2=0$ خطی نیستند.
-\end{itemize}
-\end{example}
-
-\subsection{دستگاه معادلات خطی}
 \begin{definition}[دستگاه معادلات خطی]
-فرض کنید $\F$ یک میدان باشد (مثلاً $\R$ یا $\C$). یک \term{دستگاه $m$ معادله‌ی خطی با $n$ مجهول}{System of Linear Equations} به این شکل است:
+فرض کنید $\F$ یک میدان باشد. یک \term{دستگاه $m$ معادله‌ی خطی با $n$ مجهول}{System of Linear Equations} به این شکل است:
 \[
 \begin{cases}
 A_{11}x_1+A_{12}x_2+\dots+A_{1n}x_n=y_1\\
-A_{21}x_1+A_{22}x_2+\dots+A_{2n}x_n=y_2\\
 \qquad\vdots\\
 A_{m1}x_1+A_{m2}x_2+\dots+A_{mn}x_n=y_m
 \end{cases}
 \]
-که در آن $A_{ij}$ و $y_k$ عضوهای $\F$ هستند. می‌خواهیم $n$ اسکالر $x_1,\dots,x_n$ از $\F$ پیدا کنیم که همه‌ی این معادله‌ها را با هم برقرار کنند.
+که $A_{ij}$ و $y_k$ عضوهای $\F$ هستند ($A_{ij}$ ضریب $x_j$ در معادله‌ی $i$-ام است).
 \begin{itemize}
-  \item اگر $y_1=y_2=\dots=y_m=0$ باشد، دستگاه را \term{همگن}{Homogeneous} می‌نامیم.
-  \item یک \term{جواب}{Solution} دستگاه، برداری مثل $\vs=\begin{bmatrix}s_1\\ \vdots\\ s_n\end{bmatrix}$ است که با قرار دادن $x_1=s_1,\dots,x_n=s_n$ همه‌ی معادله‌ها درست شوند.
-  \item مجموعه‌ی همه‌ی جواب‌ها را \term{مجموعه‌ی جواب}{Solution Set} می‌نامیم.
+  \item اگر $y_1=\dots=y_m=0$ باشد، دستگاه \term{همگن}{Homogeneous} است.
+  \item \term{جواب}{Solution} دستگاه، برداری مثل $\vs=(s_1,\dots,s_n)$ است که با $x_1=s_1,\dots,x_n=s_n$ همه‌ی معادله‌ها درست شوند.
 \end{itemize}
 \end{definition}
 
-\begin{note}
-اندیس‌ها را این‌طور بخوانید: در $A_{ij}$ عدد اول ($i$) شماره‌ی \textbf{معادله} (سطر) و عدد دوم ($j$) شماره‌ی \textbf{مجهول} (ستون) است. پس $A_{23}$ ضریب $x_3$ در معادله‌ی دوم است.
-\end{note}
-
-\subsection{تعبیر هندسی: تصویر سطری}
-دستگاه ساده‌ی زیر را در نظر بگیرید:
+\subsection{دو تعبیر هندسی}
+دستگاه زیر را در نظر بگیرید:
 \[
 \begin{cases}
 x-2y=1\\
 3x+2y=11
 \end{cases}
 \]
-هر معادله در صفحه‌ی $xy$ یک \textbf{خط} است. جواب دستگاه نقطه‌ای است که روی هر دو خط باشد؛ یعنی \emph{محل برخورد} دو خط. با کمی محاسبه (که در ادامه می‌بینیم) جواب $x=3,\ y=1$ است.
+\textbf{تصویر سطری:} هر معادله یک خط است و جواب، محل برخورد دو خط یعنی $(3,1)$ است.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.62]
@@ -64,30 +42,22 @@ x-2y=1\\
 \end{tikzpicture}
 \end{center}
 
-\subsection{شکل ماتریسی: $A\vx=\vb$}
-همین دستگاه را می‌توان به شکل فشرده‌ی «ماتریس ضرب در بردار» نوشت:
+\textbf{شکل ماتریسی:} همین دستگاه یعنی $A\vx=\vb$:
 \[
 \underbrace{\begin{bmatrix}1&-2\\3&2\end{bmatrix}}_{A}
 \underbrace{\begin{bmatrix}x\\y\end{bmatrix}}_{\vx}
 =
-\underbrace{\begin{bmatrix}1\\11\end{bmatrix}}_{\vb}.
+\underbrace{\begin{bmatrix}1\\11\end{bmatrix}}_{\vb},
+\qquad
+\aug{A}{\vb}=\left[\begin{array}{cc|c}1&-2&1\\3&2&11\end{array}\right].
 \]
-\begin{itemize}
-  \item به $A$ \term{ماتریس ضرایب}{Coefficient Matrix} می‌گوییم.
-  \item اگر ستون $\vb$ را کنار $A$ بچسبانیم، \term{ماتریس افزوده}{Augmented Matrix} به دست می‌آید:
-  \[
-  \aug{A}{\vb}=\left[\begin{array}{cc|c}1&-2&1\\3&2&11\end{array}\right].
-  \]
-  ماتریس افزوده تمام اطلاعات دستگاه را در خود دارد؛ فقط اسم مجهول‌ها را حذف کرده‌ایم.
-\end{itemize}
-معنای دقیق ضرب ماتریس در بردار را در بخش \ref{sec:matmul} می‌بینیم.
+به $A$ \term{ماتریس ضرایب}{Coefficient Matrix} و به $\aug{A}{\vb}$ \term{ماتریس افزوده}{Augmented Matrix} می‌گوییم.
 
-\subsection{تعبیر هندسی دوم: تصویر ستونی}
-همین دستگاه را می‌شود به شکل دیگری هم خواند: به صورت \textbf{ترکیبی از ستون‌های} $A$:
+\textbf{تصویر ستونی:} همین دستگاه یعنی ترکیبی از ستون‌های $A$:
 \[
 x\begin{bmatrix}1\\3\end{bmatrix}+y\begin{bmatrix}-2\\2\end{bmatrix}=\begin{bmatrix}1\\11\end{bmatrix}.
 \]
-یعنی سؤال این است: \emph{چه مقدار از بردار ستون اول و چه مقدار از بردار ستون دوم را با هم جمع کنیم تا به $\vb$ برسیم؟} پاسخ: ۳ تا از اولی و ۱ تا از دومی.
+یعنی چه مقدار از ستون اول و چه مقدار از ستون دوم را جمع کنیم تا به $\vb$ برسیم؟ (۳ تا از اولی و ۱ تا از دومی.)
 
 \begin{center}
 \begin{tikzpicture}[scale=0.42,>=Latex]
@@ -102,17 +72,8 @@ x\begin{bmatrix}1\\3\end{bmatrix}+y\begin{bmatrix}-2\\2\end{bmatrix}=\begin{bmat
 \end{tikzpicture}
 \end{center}
 
-\begin{intuition}
-دو نگاه به یک دستگاه داریم:
-\begin{itemize}
-  \item \textbf{تصویر سطری:} هر معادله یک خط (یا صفحه) است و جواب، محل برخورد آن‌هاست.
-  \item \textbf{تصویر ستونی:} سمت چپ ترکیبی از ستون‌های $A$ است و دنبال ضرایبی می‌گردیم که این ترکیب را برابر $\vb$ کند.
-\end{itemize}
-تصویر ستونی در ادامه‌ی درس (فضای ستونی، رتبه و …) بسیار مهم‌تر می‌شود.
-\end{intuition}
-
 \subsection{ایده‌ی حذف}
-روش اصلی حل دستگاه این است: مضربی از یک معادله را از معادله‌ی دیگر کم کنیم تا یک مجهول \emph{حذف} شود.
+مضربی از یک معادله را از دیگری کم می‌کنیم تا یک مجهول حذف شود:
 \[
 \begin{cases}
 x-2y=1\\
@@ -124,20 +85,10 @@ x-2y=1\\
 \phantom{3x+{}}8y=8
 \end{cases}
 \]
-حالا از معادله‌ی دوم $y=1$ و با جایگذاری در اولی $x=1+2y=3$. به این روش \term{جایگذاری پسرو}{Back Substitution} می‌گوییم. در شکل ماتریسی:
-\[
-\underbrace{\begin{bmatrix}1&-2\\0&8\end{bmatrix}}_{U}\begin{bmatrix}x\\y\end{bmatrix}=\underbrace{\begin{bmatrix}1\\8\end{bmatrix}}_{\vc}.
-\]
-ماتریس $A$ به یک ماتریس \term{بالامثلثی}{Upper Triangular} مثل $U$ تبدیل شد؛ ماتریسی که زیر قطر اصلی‌اش همه صفر است. این ایده در فصل ۲ به الگوریتم کاملی به نام \textbf{حذف گاوسی} تبدیل می‌شود.
+حالا $y=1$ و با جایگذاری $x=3$. ماتریس ضرایب به یک ماتریس \term{بالامثلثی}{Upper Triangular} تبدیل شد (زیر قطرش صفر است). این ایده در فصل ۲ به الگوریتم \textbf{حذف گاوسی} تبدیل می‌شود.
 
 \subsection{وجود و یکتایی جواب}
-یک دستگاه خطی ممکن است:
-\begin{itemize}
-  \item \textbf{هیچ جوابی نداشته باشد}؛ در این صورت آن را \term{ناسازگار}{Inconsistent} می‌نامیم.
-  \item \textbf{دقیقاً یک جواب داشته باشد}؛
-  \item \textbf{بی‌شمار جواب داشته باشد}.
-\end{itemize}
-در دو حالت آخر دستگاه \term{سازگار}{Consistent} است. در صفحه، این سه حالت یعنی دو خط موازی، دو خط متقاطع و دو خط منطبق:
+یک دستگاه خطی یا \textbf{جواب ندارد} (\term{ناسازگار}{Inconsistent})، یا \textbf{دقیقاً یک جواب} دارد، یا \textbf{بی‌شمار جواب}. در دو حالت آخر دستگاه \term{سازگار}{Consistent} است. در صفحه این سه حالت یعنی دو خط موازی، متقاطع و منطبق:
 
 \begin{center}
 \begin{tikzpicture}[scale=0.55]
@@ -160,159 +111,54 @@ x-2y=1\\
 \end{tikzpicture}
 \end{center}
 
-آیا حالت دیگری مثلاً «دقیقاً دو جواب» هم ممکن است؟ قضیه‌ی زیر می‌گوید نه.
-
 \begin{theorem}[تعداد جواب‌ها]\label{thm:num-solutions}
-یک دستگاه معادلات خطی روی $\R$ (یا $\C$) یا جواب ندارد، یا دقیقاً یک جواب دارد، یا بی‌شمار جواب دارد.
+یک دستگاه خطی روی $\R$ یا $\C$ یا جواب ندارد، یا یک جواب، یا بی‌شمار جواب دارد.
 \end{theorem}
 \begin{proof}
-کافی است نشان دهیم اگر دستگاه $A\vx=\vb$ دو جواب متفاوت $\vu\neq\vv$ داشته باشد، آن‌گاه بی‌شمار جواب دارد. برای هر عدد $t$ بردار
-\[
-\vx_t=\vu+t(\vv-\vu)
-\]
-را در نظر بگیرید. هر معادله‌ی دستگاه به شکل $a_1x_1+\dots+a_nx_n=b$ است. چون $\vu$ و $\vv$ هر دو جواب هستند:
-\[
-\sum_j a_j\big(u_j+t(v_j-u_j)\big)=\sum_j a_ju_j+t\Big(\sum_j a_jv_j-\sum_j a_ju_j\Big)=b+t(b-b)=b.
-\]
-پس $\vx_t$ برای هر $t$ جواب است. چون $\vv-\vu\neq\zero$، به ازای $t$های مختلف بردارهای $\vx_t$ متفاوت‌اند؛ پس بی‌شمار جواب داریم.
+اگر $\vu\neq\vv$ هر دو جواب $A\vx=\vb$ باشند، برای هر عدد $t$ بردار $\vu+t(\vv-\vu)$ هم جواب است، چون $A\vu+t(A\vv-A\vu)=\vb+t(\vb-\vb)=\vb$. این بردارها برای $t$های مختلف متفاوت‌اند؛ پس بی‌شمار جواب داریم.
 \end{proof}
 
-در کل درس دنبال پاسخ دو سؤال بنیادی هستیم:
-\begin{enumerate}
-  \item \textbf{وجود:} آیا دستگاه سازگار است؟ یعنی دست‌کم یک جواب دارد؟
-  \item \textbf{یکتایی:} اگر جواب دارد، آیا جوابش یکتاست؟
-\end{enumerate}
+در کل درس دنبال دو سؤال هستیم: (۱) آیا دستگاه \textbf{سازگار} است؟ (۲) اگر جواب دارد، آیا \textbf{یکتاست}؟
 
 \section{بردارها و ضرب داخلی}
 
-\subsection{بردار و عمل‌های آن}
-یک \term{بردار}{Vector} در $\R^n$ فهرست مرتبی از $n$ عدد حقیقی است که معمولاً به صورت \textbf{ستونی} نوشته می‌شود:
-\[
-\vv=\begin{bmatrix}v_1\\v_2\\ \vdots\\ v_n\end{bmatrix}\in\R^n .
-\]
-به $v_i$ \textbf{مؤلفه‌ی} $i$-ام بردار می‌گوییم. برای صرفه‌جویی در جا گاهی می‌نویسیم $\vv=(v_1,\dots,v_n)$؛ منظور همان بردار ستونی است. در $\R^2$ و $\R^3$ هر بردار را می‌توان به شکل یک \emph{پیکان} از مبدأ تا نقطه‌ی $(v_1,v_2)$ یا $(v_1,v_2,v_3)$ تصور کرد.
+یک \term{بردار}{Vector} در $\R^n$ فهرست مرتبی از $n$ عدد است که به‌صورت ستونی نوشته می‌شود؛ گاهی برای صرفه‌جویی می‌نویسیم $\vv=(v_1,\dots,v_n)$. جمع، تفریق و ضرب در اسکالر مؤلفه‌به‌مؤلفه انجام می‌شوند. از نظر هندسی جمع دو بردار همان قاعده‌ی متوازی‌الاضلاع است.
 
-عمل‌های اصلی روی بردارها مؤلفه‌به‌مؤلفه انجام می‌شوند:
-\[
-\vu+\vv=\begin{bmatrix}u_1+v_1\\ \vdots\\ u_n+v_n\end{bmatrix},\qquad
-\vu-\vv=\begin{bmatrix}u_1-v_1\\ \vdots\\ u_n-v_n\end{bmatrix},\qquad
-c\vv=\begin{bmatrix}cv_1\\ \vdots\\ cv_n\end{bmatrix}.
-\]
-جمع دو بردار از نظر هندسی همان \textbf{قاعده‌ی متوازی‌الاضلاع} است و ضرب در اسکالر $c$ بردار را $c$ برابر بلندتر می‌کند (و اگر $c<0$ باشد جهتش را برعکس می‌کند).
-
-\begin{center}
-\begin{tikzpicture}[scale=0.85,>=Latex]
-  \draw[->] (-0.3,0)--(5,0); \draw[->] (0,-0.3)--(0,3.4);
-  \fill[primary!8] (0,0)--(3,1)--(4,3)--(1,2)--cycle;
-  \draw[->, very thick, primary] (0,0)--(3,1) node[below right] {$\vu$};
-  \draw[->, very thick, excolor] (0,0)--(1,2) node[above left] {$\vv$};
-  \draw[dashed, gray] (3,1)--(4,3); \draw[dashed, gray] (1,2)--(4,3);
-  \draw[->, very thick, thmcolor] (0,0)--(4,3) node[above right] {$\vu+\vv$};
-  \begin{scope}[xshift=7.2cm]
-    \draw[->] (-2.3,0)--(3,0); \draw[->] (0,-1.5)--(0,3.4);
-    \draw[->, line width=4pt, primary!30] (0,0)--(2.4,1.6);
-    \draw[->, very thick, primary] (0,0)--(1.2,0.8) node[above left] {$\vv$};
-    \node[primary!70] at (2.75,1.95) {$2\vv$};
-    \draw[->, very thick, warncolor] (0,0)--(-1.8,-1.2) node[below] {$-1.5\vv$};
-  \end{scope}
-\end{tikzpicture}
-\end{center}
-
-\subsection{یک کاربرد: کدگذاری داده‌های دسته‌ای}
-در یادگیری ماشین گاهی با داده‌های \term{دسته‌ای}{Categorical} (غیرعددی) مثل رنگ یا کلمه سروکار داریم. برای این‌که الگوریتم‌ها بتوانند با آن‌ها کار کنند، باید آن‌ها را به بردار تبدیل کنیم. یک روش رایج \term{کدگذاری یک‌داغ}{One-Hot Encoding} است: به هر دسته برداری نسبت می‌دهیم که یک مؤلفه‌اش ۱ و بقیه صفرند.
-\[
-\text{red}=\begin{bmatrix}1\\0\\0\end{bmatrix},\quad
-\text{green}=\begin{bmatrix}0\\1\\0\end{bmatrix},\quad
-\text{blue}=\begin{bmatrix}0\\0\\1\end{bmatrix}.
-\]
-اگر زبان ما فقط چهار کلمه داشته باشد:
+\subsection{داده‌های دسته‌ای و کدگذاری یک‌داغ}
+در یادگیری ماشین برای داده‌های \term{دسته‌ای}{Categorical} (مثل رنگ یا کلمه) از \term{کدگذاری یک‌داغ}{One-Hot Encoding} استفاده می‌شود: به هر دسته برداری با یک مؤلفه‌ی ۱ و بقیه صفر می‌دهیم:
 \[
 \text{apple}=\begin{bmatrix}1\\0\\0\\0\end{bmatrix},\quad
 \text{cat}=\begin{bmatrix}0\\1\\0\\0\end{bmatrix},\quad
 \text{house}=\begin{bmatrix}0\\0\\1\\0\end{bmatrix},\quad
 \text{tiger}=\begin{bmatrix}0\\0\\0\\1\end{bmatrix}.
 \]
-این بردارها همان \textbf{بردارهای پایه‌ای استاندارد} $\ve_1,\ve_2,\ve_3,\ve_4$ هستند. اما این روش دو عیب دارد که با ابزار بعدی (ضرب داخلی) بهتر می‌فهمیم:
-\begin{itemize}
-  \item بردارها بسیار \textbf{تُنُک} \enterm{Sparse} هستند: تقریباً همه‌ی مؤلفه‌ها صفرند و اگر واژگان ۵۰ هزار کلمه داشته باشد، هر بردار ۵۰ هزار مؤلفه دارد.
-  \item هیچ دو کلمه‌ای \textbf{شبیه هم} نیستند: «گربه» همان‌قدر به «ببر» نزدیک است که به «خانه»!
-\end{itemize}
+این‌ها همان بردارهای استاندارد $\ve_1,\dots,\ve_4$ هستند. دو عیب دارند: خیلی \textbf{تُنُک}‌اند (تقریباً همه‌ی مؤلفه‌ها صفر است) و هیچ دو کلمه‌ای \textbf{شبیه هم} نیستند.
 
 \subsection{ضرب داخلی}
-حاصل‌ضرب دو عدد، یک عدد است. اما حاصل «ضرب داخلی» دو بردار \emph{بردار نیست}؛ یک \textbf{عدد} است.
-
-\begin{definition}[ضرب داخلی (ضرب نقطه‌ای)]
-برای $\va,\vb\in\R^n$، \term{ضرب داخلی}{Inner/Dot/Scalar Product} آن‌ها عدد زیر است:
+\begin{definition}[ضرب داخلی]
+برای $\va,\vb\in\R^n$، \term{ضرب داخلی}{Inner/Dot Product} یک \textbf{عدد} است، نه بردار:
 \[
-\va\cdot\vb=a_1b_1+a_2b_2+\dots+a_nb_n=\sum_{i=1}^n a_ib_i .
+\va\cdot\vb=\va\T\vb=a_1b_1+\dots+a_nb_n=\sum_{i=1}^n a_ib_i .
 \]
-این عدد را با نمادهای $\va\T\vb$، $\inner{\va}{\vb}$ و $\langle\va|\vb\rangle$ هم نشان می‌دهند.
+نمادهای دیگر: $\inner{\va}{\vb}$ و $\langle\va|\vb\rangle$. مثلاً $(2,1)\cdot(1,5)=2+5=7$.
 \end{definition}
 
-مثلاً
-\[
-\begin{bmatrix}2\\1\end{bmatrix}\cdot\begin{bmatrix}1\\5\end{bmatrix}=2\times1+1\times5=7 .
-\]
-
 \begin{theorem}[ویژگی‌های ضرب داخلی]\label{thm:dot-props}
-برای هر $\va,\vb,\vc\in\R^n$ و هر عدد $\alpha$:
-\begin{enumerate}
-  \item \textbf{تقارن:} $\va\cdot\vb=\vb\cdot\va$؛ یعنی $\va\T\vb=\vb\T\va$.
-  \item \textbf{توزیع‌پذیری:} $\va\cdot(\vb+\vc)=\va\cdot\vb+\va\cdot\vc$.
-  \item \textbf{بیرون آمدن اسکالر:} $(\alpha\va)\cdot\vb=\alpha(\va\cdot\vb)=\va\cdot(\alpha\vb)$.
-  \item \textbf{مثبت بودن:} $\va\cdot\va\ge0$ و $\va\cdot\va=0$ فقط وقتی $\va=\zero$.
-\end{enumerate}
+برای هر $\va,\vb,\vc\in\R^n$ و عدد $\alpha$:
+$\va\cdot\vb=\vb\cdot\va$، \ $\va\cdot(\vb+\vc)=\va\cdot\vb+\va\cdot\vc$، \ $(\alpha\va)\cdot\vb=\alpha(\va\cdot\vb)$، و $\va\cdot\va\ge0$ که فقط برای $\va=\zero$ صفر است.
 \end{theorem}
-\begin{proof}
-همه مستقیم از تعریف و ویژگی‌های اعداد حقیقی به دست می‌آیند:
-\begin{enumerate}
-  \item $\sum a_ib_i=\sum b_ia_i$ چون ضرب اعداد جابه‌جایی است.
-  \item $\sum a_i(b_i+c_i)=\sum a_ib_i+\sum a_ic_i$.
-  \item $\sum (\alpha a_i)b_i=\alpha\sum a_ib_i=\sum a_i(\alpha b_i)$.
-  \item $\va\cdot\va=\sum a_i^2$ مجموع چند عدد نامنفی است، پس نامنفی است؛ و مجموع چند عدد نامنفی فقط وقتی صفر است که همه‌ی آن‌ها صفر باشند، یعنی همه‌ی $a_i=0$.
-\end{enumerate}
-\end{proof}
+همه مستقیم از تعریف به دست می‌آیند؛ آخری چون $\va\cdot\va=\sum a_i^2$. چون $\va\T\vb$ یک عدد است، با ترانهاده‌اش برابر است: $\va\T\vb=(\va\T\vb)\T=\vb\T\va$.
 
-\begin{note}[ترانهاده‌ی یک عدد]
-چون $\va\T\vb$ یک عدد (ماتریس $1\times1$) است، ترانهاده‌اش با خودش برابر است. برای همین تساوی‌های زیر همه درست‌اند:
-\[
-\va\cdot\vb=\va\T\vb=(\va\T\vb)\T=\vb\T(\va\T)\T=\vb\T\va=\vb\cdot\va .
-\]
-(از قاعده‌ی $(XY)\T=Y\T X\T$ استفاده کردیم که در قضیه‌ی \ref{thm:transpose} ثابت می‌شود.)
-\end{note}
+\textbf{طول بردار:} ضرب داخلی بردار در خودش، مربع طول آن است:
+$\norm{\va}^2=\va\T\va=\sum a_i^2$. مثلاً برای $\vv=(4,3)$ داریم $\vv\cdot\vv=25$ و $\norm{\vv}=5$.
 
-\subsection{طول بردار}
-ضرب داخلی یک بردار در خودش، \textbf{مربع طول} آن است:
-\[
-\va\T\va=\sum_{i=1}^n a_i^2=\norm{\va}^2,\qquad \norm{\va}=\sqrt{a_1^2+\dots+a_n^2}.
-\]
-به $\norm{\va}$ \term{طول}{Length} یا \term{نُرم}{Norm} بردار می‌گوییم. مثلاً
-\[
-\vv=\begin{bmatrix}4\\3\end{bmatrix}\ \Rightarrow\ \vv\cdot\vv=16+9=25,\qquad \norm{\vv}=5 .
-\]
-در $\R^2$ این همان قضیه‌ی فیثاغورس است: پیکان $(4,3)$ وتر یک مثلث قائم‌الزاویه با اضلاع ۴ و ۳ است.
-
-\subsection{تعبیر هندسی ضرب داخلی}
 \begin{theorem}[ضرب داخلی و زاویه]\label{thm:dot-angle}
-اگر $\va,\vb$ دو بردار ناصفر در $\R^2$ یا $\R^3$ باشند و $\theta$ زاویه‌ی بین آن‌ها باشد، آن‌گاه
-\[
-\va\cdot\vb=\norm{\va}\,\norm{\vb}\cos\theta .
-\]
+اگر $\theta$ زاویه‌ی بین دو بردار ناصفر $\va,\vb$ در $\R^2$ یا $\R^3$ باشد:
+$\va\cdot\vb=\norm{\va}\,\norm{\vb}\cos\theta$.
 \end{theorem}
-\begin{proof}
-مثلثی با رئوس مبدأ، نوک $\va$ و نوک $\vb$ را در نظر بگیرید. اضلاع آن $\norm{\va}$، $\norm{\vb}$ و $\norm{\va-\vb}$ هستند و زاویه‌ی بین دو ضلع اول $\theta$ است. طبق \textbf{قانون کسینوس‌ها}:
-\[
-\norm{\va-\vb}^2=\norm{\va}^2+\norm{\vb}^2-2\norm{\va}\norm{\vb}\cos\theta .
-\]
-از طرف دیگر با ویژگی‌های ضرب داخلی (قضیه‌ی \ref{thm:dot-props}):
-\[
-\norm{\va-\vb}^2=(\va-\vb)\cdot(\va-\vb)=\va\cdot\va-2\,\va\cdot\vb+\vb\cdot\vb=\norm{\va}^2-2\,\va\cdot\vb+\norm{\vb}^2 .
-\]
-با مقایسه‌ی دو رابطه، $-2\,\va\cdot\vb=-2\norm{\va}\norm{\vb}\cos\theta$ و حکم ثابت می‌شود.
-\end{proof}
 
 \begin{intuition}[سایه]
-اگر $\vb$ بردار یکه (طول ۱) باشد، $\va\cdot\vb=\norm{\va}\cos\theta$ دقیقاً طول (علامت‌دار) \textbf{سایه‌ی} $\va$ روی امتداد $\vb$ است؛ مثل سایه‌ی یک چوب وقتی نور عمود بر $\vb$ بتابد.
+اگر طول $\vb$ برابر ۱ باشد، $\va\cdot\vb=\norm{\va}\cos\theta$ طول \textbf{سایه‌ی} $\va$ روی امتداد $\vb$ است. پس ضرب داخلی نشان می‌دهد دو بردار چقدر هم‌جهت یا \textbf{شبیه} هم‌اند؛ اگر صفر باشد، بردارها بر هم \term{عمود}{Orthogonal} هستند.
 \begin{center}
 \begin{tikzpicture}[scale=0.9,>=Latex]
   \draw[->, very thick, primary] (0,0)--(5,0) node[below] {$\vb$};
@@ -324,572 +170,237 @@ c\vv=\begin{bmatrix}cv_1\\ \vdots\\ cv_n\end{bmatrix}.
   \draw (0.8,0) arc (0:36:0.8); \node at (1.1,0.32) {\small $\theta$};
 \end{tikzpicture}
 \end{center}
-پس ضرب داخلی نشان می‌دهد دو بردار چقدر «هم‌جهت» یا \textbf{شبیه} هم هستند:
-\begin{itemize}
-  \item اگر $\va\cdot\vb>0$ زاویه حاده است (هم‌جهت‌اند)؛
-  \item اگر $\va\cdot\vb=0$ بر هم \textbf{عمود} \enterm{Orthogonal} هستند؛
-  \item اگر $\va\cdot\vb<0$ زاویه منفرجه است (تقریباً خلاف جهت هم‌اند).
-\end{itemize}
 \end{intuition}
 
 \begin{example}[عیب کدگذاری یک‌داغ]
-نشان دهید هیچ دو کلمه‌ی متفاوتی در کدگذاری یک‌داغ «شبیه» هم نیستند.
+آیا «گربه» به «ببر» شبیه‌تر است تا به «سیب»؟
 \end{example}
 \begin{solution}
-\[
-\text{apple}\cdot\text{cat}=
-\begin{bmatrix}1\\0\\0\\0\end{bmatrix}\cdot\begin{bmatrix}0\\1\\0\\0\end{bmatrix}=0=
-\begin{bmatrix}0\\0\\0\\1\end{bmatrix}\cdot\begin{bmatrix}0\\1\\0\\0\end{bmatrix}=\text{tiger}\cdot\text{cat}.
-\]
-در حالت کلی $\ve_i\cdot\ve_j=0$ برای $i\neq j$؛ یعنی همه‌ی کلمه‌ها بر هم عمودند و شباهت «گربه» به «ببر» با شباهتش به «سیب» یکی است. برای همین در عمل از بردارهای چگال‌تری (\en{word embeddings}) استفاده می‌کنند که در آن کلمه‌های هم‌معنا ضرب داخلی بزرگ‌تری دارند.
+خیر: $\text{apple}\cdot\text{cat}=0=\text{tiger}\cdot\text{cat}$. در کل $\ve_i\cdot\ve_j=0$ برای $i\neq j$؛ همه‌ی کلمه‌ها بر هم عمودند و هیچ شباهتی دیده نمی‌شود.
 \end{solution}
 
 \section{ماتریس‌ها و ضرب آن‌ها}\label{sec:matmul}
 
-\subsection{نمادگذاری}
-منظور از $A\in\R^{m\times n}$ ماتریسی با $m$ سطر و $n$ ستون است که درایه‌هایش اعداد حقیقی‌اند. یک ماتریس را می‌توانیم به سه شکل ببینیم: درایه‌به‌درایه، ستون‌به‌ستون یا سطربه‌سطر:
+منظور از $A\in\R^{m\times n}$ ماتریسی با $m$ سطر و $n$ ستون است. آن را می‌توان ستون‌به‌ستون یا سطربه‌سطر دید:
 \[
 A=\begin{bmatrix}
-a_{11}&a_{12}&\cdots&a_{1n}\\
-a_{21}&a_{22}&\cdots&a_{2n}\\
-\vdots&\vdots&\ddots&\vdots\\
-a_{m1}&a_{m2}&\cdots&a_{mn}
+a_{11}&\cdots&a_{1n}\\
+\vdots&\ddots&\vdots\\
+a_{m1}&\cdots&a_{mn}
 \end{bmatrix}
 =
 \begin{bmatrix}
-| & | & & |\\
-\va_1 & \va_2 & \cdots & \va_n\\
-| & | & & |
+| & & |\\
+\va_1 & \cdots & \va_n\\
+| & & |
 \end{bmatrix}
 =
 \begin{bmatrix}
 - & \va_1\T & -\\
-- & \va_2\T & -\\
  & \vdots & \\
 - & \va_m\T & -
 \end{bmatrix}.
 \]
-(دقت کنید که در نمایش ستونی $\va_j\in\R^m$ ستون $j$-ام است و در نمایش سطری $\va_i\T$ سطر $i$-ام؛ از متن معلوم می‌شود منظور کدام است.)
+ماتریس \textbf{همانی} $I$ روی قطر ۱ و جای دیگر ۰ است ($I_{ij}=\delta_{ij}$). \term{ترانهاده}{Transpose} با $(A\T)_{ij}=A_{ji}$ تعریف می‌شود.
 
-\begin{definition}[چند ماتریس خاص]
-\begin{itemize}
-  \item \textbf{مربعی:} تعداد سطر و ستون برابر است ($m=n$).
-  \item \textbf{صفر} ($0$): همه‌ی درایه‌ها صفرند.
-  \item \textbf{همانی} ($I$ یا $I_n$): ماتریس مربعی که روی قطر اصلی ۱ و بقیه‌ی جاها ۰ است؛ یعنی $I_{ij}=\delta_{ij}$.
-  \item \textbf{قطری:} مربعی که بیرون قطر اصلی صفر است.
-  \item \textbf{بالامثلثی / پایین‌مثلثی:} مربعی که زیر / بالای قطر اصلی صفر است.
-\end{itemize}
-\end{definition}
-
-\begin{definition}[جمع، ضرب اسکالر و ترانهاده]
-برای $A,B\in\R^{m\times n}$ و عدد $c$:
-\[
-(A+B)_{ij}=A_{ij}+B_{ij},\qquad (cA)_{ij}=c\,A_{ij},\qquad (A\T)_{ij}=A_{ji}.
-\]
-ماتریس $A\T\in\R^{n\times m}$ را \term{ترانهاده}{Transpose} $A$ می‌نامیم؛ سطرهای $A$ ستون‌های $A\T$ می‌شوند.
-\end{definition}
-
-\subsection{ترکیب خطی}
 \begin{definition}[ترکیب خطی]
-یک \term{ترکیب خطی}{Linear Combination} از بردارهای $\va_1,\dots,\va_m$ (همه با اندازه‌ی $n$) هر برداری به شکل
-\[
-\beta_1\va_1+\beta_2\va_2+\dots+\beta_m\va_m
-\]
-است که $\beta_1,\dots,\beta_m$ اسکالر هستند. به $\beta_i$ها \textbf{ضرایب} ترکیب خطی می‌گوییم.
+یک \term{ترکیب خطی}{Linear Combination} از بردارهای $\va_1,\dots,\va_m$ هر برداری به شکل $\beta_1\va_1+\dots+\beta_m\va_m$ است که $\beta_i$ها اسکالرند.
 \end{definition}
-مفهوم ترکیب خطی قلب جبر خطی است؛ تقریباً هر مفهوم بعدی (پوشش، استقلال، پایه، رتبه) با آن تعریف می‌شود.
 
 \subsection{ضرب ماتریس در بردار}
-\begin{definition}[ضرب ماتریس در بردار]
-برای $A\in\R^{m\times n}$ و $\vx\in\R^n$، حاصل $\vy=A\vx$ برداری در $\R^m$ است با مؤلفه‌های
+برای $A\in\R^{m\times n}$ و $\vx\in\R^n$، حاصل $A\vx\in\R^m$ با $(A\vx)_i=\sum_j a_{ij}x_j$ تعریف می‌شود. دو نگاه به آن:
 \[
-y_i=\sum_{j=1}^n a_{ij}x_j,\qquad i=1,\dots,m .
+\text{\fa{سطری:}}\ \ A\vx=\begin{bmatrix}\va_1\T\vx\\ \vdots\\ \va_m\T\vx\end{bmatrix},
+\qquad
+\text{\fa{ستونی:}}\ \ A\vx=x_1\va_1+x_2\va_2+\dots+x_n\va_n .
 \]
-\end{definition}
-
-این تعریف را می‌شود به دو شکل معادل دید:
-
-\paragraph{نگاه سطری.} مؤلفه‌ی $i$-ام حاصل، ضرب داخلی سطر $i$-ام $A$ در $\vx$ است:
-\[
-A\vx=\begin{bmatrix}- & \va_1\T & -\\ - & \va_2\T & -\\ & \vdots & \\ - & \va_m\T & -\end{bmatrix}\vx
-=\begin{bmatrix}\va_1\T\vx\\ \va_2\T\vx\\ \vdots\\ \va_m\T\vx\end{bmatrix}.
-\]
-
-\paragraph{نگاه ستونی.} حاصل، ترکیب خطی ستون‌های $A$ با ضرایب $x_1,\dots,x_n$ است:
-\[
-A\vx=\begin{bmatrix}| & | & & |\\ \va_1 & \va_2 & \cdots & \va_n\\ | & | & & |\end{bmatrix}\begin{bmatrix}x_1\\x_2\\ \vdots\\ x_n\end{bmatrix}
-=x_1\va_1+x_2\va_2+\dots+x_n\va_n .
-\]
-
-\begin{proof}[هم‌ارزی دو نگاه]
-مؤلفه‌ی $i$-ام بردار $x_1\va_1+\dots+x_n\va_n$ برابر است با $x_1a_{i1}+\dots+x_na_{in}=\sum_j a_{ij}x_j$، که همان $y_i$ و همان $\va_i\T\vx$ (ضرب داخلی سطر $i$ در $\vx$) است.
-\end{proof}
-
 \begin{note}
-نگاه ستونی می‌گوید: \hl{$A\vx$ همیشه ترکیبی خطی از ستون‌های $A$ است.} به‌زودی خواهیم دید که «ستون‌های $A$ مستقل خطی‌اند اگر و تنها اگر از $A\vx=\zero$ نتیجه شود $\vx=\zero$».
+\hl{$A\vx$ همیشه ترکیب خطی ستون‌های $A$ است} و به همین ترتیب $\vx\T A$ ترکیب خطی سطرهای $A$ است. بعداً می‌بینیم ستون‌های $A$ مستقل خطی‌اند اگر و تنها اگر از $A\vx=\zero$ نتیجه شود $\vx=\zero$.
 \end{note}
-
-\paragraph{ضرب بردار سطری در ماتریس.} می‌توانیم از سمت چپ هم یک بردار سطری $\vx\T$ (با $\vx\in\R^m$) را در $A$ ضرب کنیم. باز دو نگاه داریم:
-\[
-\vy\T=\vx\T A=\vx\T\begin{bmatrix}| & & |\\ \va_1 & \cdots & \va_n\\ | & & |\end{bmatrix}=\begin{bmatrix}\vx\T\va_1 & \vx\T\va_2 & \cdots & \vx\T\va_n\end{bmatrix},
-\]
-و با نوشتن $A$ بر حسب سطرها:
-\[
-\vx\T A=\begin{bmatrix}x_1 & x_2 & \cdots & x_m\end{bmatrix}\begin{bmatrix}- & \va_1\T & -\\ & \vdots & \\ - & \va_m\T & -\end{bmatrix}
-=x_1\big[-\ \va_1\T\ -\big]+x_2\big[-\ \va_2\T\ -\big]+\dots+x_m\big[-\ \va_m\T\ -\big].
-\]
-یعنی \hl{$\vx\T A$ ترکیبی خطی از سطرهای $A$ است.}
-
-\begin{theorem}[ویژگی‌های ضرب ماتریس در بردار]\label{thm:matvec-props}
-برای ماتریس‌های $A,B\in\R^{m\times n}$، بردارهای $\vu,\vv\in\R^n$ و عدد $\alpha$:
-\[
-A(\vu+\vv)=A\vu+A\vv,\quad (A+B)\vu=A\vu+B\vu,\quad (\alpha A)\vu=\alpha(A\vu)=A(\alpha\vu),
-\]
-\[
-0\,\vu=\zero,\qquad A\zero=\zero,\qquad I\vu=\vu .
-\]
-\end{theorem}
-\begin{proof}
-همه را مؤلفه‌به‌مؤلفه بررسی می‌کنیم. مثلاً مؤلفه‌ی $i$-ام $A(\vu+\vv)$ برابر است با
-\[
-\sum_j a_{ij}(u_j+v_j)=\sum_j a_{ij}u_j+\sum_j a_{ij}v_j ,
-\]
-که مؤلفه‌ی $i$-ام $A\vu+A\vv$ است. بقیه هم به همین سادگی‌اند؛ برای آخری: مؤلفه‌ی $i$-ام $I\vu$ برابر $\sum_j\delta_{ij}u_j=u_i$ است چون در این جمع فقط جمله‌ی $j=i$ ناصفر است.
-\end{proof}
+ویژگی‌ها: $A(\vu+\vv)=A\vu+A\vv$، \ $(A+B)\vu=A\vu+B\vu$، \ $(\alpha A)\vu=\alpha(A\vu)=A(\alpha\vu)$، \ $A\zero=\zero$ و $I\vu=\vu$.
 
 \begin{example}
-برای ماتریس
-$A=\begin{bmatrix}-1&2&1\\2&0&-2\end{bmatrix}$
-موارد زیر را به صورت «ضرب ماتریس و بردار» بنویسید و حساب کنید: ستون $j$-ام، سطر $i$-ام، مجموع سطرها و مجموع ستون‌ها.
+برای $A=\begin{bmatrix}-1&2&1\\2&0&-2\end{bmatrix}$، ستون $j$-ام، سطر $i$-ام، مجموع سطرها و مجموع ستون‌ها را به شکل ضرب ماتریس و بردار بنویسید.
 \end{example}
 \begin{solution}
-از بردارهای پایه‌ای استاندارد $\ve_j$ (بردار با ۱ در جای $j$ و صفر در بقیه) و بردار تمام‌یک $\mathbf{1}$ استفاده می‌کنیم:
-\begin{itemize}
-  \item \textbf{ستون $j$-ام:} $\va_j=A\ve_j$؛ چون طبق نگاه ستونی $A\ve_j=0\va_1+\dots+1\va_j+\dots+0\va_n$. مثلاً $A\ve_2=\begin{bmatrix}2\\0\end{bmatrix}$.
-  \item \textbf{سطر $i$-ام:} $\va_i\T=\ve_i\T A$. مثلاً $\ve_1\T A=\begin{bmatrix}-1&2&1\end{bmatrix}$.
-  \item \textbf{مجموع سطرها:} $\mathbf{1}\T A=\begin{bmatrix}1&1\end{bmatrix}A=\begin{bmatrix}1&2&-1\end{bmatrix}$.
-  \item \textbf{مجموع ستون‌ها:} $A\mathbf{1}=A\begin{bmatrix}1\\1\\1\end{bmatrix}=\begin{bmatrix}2\\0\end{bmatrix}$.
-\end{itemize}
+ستون $j$-ام: $A\ve_j$. سطر $i$-ام: $\ve_i\T A$. مجموع سطرها: $\begin{bmatrix}1&1\end{bmatrix}A=\begin{bmatrix}1&2&-1\end{bmatrix}$. مجموع ستون‌ها: $A\begin{bmatrix}1\\1\\1\end{bmatrix}=\begin{bmatrix}2\\0\end{bmatrix}$.
 \end{solution}
 
 \subsection{ضرب ماتریس در ماتریس}
 \begin{definition}[ضرب دو ماتریس]
-فرض کنید $A$ یک ماتریس $m\times n$ و $B$ یک ماتریس $n\times p$ روی میدان $\F$ باشند. حاصل‌ضرب $AB$ ماتریس $m\times p$ مثل $C$ است که درایه‌ی $(i,j)$ آن
+اگر $A$ از اندازه‌ی $m\times n$ و $B$ از اندازه‌ی $n\times p$ باشد، $C=AB$ ماتریسی $m\times p$ است با
 \[
-C_{ij}=\sum_{r=1}^{n}A_{ir}B_{rj}
+C_{ij}=\sum_{r=1}^{n}A_{ir}B_{rj}=\va_i\T\vb_j ,
 \]
-است. به بیان دیگر $C_{ij}=\va_i\T\vb_j$: ضرب داخلی \textbf{سطر $i$-ام $A$} در \textbf{ستون $j$-ام $B$}.
+یعنی ضرب داخلی سطر $i$-ام $A$ در ستون $j$-ام $B$. ضرب فقط وقتی تعریف شده که تعداد ستون‌های $A$ با تعداد سطرهای $B$ برابر باشد.
 \end{definition}
 
-\begin{warning}[شرط ابعاد]
-ضرب $AB$ فقط وقتی تعریف شده است که \textbf{تعداد ستون‌های $A$} با \textbf{تعداد سطرهای $B$} برابر باشد:
-\[
-\underbrace{A}_{m\times n}\ \underbrace{B}_{n\times p}=\underbrace{C}_{m\times p}.
-\]
-\end{warning}
-
-\begin{example}
-$\begin{bmatrix}1&2\\3&4\end{bmatrix}\begin{bmatrix}5&6\\7&8\end{bmatrix}$ را حساب کنید.
-\end{example}
-\begin{solution}
-\[
-\begin{bmatrix}1\cdot5+2\cdot7 & 1\cdot6+2\cdot8\\ 3\cdot5+4\cdot7 & 3\cdot6+4\cdot8\end{bmatrix}=\begin{bmatrix}19&22\\43&50\end{bmatrix}.
-\]
-\end{solution}
-
-\subsubsection{چهار نگاه به ضرب ماتریس‌ها}
-فرض کنید $A\in\R^{m\times n}$ با سطرهای $\va_i\T$ و ستون‌های $\va_j$، و $B\in\R^{n\times p}$ با سطرهای $\vb_i\T$ و ستون‌های $\vb_j$ باشد.
-
-\paragraph{۱. مجموعه‌ای از ضرب‌های داخلی} (همان تعریف):
-\[
-C=AB=\begin{bmatrix}- & \va_1\T & -\\ - & \va_2\T & -\\ & \vdots & \\ - & \va_m\T & -\end{bmatrix}
-\begin{bmatrix}| & | & & |\\ \vb_1 & \vb_2 & \cdots & \vb_p\\ | & | & & |\end{bmatrix}
-=\begin{bmatrix}
-\va_1\T\vb_1 & \va_1\T\vb_2 & \cdots & \va_1\T\vb_p\\
-\va_2\T\vb_1 & \va_2\T\vb_2 & \cdots & \va_2\T\vb_p\\
-\vdots & \vdots & \ddots & \vdots\\
-\va_m\T\vb_1 & \va_m\T\vb_2 & \cdots & \va_m\T\vb_p
-\end{bmatrix}.
-\]
-
-\paragraph{۲. مجموع ضرب‌های خارجی.} برای $\vu\in\R^m$ و $\vv\in\R^p$، ماتریس $m\times p$ مثل $\vu\vv\T$ را \term{ضرب خارجی}{Outer Product} می‌نامیم؛ درایه‌ی $(i,j)$ آن $u_iv_j$ است. حالا:
-\[
-C=AB=\begin{bmatrix}| & | & & |\\ \va_1 & \va_2 & \cdots & \va_n\\ | & | & & |\end{bmatrix}
-\begin{bmatrix}- & \vb_1\T & -\\ - & \vb_2\T & -\\ & \vdots & \\ - & \vb_n\T & -\end{bmatrix}
-=\sum_{r=1}^{n}\va_r\vb_r\T .
-\]
-\textbf{چرا؟} درایه‌ی $(i,j)$ ماتریس $\va_r\vb_r\T$ برابر $A_{ir}B_{rj}$ است؛ پس درایه‌ی $(i,j)$ مجموع برابر $\sum_r A_{ir}B_{rj}=C_{ij}$.
-
-\paragraph{۳. مجموعه‌ای از ضرب‌های ماتریس در بردار.} ستون $j$-ام $C$ برابر $A\vb_j$ است:
-\[
-C=AB=A\begin{bmatrix}| & | & & |\\ \vb_1 & \vb_2 & \cdots & \vb_p\\ | & | & & |\end{bmatrix}=\begin{bmatrix}| & | & & |\\ A\vb_1 & A\vb_2 & \cdots & A\vb_p\\ | & | & & |\end{bmatrix}.
-\]
-\textbf{چرا؟} مؤلفه‌ی $i$-ام $A\vb_j$ برابر $\sum_r A_{ir}B_{rj}=C_{ij}$ است. پس طبق نگاه ستونی ضرب ماتریس در بردار، \hl{هر ستون $AB$ ترکیبی خطی از ستون‌های $A$ است.}
-
-\paragraph{۴. مجموعه‌ای از ضرب‌های بردار در ماتریس.} سطر $i$-ام $C$ برابر $\va_i\T B$ است:
-\[
-C=AB=\begin{bmatrix}- & \va_1\T & -\\ - & \va_2\T & -\\ & \vdots & \\ - & \va_m\T & -\end{bmatrix}B=\begin{bmatrix}- & \va_1\T B & -\\ - & \va_2\T B & -\\ & \vdots & \\ - & \va_m\T B & -\end{bmatrix}.
-\]
-یعنی \hl{هر سطر $AB$ ترکیبی خطی از سطرهای $B$ است.} این نکته کلید فهم عملیات سطری در بخش بعد است.
-
-\subsubsection{ویژگی‌های ضرب ماتریس‌ها}
-\begin{theorem}[شرکت‌پذیری و توزیع‌پذیری]\label{thm:assoc}
-اگر ابعاد ماتریس‌ها اجازه دهد:
+\textbf{چهار نگاه به $AB$:}
 \begin{enumerate}
-  \item \textbf{شرکت‌پذیری:} $(AB)C=A(BC)$.
-  \item \textbf{توزیع‌پذیری:} $A(B+C)=AB+AC$ و $(A+B)C=AC+BC$.
-  \item \textbf{همانی:} اگر $A$ ماتریس $m\times n$ باشد، $I_mA=A=AI_n$.
+  \item \textbf{ضرب‌های داخلی:} درایه‌ی $(i,j)$ برابر $\va_i\T\vb_j$ است.
+  \item \textbf{مجموع ضرب‌های خارجی:} $AB=\sum_{r=1}^{n}\va_r\vb_r\T$ (ستون $r$-ام $A$ ضرب در سطر $r$-ام $B$).
+  \item \textbf{ستون‌به‌ستون:} $AB=\begin{bmatrix}A\vb_1&\cdots&A\vb_p\end{bmatrix}$؛ پس هر ستون $AB$ ترکیب خطی ستون‌های $A$ است.
+  \item \textbf{سطربه‌سطر:} سطر $i$-ام $AB$ برابر $\va_i\T B$ است؛ پس \hl{هر سطر $AB$ ترکیب خطی سطرهای $B$ است.}
 \end{enumerate}
-\end{theorem}
-\begin{proof}
-\textbf{۱.} فرض کنید $A$ از اندازه‌ی $m\times n$، $B$ از اندازه‌ی $n\times p$ و $C$ از اندازه‌ی $p\times q$ باشد. درایه‌ی $(i,j)$ هر دو طرف را حساب می‌کنیم:
-\[
-\big((AB)C\big)_{ij}=\sum_{s=1}^{p}(AB)_{is}C_{sj}=\sum_{s=1}^{p}\Big(\sum_{r=1}^{n}A_{ir}B_{rs}\Big)C_{sj}=\sum_{s=1}^{p}\sum_{r=1}^{n}A_{ir}B_{rs}C_{sj},
-\]
-\[
-\big(A(BC)\big)_{ij}=\sum_{r=1}^{n}A_{ir}(BC)_{rj}=\sum_{r=1}^{n}A_{ir}\Big(\sum_{s=1}^{p}B_{rs}C_{sj}\Big)=\sum_{r=1}^{n}\sum_{s=1}^{p}A_{ir}B_{rs}C_{sj}.
-\]
-هر دو، مجموع همان $np$ جمله‌ی $A_{ir}B_{rs}C_{sj}$ هستند و فقط ترتیب جمع‌زدن فرق دارد؛ پس برابرند.
 
-\textbf{۲.} $\big(A(B+C)\big)_{ij}=\sum_r A_{ir}(B_{rj}+C_{rj})=\sum_r A_{ir}B_{rj}+\sum_r A_{ir}C_{rj}=(AB)_{ij}+(AC)_{ij}$. تساوی دوم هم مشابه است.
-
-\textbf{۳.} $(I_mA)_{ij}=\sum_r\delta_{ir}A_{rj}=A_{ij}$، چون فقط جمله‌ی $r=i$ باقی می‌ماند. مشابهاً $(AI_n)_{ij}=A_{ij}$.
-\end{proof}
+\textbf{ویژگی‌ها:} ضرب ماتریس‌ها \textbf{شرکت‌پذیر} است، $(AB)C=A(BC)$، و \textbf{توزیع‌پذیر}، $A(B+C)=AB+AC$؛ همچنین $IA=AI=A$.
 
 \begin{warning}[ضرب ماتریس‌ها جابه‌جایی نیست]
-در حالت کلی $AB\neq BA$. گاهی حتی ابعاد اجازه‌ی ضرب در یک طرف را نمی‌دهند (مثلاً $A_{2\times3}$ و $B_{3\times 4}$: $AB$ تعریف شده ولی $BA$ نه). حتی برای ماتریس‌های مربعی:
+در حالت کلی $AB\neq BA$؛ گاهی حتی یکی از دو ضرب تعریف نشده است. مثلاً
 \[
 A=\begin{bmatrix}0&1\\0&0\end{bmatrix},\ B=\begin{bmatrix}0&0\\1&0\end{bmatrix}:\qquad
 AB=\begin{bmatrix}1&0\\0&0\end{bmatrix}\neq\begin{bmatrix}0&0\\0&1\end{bmatrix}=BA .
 \]
-برای همین در جبر ماتریسی باید مراقب ترتیب باشیم؛ مثلاً $(A+B)^2=A^2+AB+BA+B^2$ و نه $A^2+2AB+B^2$.
 \end{warning}
 
-\begin{theorem}[ترانهاده‌ی حاصل‌ضرب]\label{thm:transpose}
-برای هر $A\in\R^{m\times n}$ و $B\in\R^{n\times p}$:
-\[
-(A\T)\T=A,\qquad (A+B)\T=A\T+B\T\ (\text{\fa{با ابعاد برابر}}),\qquad (AB)\T=B\T A\T .
-\]
-\end{theorem}
-\begin{proof}
-دو مورد اول مستقیم از تعریف‌اند. برای سومی، درایه‌ی $(i,j)$ دو طرف را مقایسه می‌کنیم:
-\[
-\big((AB)\T\big)_{ij}=(AB)_{ji}=\sum_r A_{jr}B_{ri}=\sum_r (B\T)_{ir}(A\T)_{rj}=(B\T A\T)_{ij}.
-\]
-\end{proof}
-
-\subsection{ماتریس وارون‌پذیر}
-\begin{definition}[وارون ماتریس]
-ماتریس مربعی $A\in\F^{n\times n}$ را \term{وارون‌پذیر}{Invertible} می‌نامیم اگر ماتریسی مثل $B$ وجود داشته باشد که
-\[
-AB=BA=I_n .
-\]
-در این صورت $B$ را \term{وارون}{Inverse} $A$ می‌نامیم و با $A^{-1}$ نشان می‌دهیم.
-\end{definition}
-
-\begin{theorem}[ویژگی‌های وارون]\label{thm:inverse-props}
+\begin{theorem}[ترانهاده و وارون]\label{thm:transpose}\label{thm:inverse-props}
 \begin{enumerate}
-  \item وارون یک ماتریس (اگر وجود داشته باشد) یکتاست.
-  \item اگر $A$ وارون‌پذیر باشد، $A^{-1}$ هم وارون‌پذیر است و $(A^{-1})^{-1}=A$.
-  \item اگر $A$ و $B$ (با ابعاد یکسان) وارون‌پذیر باشند، $AB$ هم وارون‌پذیر است و $(AB)^{-1}=B^{-1}A^{-1}$.
-  \item اگر $A$ وارون‌پذیر باشد، $A\T$ هم وارون‌پذیر است و $(A\T)^{-1}=(A^{-1})\T$.
+  \item $(AB)\T=B\T A\T$.
+  \item ماتریس مربعی $A$ \term{وارون‌پذیر}{Invertible} است اگر ماتریسی مثل $A^{-1}$ باشد که $AA^{-1}=A^{-1}A=I$. وارون یکتاست و اگر $A,B$ وارون‌پذیر باشند، $(AB)^{-1}=B^{-1}A^{-1}$.
 \end{enumerate}
 \end{theorem}
-\begin{proof}
-\textbf{۱.} اگر $B$ و $C$ هر دو وارون $A$ باشند، با شرکت‌پذیری:
-$B=BI=B(AC)=(BA)C=IC=C$.
-
-\textbf{۲.} تساوی‌های $AA^{-1}=A^{-1}A=I$ دقیقاً می‌گویند $A$ وارون $A^{-1}$ است.
-
-\textbf{۳.} با شرکت‌پذیری:
-$(AB)(B^{-1}A^{-1})=A(BB^{-1})A^{-1}=AIA^{-1}=AA^{-1}=I$
-و به همین ترتیب $(B^{-1}A^{-1})(AB)=I$. (به عوض شدن ترتیب دقت کنید؛ مثل پوشیدن و درآوردن جوراب و کفش!)
-
-\textbf{۴.} با قضیه‌ی \ref{thm:transpose}: $A\T(A^{-1})\T=(A^{-1}A)\T=I\T=I$ و $(A^{-1})\T A\T=(AA^{-1})\T=I$.
-\end{proof}
-
-\begin{note}[وارون ماتریس $2\times2$]
-اگر $ad-bc\neq0$ باشد،
-\[
-\begin{bmatrix}a&b\\c&d\end{bmatrix}^{-1}=\frac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}.
-\]
-درستی آن را با ضرب کردن دو ماتریس در هم و رسیدن به $I$ می‌توانید بررسی کنید.
-\end{note}
+برای بند ۲: $(AB)(B^{-1}A^{-1})=A(BB^{-1})A^{-1}=I$. برای ماتریس $2\times2$ اگر $ad-bc\neq0$: $\begin{bmatrix}a&b\\c&d\end{bmatrix}^{-1}=\frac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}$.
 
 \section{عملیات سطری مقدماتی}
 
-\subsection{سه عمل اصلی}
-در «ایده‌ی حذف» دیدیم که با کم کردن مضربی از یک معادله از دیگری، دستگاه ساده‌تری با \emph{همان جواب‌ها} به دست می‌آید. روی ماتریس افزوده این کار یعنی دست بردن در سطرها. سه نوع عمل مجاز داریم:
-
 \begin{definition}[عملیات سطری مقدماتی]
-\term{عملیات سطری مقدماتی}{Elementary Row Operations} روی یک ماتریس این سه نوع‌اند:
+سه نوع \term{عمل سطری مقدماتی}{Elementary Row Operation} داریم:
 \begin{enumerate}
-  \item \textbf{مقیاس‌دهی} \enterm{Scaling}: ضرب همه‌ی درایه‌های یک سطر در یک اسکالر \emph{ناصفر} $c$. \quad نماد: $R_i\leftarrow cR_i$.
-  \item \textbf{جایگزینی} \enterm{Replacement}: جایگزین کردن یک سطر با مجموع خودش و مضربی از سطر دیگر. \quad نماد: $R_i\leftarrow R_i+cR_k$ \ ($k\neq i$).
-  \item \textbf{جابه‌جایی} \enterm{Interchange}: عوض کردن جای دو سطر. \quad نماد: $R_i\leftrightarrow R_k$.
+  \item \textbf{مقیاس‌دهی:} ضرب یک سطر در عدد \emph{ناصفر} $c$: \ $R_i\leftarrow cR_i$.
+  \item \textbf{جایگزینی:} جمع یک سطر با مضربی از سطر دیگر: \ $R_i\leftarrow R_i+cR_k$.
+  \item \textbf{جابه‌جایی:} عوض کردن جای دو سطر: \ $R_i\leftrightarrow R_k$.
 \end{enumerate}
+هر عمل سطری یک تابع $e$ است که به هر ماتریس $m\times n$ مثل $A$ یک ماتریس $m\times n$ مثل $e(A)$ نسبت می‌دهد؛ مثلاً برای جایگزینی سطر $r$: $e(A)_{rj}=A_{rj}+cA_{kj}$ و بقیه‌ی سطرها بدون تغییر می‌مانند. تعداد ستون‌های $A$ مهم نیست، اما تعداد سطرهایش مهم است.
 \end{definition}
 
-به زبان دقیق‌تر، هر عمل سطری مقدماتی یک \textbf{تابع} $e$ است که به هر ماتریس $m\times n$ مثل $A$ یک ماتریس $m\times n$ مثل $e(A)$ نسبت می‌دهد ($c\neq0$):
-\begin{enumerate}
-  \item مقیاس‌دهی سطر $r$: \quad $e(A)_{ij}=A_{ij}$ برای $i\neq r$ و $e(A)_{rj}=c\,A_{rj}$.
-  \item جایگزینی سطر $r$ با $r+c\times$ سطر $s$: \quad $e(A)_{ij}=A_{ij}$ برای $i\neq r$ و $e(A)_{rj}=A_{rj}+c\,A_{sj}$.
-  \item جابه‌جایی سطرهای $r$ و $s$: \quad $e(A)_{ij}=A_{ij}$ برای $i\neq r,s$ و $e(A)_{rj}=A_{sj}$ و $e(A)_{sj}=A_{rj}$.
-\end{enumerate}
+\begin{theorem}[وارون عمل سطری]\label{thm:inverse-rowop}
+هر عمل سطری مقدماتی $e$ یک وارون $e_1$ از \textbf{همان نوع} دارد: $e_1(e(A))=e(e_1(A))=A$.
+\end{theorem}
+\begin{proof}
+\begin{itemize}
+  \item ضرب سطر $r$ در $c\neq0$ با ضرب همان سطر در $c^{-1}$ خنثی می‌شود (این‌جا به $c\neq0$ نیاز داریم).
+  \item جایگزینی $R_r\leftarrow R_r+cR_s$ با $R_r\leftarrow R_r-cR_s$ خنثی می‌شود، چون سطر $s$ تغییر نکرده است.
+  \item جابه‌جایی دو سطر، وارون خودش است.
+\end{itemize}
+\end{proof}
+
+\begin{definition}[هم‌ارز سطری]
+ماتریس $B$ با $A$ \term{هم‌ارز سطری}{Row-Equivalent} است اگر با تعداد متناهی عمل سطری مقدماتی از $A$ به دست آید.
+\end{definition}
 
 \begin{note}
-در تعریف $e(A)$ مهم نیست $A$ چند ستون دارد؛ اما \textbf{تعداد سطرهای} $A$ اهمیت دارد. مثلاً «جابه‌جایی سطرهای ۴ و ۵» روی یک ماتریس سه‌سطری بی‌معناست.
+از قضیه‌ی \ref{thm:inverse-rowop} نتیجه می‌شود: هر ماتریس با خودش هم‌ارز سطری است؛ اگر $B$ با $A$ هم‌ارز باشد، $A$ هم با $B$ هم‌ارز است (عمل‌های وارون را به ترتیب برعکس اعمال کنید)؛ و اگر $C$ با $B$ و $B$ با $A$ هم‌ارز باشد، $C$ با $A$ هم‌ارز است.
 \end{note}
 
-\begin{warning}
-در مقیاس‌دهی، شرط $c\neq0$ ضروری است. اگر سطری را در صفر ضرب کنیم، اطلاعات یک معادله را برای همیشه از دست می‌دهیم و دیگر نمی‌توانیم به عقب برگردیم.
-\end{warning}
-
-\subsection{وارون عملیات سطری}
-\begin{theorem}[وارون عمل سطری مقدماتی]\label{thm:inverse-rowop}
-برای هر عمل سطری مقدماتی $e$، یک عمل سطری مقدماتی $e_1$ \textbf{از همان نوع} وجود دارد که برای هر ماتریس $A$:
-\[
-e_1\big(e(A)\big)=e\big(e_1(A)\big)=A .
-\]
-یعنی تابع وارون $e$ وجود دارد و خودش یک عمل سطری مقدماتی از همان نوع است.
+\begin{theorem}\label{thm:row-equiv-solutions}
+اگر ماتریس‌های افزوده‌ی دو دستگاه هم‌ارز سطری باشند، دو دستگاه جواب‌های یکسانی دارند.
 \end{theorem}
-\begin{proof}
-هر سه نوع را جداگانه بررسی می‌کنیم:
-\begin{enumerate}
-  \item اگر $e$ سطر $r$ را در $c\neq0$ ضرب کند، $e_1$ را ضرب سطر $r$ در $c^{-1}$ بگیرید (این‌جا از ناصفر بودن $c$ استفاده کردیم). سطر $r$ اول در $c$ و بعد در $c^{-1}$ (یا برعکس) ضرب می‌شود و به خودش برمی‌گردد؛ بقیه‌ی سطرها اصلاً تغییر نمی‌کنند.
-  \item اگر $e$ سطر $r$ را با $R_r+cR_s$ جایگزین کند، $e_1$ را جایگزینی سطر $r$ با $R_r-cR_s$ بگیرید. چون سطر $s$ در این عمل‌ها تغییر نمی‌کند:
-  \[
-  (R_r+cR_s)-cR_s=R_r .
-  \]
-  \item اگر $e$ سطرهای $r$ و $s$ را جابه‌جا کند، خود $e$ را به‌عنوان $e_1$ بگیرید: دو بار جابه‌جا کردن، همه‌چیز را به حالت اول برمی‌گرداند.
-\end{enumerate}
-\end{proof}
-
-\subsection{هم‌ارزی سطری}
-\begin{definition}[هم‌ارز سطری]
-اگر $A$ و $B$ ماتریس‌های $m\times n$ روی میدان $\F$ باشند، می‌گوییم $B$ با $A$ \term{هم‌ارز سطری}{Row-Equivalent} است اگر بتوان $B$ را با یک دنباله‌ی \emph{متناهی} از عملیات سطری مقدماتی از $A$ به دست آورد. می‌نویسیم $A\sim B$.
-\end{definition}
-
-\begin{theorem}[هم‌ارزی سطری یک رابطه‌ی هم‌ارزی است]\label{thm:row-equiv-relation}
-برای ماتریس‌های $m\times n$:
-\begin{enumerate}
-  \item \textbf{بازتابی:} هر ماتریس با خودش هم‌ارز سطری است.
-  \item \textbf{تقارنی:} اگر $B$ با $A$ هم‌ارز سطری باشد، $A$ هم با $B$ هم‌ارز سطری است.
-  \item \textbf{تعدی:} اگر $B$ با $A$ و $C$ با $B$ هم‌ارز سطری باشند، $C$ با $A$ هم‌ارز سطری است.
-\end{enumerate}
-\end{theorem}
-\begin{proof}
-\textbf{۱.} مثلاً یک سطر را در ۱ ضرب کنید (یا دنباله‌ی تهی از عمل‌ها را در نظر بگیرید).
-
-\textbf{۲.} فرض کنید $B=e_k(\cdots e_2(e_1(A))\cdots)$. طبق قضیه‌ی \ref{thm:inverse-rowop} هر $e_i$ وارونی مثل $e_i'$ دارد که خودش عمل سطری مقدماتی است. حالا عمل‌های وارون را به ترتیب \emph{برعکس} اعمال می‌کنیم:
-\[
-e_1'\big(e_2'(\cdots e_k'(B)\cdots)\big)=A .
-\]
-\textbf{۳.} دنباله‌ی عمل‌هایی که $A$ را به $B$ می‌برد را با دنباله‌ای که $B$ را به $C$ می‌برد پشت هم می‌گذاریم؛ دنباله‌ای متناهی به دست می‌آید که $A$ را به $C$ می‌برد.
-\end{proof}
-
-به خاطر ویژگی تقارنی، به جای «$B$ با $A$ هم‌ارز سطری است» می‌توانیم بگوییم «$A$ و $B$ هم‌ارز سطری‌اند».
-
-\begin{theorem}[عملیات سطری جواب‌ها را تغییر نمی‌دهند]\label{thm:row-equiv-solutions}
-اگر ماتریس‌های افزوده‌ی دو دستگاه خطی هم‌ارز سطری باشند، دو دستگاه دقیقاً مجموعه‌ی جواب یکسانی دارند.
-\end{theorem}
-\begin{proof}
-کافی است برای \emph{یک} عمل سطری مقدماتی ثابت کنیم؛ چون دنباله‌ای از عمل‌ها، قدم‌به‌قدم مجموعه‌ی جواب را حفظ می‌کند. فرض کنید $\vs$ جواب دستگاه اول باشد.
-\begin{itemize}
-  \item \textbf{مقیاس‌دهی:} اگر معادله‌ی $r$ برای $\vs$ برقرار باشد، $c$ برابر آن هم برقرار است.
-  \item \textbf{جایگزینی:} اگر معادله‌های $r$ و $s$ برای $\vs$ برقرار باشند، مجموع معادله‌ی $r$ و $c$ برابر معادله‌ی $s$ هم برقرار است.
-  \item \textbf{جابه‌جایی:} فقط ترتیب معادله‌ها عوض شده است.
-\end{itemize}
-پس هر جواب دستگاه اول، جواب دستگاه جدید است. برعکس، دستگاه اول را می‌توان با عمل وارون (قضیه‌ی \ref{thm:inverse-rowop}) از دستگاه جدید ساخت؛ پس با همین استدلال، هر جواب دستگاه جدید هم جواب دستگاه اول است.
-\end{proof}
+دلیلش این است که هر عمل سطری جواب‌های دستگاه قبلی را حفظ می‌کند و چون وارون‌پذیر است، برعکسش هم درست است.
 
 \section{ماتریس‌های مقدماتی}
 
-\subsection{تعریف}
 \begin{definition}[ماتریس مقدماتی]
-یک ماتریس $m\times m$ را \term{مقدماتی}{Elementary Matrix} می‌نامیم اگر بتوان آن را با \textbf{دقیقاً یک} عمل سطری مقدماتی از ماتریس همانی $I_m$ به دست آورد.
+ماتریس $m\times m$ را \term{مقدماتی}{Elementary Matrix} می‌نامیم اگر با \textbf{دقیقاً یک} عمل سطری مقدماتی از $I_m$ به دست آید.
 \end{definition}
 
-\begin{example}[همه‌ی ماتریس‌های مقدماتی $2\times 2$]
-همه‌ی ماتریس‌های مقدماتی $2\times2$ را پیدا کنید.
+\begin{example}
+همه‌ی ماتریس‌های مقدماتی $2\times2$ را بنویسید.
 \end{example}
 \begin{solution}
-سه نوع عمل سطری را روی $I_2=\begin{bmatrix}1&0\\0&1\end{bmatrix}$ اعمال می‌کنیم:
-\begin{center}
-\begin{tabular}{lcc}
-\toprule
-\textbf{نوع عمل} & \textbf{عمل سطری} & \textbf{ماتریس مقدماتی}\\
-\midrule
-مقیاس‌دهی ($c\neq0$) & $R_1\leftarrow cR_1$ & $\begin{bmatrix}c&0\\0&1\end{bmatrix}$\\[5mm]
-مقیاس‌دهی ($c\neq0$) & $R_2\leftarrow cR_2$ & $\begin{bmatrix}1&0\\0&c\end{bmatrix}$\\[5mm]
-جایگزینی ($c$ دلخواه) & $R_1\leftarrow R_1+cR_2$ & $\begin{bmatrix}1&c\\0&1\end{bmatrix}$\\[5mm]
-جایگزینی ($c$ دلخواه) & $R_2\leftarrow R_2+cR_1$ & $\begin{bmatrix}1&0\\c&1\end{bmatrix}$\\[5mm]
-جابه‌جایی & $R_1\leftrightarrow R_2$ & $\begin{bmatrix}0&1\\1&0\end{bmatrix}$\\
-\bottomrule
-\end{tabular}
-\end{center}
+مقیاس‌دهی ($c\neq0$): $\begin{bmatrix}c&0\\0&1\end{bmatrix}$ و $\begin{bmatrix}1&0\\0&c\end{bmatrix}$؛ \
+جایگزینی: $\begin{bmatrix}1&c\\0&1\end{bmatrix}$ و $\begin{bmatrix}1&0\\c&1\end{bmatrix}$؛ \
+جابه‌جایی: $\begin{bmatrix}0&1\\1&0\end{bmatrix}$.
 \end{solution}
 
-\subsection{عملیات سطری = ضرب از چپ در ماتریس مقدماتی}
-نکته‌ی جادویی این است که \emph{هر عمل سطری را می‌توان با یک ضرب ماتریسی انجام داد.}
-
-\begin{theorem}[ماتریس مقدماتی و عمل سطری]\label{thm:elem-matrix}
-فرض کنید $e$ یک عمل سطری مقدماتی و $E=e(I_m)$ ماتریس مقدماتی متناظر با آن باشد. آن‌گاه برای \textbf{هر} ماتریس $m\times n$ مثل $A$:
+\begin{theorem}\label{thm:elem-matrix}
+اگر $e$ یک عمل سطری مقدماتی و $E=e(I_m)$ باشد، برای هر ماتریس $m\times n$ مثل $A$:
 \[
 e(A)=EA .
 \]
 \end{theorem}
 \begin{proof}
-درایه‌ی $(i,j)$ حاصل‌ضرب برابر است با $(EA)_{ij}=\sum_{k=1}^m E_{ik}A_{kj}$. سطرهای $E$ را برای هر سه نوع عمل می‌شناسیم، چون $E$ همان $I$ است که یک عمل رویش انجام شده (یادآوری: $I_{ik}=\delta_{ik}$).
-
-\textbf{نوع ۱ (ضرب سطر $r$ در $c$):} برای $i\neq r$ داریم $E_{ik}=\delta_{ik}$ و $E_{rk}=c\,\delta_{rk}$. پس
-\[
-(EA)_{ij}=\sum_k\delta_{ik}A_{kj}=A_{ij}\ \ (i\neq r),\qquad (EA)_{rj}=\sum_k c\,\delta_{rk}A_{kj}=c\,A_{rj}.
-\]
-\textbf{نوع ۲ (سطر $r$ با $R_r+cR_s$):} برای $i\neq r$ داریم $E_{ik}=\delta_{ik}$ و $E_{rk}=\delta_{rk}+c\,\delta_{sk}$. پس
-\[
-(EA)_{ij}=A_{ij}\ \ (i\neq r),\qquad (EA)_{rj}=\sum_k(\delta_{rk}+c\,\delta_{sk})A_{kj}=A_{rj}+c\,A_{sj}.
-\]
-\textbf{نوع ۳ (جابه‌جایی $r$ و $s$):} برای $i\neq r,s$ داریم $E_{ik}=\delta_{ik}$، و $E_{rk}=\delta_{sk}$، $E_{sk}=\delta_{rk}$. پس
-\[
-(EA)_{ij}=A_{ij}\ \ (i\neq r,s),\qquad (EA)_{rj}=A_{sj},\qquad (EA)_{sj}=A_{rj}.
-\]
-در هر سه حالت $EA$ دقیقاً همان $e(A)$ است.
+$(EA)_{ij}=\sum_k E_{ik}A_{kj}$. برای سطرهایی که عمل به آن‌ها دست نمی‌زند، سطر $i$-ام $E$ همان سطر $I$ است ($E_{ik}=\delta_{ik}$) و $(EA)_{ij}=A_{ij}$. برای سطر $r$ که عمل رویش انجام می‌شود:
+\begin{itemize}
+  \item مقیاس‌دهی: $E_{rk}=c\,\delta_{rk}$، پس $(EA)_{rj}=c\,A_{rj}$.
+  \item جایگزینی: $E_{rk}=\delta_{rk}+c\,\delta_{sk}$، پس $(EA)_{rj}=A_{rj}+c\,A_{sj}$.
+  \item جابه‌جایی: $E_{rk}=\delta_{sk}$ و $E_{sk}=\delta_{rk}$، پس سطرهای $r$ و $s$ جابه‌جا می‌شوند.
+\end{itemize}
+در هر سه حالت $EA=e(A)$.
 \end{proof}
 
 \begin{intuition}
-از نگاه چهارم ضرب ماتریس‌ها می‌دانیم \textbf{هر سطر $EA$ ترکیبی خطی از سطرهای $A$ است} و ضرایب این ترکیب را سطر متناظر $E$ تعیین می‌کند. پس «ضرب از چپ در یک ماتریس مربعی» یعنی «ساختن سطرهای جدید از روی سطرهای قدیمی». به زبان ساده:
-\begin{center}
-\hl{ضرب از چپ در یک ماتریس مربعی، عملیات سطری انجام می‌دهد.}
-\end{center}
+\hl{ضرب از چپ در یک ماتریس مربعی، عملیات سطری انجام می‌دهد}؛ چون هر سطر $EA$ ترکیب خطی سطرهای $A$ است.
 \end{intuition}
 
-\begin{example}[تبدیل یک ماتریس به $I$ با ماتریس‌های مقدماتی]
-ماتریس $A=\begin{bmatrix}1&0&2\\-2&0&-3\\0&2&0\end{bmatrix}$ را با عملیات سطری به $I$ تبدیل کنید و ماتریس مقدماتی هر مرحله را بنویسید.
+\begin{example}
+ماتریس $A=\begin{bmatrix}1&0&2\\-2&0&-3\\0&2&0\end{bmatrix}$ را با عملیات سطری به $I$ برسانید.
 \end{example}
-\needspace{18\baselineskip}
 \begin{solution}
-\begin{center}
-\begin{tabular}{ccc}
-\toprule
-\textbf{ماتریس پس از عمل} & \textbf{عمل سطری} & \textbf{ماتریس مقدماتی} \\
-\midrule
-$\begin{bmatrix}1&0&2\\0&0&1\\0&2&0\end{bmatrix}$ & $R_2\leftarrow R_2+2R_1$ & $E_1=\begin{bmatrix}1&0&0\\2&1&0\\0&0&1\end{bmatrix}$ \\[6mm]
-$\begin{bmatrix}1&0&2\\0&2&0\\0&0&1\end{bmatrix}$ & $R_2\leftrightarrow R_3$ & $E_2=\begin{bmatrix}1&0&0\\0&0&1\\0&1&0\end{bmatrix}$ \\[6mm]
-$\begin{bmatrix}1&0&2\\0&1&0\\0&0&1\end{bmatrix}$ & $R_2\leftarrow \frac12 R_2$ & $E_3=\begin{bmatrix}1&0&0\\0&\frac12&0\\0&0&1\end{bmatrix}$ \\[6mm]
-$\begin{bmatrix}1&0&0\\0&1&0\\0&0&1\end{bmatrix}$ & $R_1\leftarrow R_1-2R_3$ & $E_4=\begin{bmatrix}1&0&-2\\0&1&0\\0&0&1\end{bmatrix}$ \\
-\bottomrule
-\end{tabular}
-\end{center}
-طبق قضیه‌ی \ref{thm:elem-matrix} و شرکت‌پذیری ضرب:
 \[
-E_4\big(E_3\big(E_2(E_1A)\big)\big)=(E_4E_3E_2E_1)A=I .
+A\xrightarrow{R_2\leftarrow R_2+2R_1}\begin{bmatrix}1&0&2\\0&0&1\\0&2&0\end{bmatrix}
+\xrightarrow{R_2\leftrightarrow R_3}\begin{bmatrix}1&0&2\\0&2&0\\0&0&1\end{bmatrix}
 \]
-پس ماتریس $P=E_4E_3E_2E_1$ همه‌ی کار را یک‌جا انجام می‌دهد. (در فصل بعد می‌بینیم که این یعنی $P=A^{-1}$.)
+\[
+\xrightarrow{R_2\leftarrow\frac12R_2}\begin{bmatrix}1&0&2\\0&1&0\\0&0&1\end{bmatrix}
+\xrightarrow{R_1\leftarrow R_1-2R_3}I .
+\]
+اگر ماتریس‌های مقدماتی این چهار عمل $E_1,\dots,E_4$ باشند، طبق قضیه‌ی \ref{thm:elem-matrix} و شرکت‌پذیری:
+$(E_4E_3E_2E_1)A=I$.
 \end{solution}
 
-\subsection{هم‌ارزی سطری و ماتریس‌های مقدماتی}
 \begin{theorem}\label{thm:row-equiv-PA}
-فرض کنید $A$ و $B$ ماتریس‌های $m\times n$ باشند. $B$ با $A$ هم‌ارز سطری است اگر و تنها اگر
-\[
-B=PA,
-\]
-که در آن $P$ حاصل‌ضرب چند ماتریس مقدماتی $m\times m$ است.
+ماتریس $B$ با $A$ هم‌ارز سطری است اگر و تنها اگر $B=PA$ که $P$ حاصل‌ضرب چند ماتریس مقدماتی $m\times m$ است.
 \end{theorem}
 \begin{proof}
-\textbf{(رفت)} فرض کنید $B$ با عمل‌های $e_1,\dots,e_k$ (به همین ترتیب) از $A$ به دست آمده باشد و $E_i=e_i(I)$. با $k$ بار استفاده از قضیه‌ی \ref{thm:elem-matrix}:
-\[
-B=e_k(\cdots e_2(e_1(A))\cdots)=E_k(\cdots(E_2(E_1A))\cdots)=(E_k\cdots E_2E_1)A,
-\]
-که در قدم آخر از شرکت‌پذیری استفاده کردیم. پس $P=E_k\cdots E_1$.
-
-\textbf{(برگشت)} فرض کنید $B=E_k\cdots E_2E_1A$ و هر $E_i$ مقدماتی باشد؛ یعنی $E_i=e_i(I)$ برای یک عمل سطری $e_i$. باز طبق قضیه‌ی \ref{thm:elem-matrix}، $E_1A=e_1(A)$، سپس $E_2(E_1A)=e_2(e_1(A))$ و الی آخر. پس $B$ با دنباله‌ی $e_1,\dots,e_k$ از $A$ به دست می‌آید.
+اگر $B=e_k(\cdots e_1(A)\cdots)$ و $E_i=e_i(I)$، طبق قضیه‌ی \ref{thm:elem-matrix} و شرکت‌پذیری $B=E_k(\cdots(E_1A))=(E_k\cdots E_1)A$. برعکس، اگر $B=E_k\cdots E_1A$، هر ضرب در $E_i$ همان عمل سطری $e_i$ است؛ پس $B$ با این عمل‌ها از $A$ به دست می‌آید.
 \end{proof}
 
-\begin{corollary}[ماتریس‌های مقدماتی وارون‌پذیرند]\label{cor:elem-invertible}
-هر ماتریس مقدماتی $E$ وارون‌پذیر است و وارونش یک ماتریس مقدماتی از همان نوع است. در نتیجه هر حاصل‌ضرب از ماتریس‌های مقدماتی (مثل $P$ در قضیه‌ی قبل) وارون‌پذیر است.
+\begin{corollary}\label{cor:elem-invertible}
+هر ماتریس مقدماتی وارون‌پذیر است و وارونش ماتریس مقدماتیِ عمل وارون است؛ پس $P$ در قضیه‌ی بالا وارون‌پذیر است.
 \end{corollary}
-\begin{proof}
-فرض کنید $E=e(I)$ و $e_1$ عمل وارون $e$ باشد (قضیه‌ی \ref{thm:inverse-rowop}) و $E_1=e_1(I)$. طبق قضیه‌ی \ref{thm:elem-matrix}:
-\[
-E_1E=e_1(E)=e_1(e(I))=I,\qquad EE_1=e(E_1)=e(e_1(I))=I .
-\]
-پس $E^{-1}=E_1$. بخش دوم از قضیه‌ی \ref{thm:inverse-props} (وارون حاصل‌ضرب) نتیجه می‌شود.
-\end{proof}
+دلیل: اگر $E=e(I)$ و $E_1=e_1(I)$، آن‌گاه $E_1E=e_1(e(I))=I$ و $EE_1=I$.
 
-مثلاً وارون $\begin{bmatrix}1&0&0\\2&1&0\\0&0&1\end{bmatrix}$ ($R_2\leftarrow R_2+2R_1$) برابر $\begin{bmatrix}1&0&0\\-2&1&0\\0&0&1\end{bmatrix}$ ($R_2\leftarrow R_2-2R_1$) است.
-
-\subsection{یک مثال روی اعداد مختلط}
 \begin{example}[دستگاه همگن روی $\C$]
-فرض کنید میدان، اعداد مختلط باشد و ماتریس ضرایب یک دستگاه همگن این باشد:
-\[
-A=\begin{bmatrix}-1&i\\-i&3\\1&2\end{bmatrix}.
-\]
-همه‌ی جواب‌های $A\vx=\zero$ را پیدا کنید.
+اگر ماتریس ضرایب یک دستگاه همگن روی اعداد مختلط
+$A=\begin{bmatrix}-1&i\\-i&3\\1&2\end{bmatrix}$
+باشد، همه‌ی جواب‌ها را بیابید.
 \end{example}
 \begin{solution}
-برای دستگاه همگن لازم نیست ستون صفرِ سمت راست را بنویسیم، چون عملیات سطری آن را صفر نگه می‌دارند. با عملیات سطری (و استفاده از $i^2=-1$):
+با $i^2=-1$:
 \[
-\begin{bmatrix}-1&i\\-i&3\\1&2\end{bmatrix}
-\xrightarrow[R_3\leftarrow R_3+R_1]{R_2\leftarrow R_2-iR_1}
-\begin{bmatrix}-1&i\\0&3-i^2\\0&2+i\end{bmatrix}
-=\begin{bmatrix}-1&i\\0&4\\0&2+i\end{bmatrix}
+A\xrightarrow[R_3\leftarrow R_3+R_1]{R_2\leftarrow R_2-iR_1}
+\begin{bmatrix}-1&i\\0&4\\0&2+i\end{bmatrix}
 \xrightarrow{R_2\leftarrow\frac14R_2}
 \begin{bmatrix}-1&i\\0&1\\0&2+i\end{bmatrix}
-\]
-\[
 \xrightarrow[R_3\leftarrow R_3-(2+i)R_2]{R_1\leftarrow R_1-iR_2}
-\begin{bmatrix}-1&0\\0&1\\0&0\end{bmatrix}
-\xrightarrow{R_1\leftarrow -R_1}
-\begin{bmatrix}1&0\\0&1\\0&0\end{bmatrix}.
+\begin{bmatrix}-1&0\\0&1\\0&0\end{bmatrix}.
 \]
-(در قدم اول: درایه‌ی دوم سطر دوم برابر $3-i\cdot i=3-i^2=4$ است.) دستگاه نهایی می‌گوید $x_1=0$ و $x_2=0$. طبق قضیه‌ی \ref{thm:row-equiv-solutions} دستگاه اولیه هم همین جواب را دارد: \textbf{فقط جواب بدیهی} $\vx=\zero$.
+پس $x_1=x_2=0$: فقط جواب بدیهی $\vx=\zero$.
 \end{solution}
 
 \section{جمع‌بندی و تمرین}
 
 \begin{summary}
 \begin{itemize}
-  \item هر دستگاه خطی را می‌توان به شکل $A\vx=\vb$ نوشت؛ ماتریس افزوده $\aug{A}{\vb}$ همه‌ی اطلاعات آن را دارد.
-  \item دستگاه خطی یا جواب ندارد، یا یک جواب دارد، یا بی‌شمار جواب.
-  \item ضرب داخلی $\va\T\vb=\sum a_ib_i$ یک عدد است؛ $\norm{\va}^2=\va\T\va$ و $\va\cdot\vb=\norm{\va}\norm{\vb}\cos\theta$.
-  \item $A\vx$ ترکیب خطی ستون‌های $A$ است و $\vx\T A$ ترکیب خطی سطرهای $A$.
-  \item ضرب ماتریس‌ها شرکت‌پذیر و توزیع‌پذیر است اما جابه‌جایی نیست؛ $(AB)\T=B\T A\T$ و $(AB)^{-1}=B^{-1}A^{-1}$.
-  \item سه عمل سطری مقدماتی (مقیاس‌دهی، جایگزینی، جابه‌جایی) وارون‌پذیرند و جواب دستگاه را تغییر نمی‌دهند.
-  \item هر عمل سطری همان ضرب از چپ در یک ماتریس مقدماتی است: $e(A)=EA$. پس $A\sim B\iff B=PA$ که $P$ حاصل‌ضرب ماتریس‌های مقدماتی (و وارون‌پذیر) است.
+  \item هر دستگاه خطی به شکل $A\vx=\vb$ است و یا جواب ندارد، یا یک جواب، یا بی‌شمار جواب.
+  \item $\va\cdot\vb=\va\T\vb$ یک عدد است و $\norm{\va}^2=\va\T\va$.
+  \item $A\vx$ ترکیب خطی ستون‌های $A$ است. ضرب ماتریس‌ها شرکت‌پذیر است اما جابه‌جایی نیست.
+  \item هر عمل سطری مقدماتی وارون‌پذیر است و برابر ضرب از چپ در یک ماتریس مقدماتی است: $e(A)=EA$. پس $A\sim B\iff B=PA$.
 \end{itemize}
 \end{summary}
 
-\begin{exercise}
-برای $A=\begin{bmatrix}1&2\\0&1\end{bmatrix}$ و $B=\begin{bmatrix}1&0\\3&1\end{bmatrix}$، حاصل $AB$ و $BA$ را حساب کنید.
-\end{exercise}
-
-\begin{exercise}
-نشان دهید اگر $AB=0$ باشد، لزوماً $A=0$ یا $B=0$ نیست.
-\end{exercise}
-
-\begin{exercise}
-زاویه‌ی بین $\vu=(1,1,0)$ و $\vv=(1,0,1)$ را پیدا کنید.
-\end{exercise}
-
-\begin{exercise}
-ماتریس مقدماتی $3\times3$ را بنویسید که عمل $R_3\leftarrow R_3-4R_1$ را انجام می‌دهد. وارون آن چیست؟
-\end{exercise}
-
-\begin{exercise}
-ثابت کنید اگر برای \emph{هر} $\vx\in\R^n$ داشته باشیم $\va\cdot\vx=0$، آن‌گاه $\va=\zero$.
-\end{exercise}
-
-\begin{exercise}
-نشان دهید اگر $A$ وارون‌پذیر باشد، دستگاه $A\vx=\vb$ برای هر $\vb$ دقیقاً یک جواب دارد.
-\end{exercise}
+\subsection*{تمرین‌ها}
+\begin{enumerate}
+  \item برای $A=\begin{bmatrix}1&2\\0&1\end{bmatrix}$ و $B=\begin{bmatrix}1&0\\3&1\end{bmatrix}$، حاصل $AB$ و $BA$ را حساب کنید.
+  \item نشان دهید از $AB=0$ لزوماً $A=0$ یا $B=0$ نتیجه نمی‌شود.
+  \item زاویه‌ی بین $(1,1,0)$ و $(1,0,1)$ را پیدا کنید.
+  \item ماتریس مقدماتی $3\times3$ عمل $R_3\leftarrow R_3-4R_1$ و وارونش را بنویسید.
+\end{enumerate}
 
 \subsection*{پاسخ‌های کوتاه}
 \begin{enumerate}
-  \item $AB=\begin{bmatrix}7&2\\3&1\end{bmatrix}$ و $BA=\begin{bmatrix}1&2\\3&7\end{bmatrix}$؛ پس $AB\neq BA$.
-  \item $A=B=\begin{bmatrix}0&1\\0&0\end{bmatrix}$: هر دو ناصفرند اما $AB=0$.
-  \item $\cos\theta=\frac{\vu\cdot\vv}{\norm{\vu}\norm{\vv}}=\frac{1}{\sqrt2\sqrt2}=\frac12$، پس $\theta=60^\circ$.
-  \item $E=\begin{bmatrix}1&0&0\\0&1&0\\-4&0&1\end{bmatrix}$ و $E^{-1}=\begin{bmatrix}1&0&0\\0&1&0\\4&0&1\end{bmatrix}$.
-  \item $\vx=\va$ را بگذارید: $\va\cdot\va=0$ و طبق ویژگی مثبت بودن $\va=\zero$.
-  \item \textbf{وجود:} $\vx=A^{-1}\vb$ جواب است چون $A(A^{-1}\vb)=\vb$. \textbf{یکتایی:} اگر $A\vx=\vb$، دو طرف را از چپ در $A^{-1}$ ضرب کنید: $\vx=A^{-1}\vb$.
+  \item $AB=\begin{bmatrix}7&2\\3&1\end{bmatrix}$ و $BA=\begin{bmatrix}1&2\\3&7\end{bmatrix}$.
+  \item $A=B=\begin{bmatrix}0&1\\0&0\end{bmatrix}$.
+  \item $\cos\theta=\frac{1}{\sqrt2\sqrt2}=\frac12$، پس $\theta=60^\circ$.
+  \item $E$ همان $I$ با $-4$ در جای $(3,1)$ است و $E^{-1}$ همان $I$ با $+4$ در همان جا.
 \end{enumerate}

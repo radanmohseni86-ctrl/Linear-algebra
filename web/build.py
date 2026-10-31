@@ -235,12 +235,15 @@ class Converter:
                 break
             out.append(s[i:m.start()])
             kind, opt, j = box_open(m)
-            label = ''
-            k = skip_ws(s, j)
-            lm = re.match(r'\\label\{([^}]*)\}', s[k:])
-            if lm:
-                label = lm.group(1)
+            found = []
+            while True:
+                k = skip_ws(s, j)
+                lm = re.match(r'\\label\{([^}]*)\}', s[k:])
+                if not lm:
+                    break
+                found.append(lm.group(1))
                 j = k + lm.end()
+            label = ','.join(found)
             if kind == 'keyformula':
                 out.append('\n\nJZKEY\n\n')
             elif kind in PROOFS:
@@ -294,8 +297,10 @@ class Converter:
             name = NUMBERED.get(kind) or UNNUMBERED.get(kind)
             ident = ''
             if label:
-                bid = re.sub(r'[^A-Za-z0-9-]', '-', label)
-                self.ref_map[label] = bid
+                names = label.split(',')
+                bid = re.sub(r'[^A-Za-z0-9-]', '-', names[0])
+                for lab in names:
+                    self.ref_map[lab] = bid
                 ident = ' id="%s"' % bid
             head = '<span class="box-kind">%s%s</span>' % (name, (' ' + num) if num else '')
             if title:

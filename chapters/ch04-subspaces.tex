@@ -1,481 +1,196 @@
 \chapter{زیرفضا}
 \label{ch:subspaces}
 
-درون یک فضای برداری بزرگ، اغلب مجموعه‌های کوچک‌تری پیدا می‌شوند که \emph{خودشان} هم فضای برداری‌اند؛ مثلاً یک خط یا یک صفحه‌ی گذرنده از مبدأ در $\R^3$. به این‌ها زیرفضا می‌گوییم. زیرفضاها همه‌جای جبر خطی هستند: مجموعه‌ی جواب‌های $A\vx=\zero$، مجموعه‌ی همه‌ی ترکیب‌های خطی چند بردار، فضای ستونی یک ماتریس و … . در این فصل یاد می‌گیریم چطور زیرفضا بودن را بررسی کنیم و چطور از زیرفضاها، زیرفضاهای جدید بسازیم (اشتراک، جمع، جمع مستقیم).
+درون یک فضای برداری، اغلب مجموعه‌های کوچک‌تری هستند که \emph{خودشان} هم فضای برداری‌اند؛ مثل خط یا صفحه‌ی گذرنده از مبدأ در $\R^3$. به این‌ها زیرفضا می‌گوییم. در این فصل می‌بینیم چطور زیرفضا بودن را بررسی کنیم و چطور از زیرفضاها، زیرفضای جدید بسازیم.
 
-\section{تعریف زیرفضا}
+\section{تعریف و محک زیرفضا}
 
 \begin{definition}[زیرفضا]
-فرض کنید $V$ یک فضای برداری روی $\F$ باشد. زیرمجموعه‌ی $U\subseteq V$ یک \term{زیرفضا}{Subspace} از $V$ است اگر $U$ با \textbf{همان} جمع و ضرب اسکالرِ $V$، خودش یک فضای برداری روی $\F$ باشد.
+زیرمجموعه‌ی $U\subseteq V$ یک \term{زیرفضا}{Subspace} از $V$ است اگر $U$ با \textbf{همان} جمع و ضرب اسکالرِ $V$ خودش فضای برداری باشد. $\{\zero\}$ (\term{زیرفضای صفر}{Zero Subspace}) و خود $V$ همیشه زیرفضا هستند.
 \end{definition}
 
-\begin{center}
-\begin{tikzpicture}[scale=0.8]
-  \draw[thick, primary, fill=primary!6] (0,0) ellipse (3.2 and 1.9);
-  \node[primary] at (-2.2,1.3) {$V$};
-  \draw[thick, thmcolor, fill=thmcolor!12] (0.6,-0.1) ellipse (1.5 and 0.9);
-  \node[thmcolor] at (0.6,-0.1) {$U$};
-  \fill (0.1,0.35) circle (1.5pt) node[above] {\scriptsize $\zero$};
-  \draw[thick, excolor, fill=excolor!10] (5.6,0) circle (0.9);
-  \node[excolor] at (5.6,0) {$\F$};
-  \draw[->, gray] (4.7,0)--(2.2,-0.1);
-\end{tikzpicture}
-\end{center}
+لازم نیست هر هشت اصل را دوباره بررسی کنیم: اصولی مثل جابه‌جایی که برای \emph{همه‌ی} بردارهای $V$ درست‌اند، برای بردارهای $U$ هم درست‌اند. فقط باید مطمئن شویم با جمع و ضرب اسکالر از $U$ بیرون نمی‌رویم.
 
-\begin{example}[دو زیرفضای بدیهی]
-برای هر فضای برداری $V$:
-\begin{itemize}
-  \item $\{\zero\}$ (فقط بردار صفر) زیرفضای $V$ است؛ به آن \term{زیرفضای صفر}{Zero Subspace} می‌گوییم.
-  \item خود $V$ زیرفضای $V$ است.
-\end{itemize}
-\end{example}
-
-\subsection{محک زیرفضا بودن}
-خوشبختانه لازم نیست هر هشت اصل را دوباره بررسی کنیم. اصولی مثل جابه‌جایی یا توزیع‌پذیری که برای \emph{همه‌ی} بردارهای $V$ درست‌اند، برای بردارهای $U$ هم خودبه‌خود درست‌اند. فقط باید مطمئن شویم که با جمع و ضرب اسکالر از $U$ بیرون نمی‌رویم.
-
-\begin{theorem}[محک سه‌شرطی]\label{thm:subspace-test3}
-زیرمجموعه‌ی $H$ از فضای برداری $V$ زیرفضاست اگر و تنها اگر:
+\begin{theorem}[محک زیرفضا]\label{thm:subspace-test}
+زیرمجموعه‌ی $H\subseteq V$ زیرفضاست اگر و تنها اگر
 \begin{enumerate}
-  \item بردار صفر در $H$ باشد؛
-  \item برای هر $\vu,\vv\in H$، مجموع $\vu+\vv$ در $H$ باشد \ (بستاری جمع)؛
-  \item برای هر $\vu\in H$ و هر اسکالر $c$، بردار $c\vu$ در $H$ باشد \ (بستاری ضرب اسکالر).
+  \item $\zero\in H$؛
+  \item $\vu,\vv\in H\Rightarrow\vu+\vv\in H$؛
+  \item $\vu\in H\Rightarrow c\vu\in H$.
 \end{enumerate}
-\end{theorem}
-
-\begin{theorem}[محک یک‌خطی]\label{thm:subspace-test}
-زیرمجموعه‌ی \textbf{ناتهی} $U$ از $V$ زیرفضای $V$ است اگر و تنها اگر برای هر دو بردار $\vb,\vc\in U$ و هر اسکالر $\alpha\in\F$، بردار $\alpha\vb+\vc$ هم در $U$ باشد.
+معادلاً: $H$ ناتهی باشد و برای هر $\vb,\vc\in H$ و هر اسکالر $\alpha$، $\alpha\vb+\vc\in H$.
 \end{theorem}
 \begin{proof}
-هر دو قضیه را با هم ثابت می‌کنیم.
+\textbf{(رفت)} زیرفضا خودش فضای برداری است؛ پس صفر دارد (و $\zero_U=0\vx=\zero_V$ طبق قضیه‌ی \ref{thm:vs-basic}) و تحت هر دو عمل بسته است.
 
-\textbf{(رفت)} اگر $U$ زیرفضا باشد، خودش فضای برداری است؛ پس بردار صفر دارد (و این صفر همان صفرِ $V$ است، چون $\zero_U=0\vx=\zero_V$ طبق قضیه‌ی \ref{thm:vs-basic}) و تحت جمع و ضرب اسکالر بسته است. به‌ویژه $\alpha\vb\in U$ و سپس $\alpha\vb+\vc\in U$.
-
-\textbf{(برگشت)} فرض کنید $U$ ناتهی باشد و برای هر $\vb,\vc\in U$ و $\alpha$، $\alpha\vb+\vc\in U$. نشان می‌دهیم $U$ فضای برداری است:
-\begin{itemize}
-  \item \textbf{صفر در $U$ است:} چون $U$ ناتهی است، عضوی مثل $\vu_0$ دارد. با $\alpha=-1$ و $\vb=\vc=\vu_0$: \ $(-1)\vu_0+\vu_0=\zero\in U$.
-  \item \textbf{بستاری ضرب اسکالر:} با $\vc=\zero$: \ $\alpha\vb+\zero=\alpha\vb\in U$.
-  \item \textbf{بستاری جمع:} با $\alpha=1$: \ $1\vb+\vc=\vb+\vc\in U$.
-  \item \textbf{قرینه:} برای $\vb\in U$، $-\vb=(-1)\vb\in U$ (بستاری ضرب اسکالر).
-  \item \textbf{بقیه‌ی اصول} (جابه‌جایی، شرکت‌پذیری، توزیع‌پذیری‌ها، $1\vx=\vx$) گزاره‌هایی به شکل «برای همه‌ی بردارها …» هستند که در $V$ برقرارند؛ پس برای بردارهای $U$ هم که بخشی از بردارهای $V$ هستند، برقرارند.
-\end{itemize}
-پس $U$ زیرفضاست. (برای قضیه‌ی سه‌شرطی هم همین استدلال کار می‌کند: شرط‌های ۱ تا ۳ مستقیماً صفر، بستاری‌ها و در نتیجه قرینه را می‌دهند.)
+\textbf{(برگشت)} با شرط یک‌خطی: عضوی مثل $\vu_0\in H$ هست و $(-1)\vu_0+\vu_0=\zero\in H$. با $\vc=\zero$ بستاری ضرب اسکالر و با $\alpha=1$ بستاری جمع به دست می‌آید. قرینه هم در $H$ است: $-\vb=(-1)\vb$. بقیه‌ی اصول از $V$ به ارث می‌رسند.
 \end{proof}
 
 \begin{warning}
-ساده‌ترین راه برای نشان دادن این‌که یک مجموعه زیرفضا \emph{نیست}، این است که ببینیم \textbf{بردار صفر در آن هست یا نه}. اگر صفر در آن نباشد، قطعاً زیرفضا نیست. (اما برعکسش درست نیست: بودن صفر کافی نیست.)
+ساده‌ترین راه برای رد زیرفضا بودن: \textbf{آیا صفر در آن هست؟} اگر نباشد، قطعاً زیرفضا نیست (اما بودن صفر کافی نیست).
 \end{warning}
 
-\subsection{مثال‌ها}
-\begin{example}[خط در $\R^2$]
-آیا خط $L$ در $\R^2$ زیرفضاست؟
-\end{example}
-\begin{solution}
-بستگی دارد که خط از مبدأ بگذرد یا نه.
-\begin{itemize}
-  \item اگر $L=\{t\vd: t\in\R\}$ (خط گذرنده از مبدأ با جهت $\vd$) باشد، \textbf{زیرفضاست}: $\zero=0\vd\in L$ و
-  $\alpha(s\vd)+t\vd=(\alpha s+t)\vd\in L$.
-  \item اگر $L$ از مبدأ نگذرد (مثلاً $y=x+1$)، \textbf{زیرفضا نیست}، چون $\zero\notin L$. به‌علاوه بسته هم نیست: $(0,1)$ و $(1,2)$ روی خط‌اند اما مجموعشان $(1,3)$ نیست.
-\end{itemize}
-\begin{center}
-\begin{tikzpicture}[scale=0.65,>=Latex]
-  \draw[->] (-2.5,0)--(2.8,0); \draw[->] (0,-2)--(0,2.8);
-  \draw[very thick, thmcolor] (-2,-1.5)--(2.4,1.8) node[right] {\small \fa{زیرفضا}};
-  \begin{scope}[xshift=7cm]
-  \draw[->] (-2.5,0)--(2.8,0); \draw[->] (0,-2)--(0,2.8);
-  \draw[very thick, warncolor] (-2.4,-1.4)--(1.6,2.6) node[right] {\small \fa{زیرفضا نیست}};
-  \fill (0,0) circle (2pt);
-  \end{scope}
-\end{tikzpicture}
-\end{center}
-\end{solution}
-
-\begin{example}[آیا $\R^2$ زیرفضای $\R^3$ است؟]
-آیا $\R^2$ زیرفضای $\R^3$ است؟ مجموعه‌ی $H=\left\{\begin{bmatrix}s\\t\\0\end{bmatrix}: s,t\in\R\right\}$ چطور؟
-\end{example}
-\begin{solution}
-$\R^2$ \textbf{زیرفضای $\R^3$ نیست}؛ اصلاً زیرمجموعه‌ی آن نیست! بردارهای $\R^2$ دو مؤلفه دارند و بردارهای $\R^3$ سه مؤلفه.
-
-اما $H$ \textbf{زیرفضای $\R^3$ است}: $\zero=(0,0,0)\in H$ (با $s=t=0$) و
-\[
-\alpha\begin{bmatrix}s\\t\\0\end{bmatrix}+\begin{bmatrix}s'\\t'\\0\end{bmatrix}=\begin{bmatrix}\alpha s+s'\\ \alpha t+t'\\0\end{bmatrix}\in H .
-\]
-$H$ همان صفحه‌ی $xy$ است و «شبیه» $\R^2$ رفتار می‌کند (بعدها می‌گوییم با $\R^2$ \emph{یکریخت} است)، اما با آن یکی نیست.
-\end{solution}
-
-\begin{example}[جواب‌های دستگاه همگن]
-نشان دهید مجموعه‌ی جواب‌های $A\vx=\zero$ (برای $A\in\R^{m\times n}$) زیرفضای $\R^n$ است، اما مجموعه‌ی جواب‌های $A\vx=\vb$ با $\vb\neq\zero$ زیرفضا نیست.
-\end{example}
-\begin{solution}
-اگر $A\vu=\zero$ و $A\vv=\zero$، آن‌گاه $A(\alpha\vu+\vv)=\alpha A\vu+A\vv=\zero$؛ و $A\zero=\zero$ پس مجموعه ناتهی است. طبق محک یک‌خطی زیرفضاست. (این زیرفضا را در فصل ۷ \emph{فضای پوچ} می‌نامیم.)
-
-برای $\vb\neq\zero$: $A\zero=\zero\neq\vb$، پس $\zero$ جواب نیست و مجموعه‌ی جواب زیرفضا نیست.
-\end{solution}
-
 \begin{example}
-\begin{itemize}
-  \item هر فضای برداری که دست‌کم یک عضو ناصفر دارد، دست‌کم \underline{\textbf{دو}} زیرفضا دارد: $\{\zero\}$ و خودش. (و اگر میدان $\R$ باشد، بی‌شمار زیرفضا: همه‌ی «خط‌های» $\{t\vv\}$.)
-  \item زیرفضاهای $\R^2$ را نام ببرید. زیرفضاهای $\R^3$ و $\R^4$ چطور؟
-\end{itemize}
+کدام زیرفضاست؟
+(الف) خط $y=x+1$ در $\R^2$؛
+(ب) مجموعه‌ی جواب‌های $A\vx=\zero$؛
+(ج) $H=\{(s,t,0)\}$ در $\R^3$؛ آیا $\R^2$ زیرفضای $\R^3$ است؟
+(د) ماتریس‌های متقارن در $M_{n,n}$.
 \end{example}
 \begin{solution}
-\begin{itemize}
-  \item \textbf{$\R^2$:} \ $\{\zero\}$، همه‌ی خط‌های گذرنده از مبدأ، و خود $\R^2$.
-  \item \textbf{$\R^3$:} \ $\{\zero\}$، خط‌های گذرنده از مبدأ، صفحه‌های گذرنده از مبدأ، و خود $\R^3$.
-  \item \textbf{$\R^4$:} \ $\{\zero\}$، خط‌ها، صفحه‌های (دوبعدی) و «ابرصفحه‌های» سه‌بعدیِ گذرنده از مبدأ، و خود $\R^4$.
-\end{itemize}
-این‌که زیرفضای دیگری وجود ندارد را بعد از تعریف \emph{بُعد} در فصل ۶ می‌توانیم ثابت کنیم: هر زیرفضای $\R^n$ بُعدی بین ۰ و $n$ دارد.
+\textbf{(الف) خیر}؛ $\zero$ روی خط نیست. فقط خط‌های \emph{گذرنده از مبدأ} $\{t\vd\}$ زیرفضا هستند.
+
+\textbf{(ب) بله}؛ $A\zero=\zero$ و $A(\alpha\vu+\vv)=\alpha A\vu+A\vv=\zero$. اما جواب‌های $A\vx=\vb$ با $\vb\neq\zero$ زیرفضا نیستند، چون $\zero$ جواب نیست.
+
+\textbf{(ج)} $H$ زیرفضاست (صفحه‌ی $xy$). اما $\R^2$ اصلاً زیرمجموعه‌ی $\R^3$ نیست: بردارهایش دو مؤلفه دارند.
+
+\textbf{(د) بله}؛ $(\alpha A+B)\T=\alpha A\T+B\T=\alpha A+B$.
 \end{solution}
 
-\begin{example}
-فرض کنید $H$ مجموعه‌ی همه‌ی بردارهای به شکل
-$\begin{bmatrix}a-3b\\ b-a\\ a\\ b\end{bmatrix}$
-باشد که $a,b$ اسکالرهای دلخواه‌اند. نشان دهید $H$ زیرفضای $\R^4$ است.
-\end{example}
-\begin{solution}
-هر عضو $H$ را می‌شود این‌طور نوشت:
-\[
-\begin{bmatrix}a-3b\\ b-a\\ a\\ b\end{bmatrix}=a\begin{bmatrix}1\\-1\\1\\0\end{bmatrix}+b\begin{bmatrix}-3\\1\\0\\1\end{bmatrix}.
-\]
-پس $H$ مجموعه‌ی همه‌ی ترکیب‌های خطی دو بردار $\vv_1=(1,-1,1,0)$ و $\vv_2=(-3,1,0,1)$ است؛ یعنی $H=\Span\{\vv_1,\vv_2\}$. طبق قضیه‌ی \ref{thm:span-subspace} (چند صفحه بعد) پوشش خطی هر مجموعه از بردارها زیرفضاست. (مستقیم هم می‌شود دید: صفر با $a=b=0$ در $H$ است و $\alpha(a\vv_1+b\vv_2)+(a'\vv_1+b'\vv_2)=(\alpha a+a')\vv_1+(\alpha b+b')\vv_2\in H$.)
-\end{solution}
+\begin{note}
+زیرفضاهای $\R^2$: $\{\zero\}$، خط‌های گذرنده از مبدأ و خود $\R^2$. در $\R^3$ صفحه‌های گذرنده از مبدأ هم اضافه می‌شوند. (اثبات این‌که زیرفضای دیگری نیست را با مفهوم بُعد در فصل ۶ می‌بینیم.)
+\end{note}
 
-\begin{example}[زیرفضاهایی از فضاهای تابعی]
-\begin{itemize}
-  \item $P_n(\R)$ زیرفضای $P(\R)$ است و $P(\R)$ زیرفضای $\R^{\R}$.
-  \item مجموعه‌ی چندجمله‌ای‌هایی که $p(0)=0$ زیرفضای $P(\R)$ است؛ اما مجموعه‌ی آن‌هایی که $p(0)=1$ زیرفضا نیست (چندجمله‌ای صفر در آن نیست).
-  \item مجموعه‌ی توابع پیوسته‌ی $C[0,1]$ زیرفضای $\R^{[0,1]}$ است، چون مجموع دو تابع پیوسته و مضرب یک تابع پیوسته، پیوسته است.
-  \item مجموعه‌ی ماتریس‌های متقارن ($A\T=A$) زیرفضای $M_{n,n}$ است: $(\alpha A+B)\T=\alpha A\T+B\T=\alpha A+B$.
-\end{itemize}
-\end{example}
-
-\section{اشتراک زیرفضاها}
+\section{اشتراک و اجتماع}
 
 \begin{theorem}\label{thm:intersection}
-اگر $W_1$ و $W_2$ زیرفضاهای $V$ باشند، $W_1\cap W_2$ هم زیرفضای $V$ است.
+اشتراک هر تعداد زیرفضای $V$، زیرفضای $V$ است.
 \end{theorem}
 \begin{proof}
-\begin{itemize}
-  \item $\zero\in W_1$ و $\zero\in W_2$ (هر زیرفضا صفر را دارد)، پس $\zero\in W_1\cap W_2$ و این مجموعه ناتهی است.
-  \item فرض کنید $\vb,\vc\in W_1\cap W_2$ و $\alpha$ اسکالر باشد. چون $\vb,\vc\in W_1$ و $W_1$ زیرفضاست، $\alpha\vb+\vc\in W_1$. به همین ترتیب $\alpha\vb+\vc\in W_2$. پس $\alpha\vb+\vc\in W_1\cap W_2$.
-\end{itemize}
-طبق محک یک‌خطی، $W_1\cap W_2$ زیرفضاست.
+$\zero$ در همه‌ی زیرفضاهاست، پس در اشتراک است. اگر $\vb,\vc$ در اشتراک باشند، در هر کدام از زیرفضاها هستند؛ پس $\alpha\vb+\vc$ هم در هر کدام و در نتیجه در اشتراک است.
 \end{proof}
 
-\begin{theorem}\label{thm:intersection-any}
-اشتراک \textbf{هر گردایه‌ای} (متناهی یا نامتناهی) از زیرفضاهای $V$، زیرفضای $V$ است.
+\begin{theorem}[اجتماع زیرفضاها]\label{thm:union}
+$W_1\cup W_2$ زیرفضاست اگر و تنها اگر $W_1\subseteq W_2$ یا $W_2\subseteq W_1$.
 \end{theorem}
 \begin{proof}
-فرض کنید $\{W_a\}_{a\in I}$ گردایه‌ای از زیرفضاها باشد و $W=\bigcap_{a\in I}W_a$. استدلال قضیه‌ی قبل کلمه‌به‌کلمه کار می‌کند: $\zero$ در همه‌ی $W_a$هاست پس در $W$ است. اگر $\vb,\vc\in W$ آن‌گاه برای \emph{هر} $a$، $\vb,\vc\in W_a$ و در نتیجه $\alpha\vb+\vc\in W_a$؛ پس $\alpha\vb+\vc$ در همه‌ی آن‌ها و در نتیجه در $W$ است.
+\textbf{(برگشت)} اگر $W_1\subseteq W_2$، اجتماع همان $W_2$ است.
+
+\textbf{(رفت)} فرض کنید اجتماع زیرفضا باشد ولی $\vw_1\in W_1\setminus W_2$ و $\vw_2\in W_2\setminus W_1$ وجود داشته باشند. آن‌گاه $\vw_1+\vw_2$ در اجتماع است. اگر در $W_1$ باشد، $\vw_2=(\vw_1+\vw_2)-\vw_1\in W_1$؛ اگر در $W_2$ باشد، $\vw_1\in W_2$. هر دو تناقض است.
 \end{proof}
 
-\begin{example}
-در $\R^3$ اشتراک دو صفحه‌ی متفاوتِ گذرنده از مبدأ، یک خط گذرنده از مبدأ است؛ و اشتراک یک صفحه و خطی که روی آن نیست، فقط $\{\zero\}$ است. هر دو زیرفضا هستند.
-\end{example}
-
-\section{اجتماع زیرفضاها}
-
-\begin{theorem}\label{thm:union-not}
-اجتماع دو زیرفضا ممکن است زیرفضا نباشد.
-\end{theorem}
-\begin{proof}
-یک مثال نقض کافی است. در $\R^2$ قرار دهید $W_1=$ محور $x$ ها $=\{(t,0)\}$ و $W_2=$ محور $y$ ها $=\{(0,t)\}$. هر دو زیرفضا هستند. بردارهای $\vv_1=(1,0)\in W_1$ و $\vv_2=(0,1)\in W_2$ در $W_1\cup W_2$ هستند، اما
-\[
-\vv_1+\vv_2=(1,1)
-\]
-نه روی محور $x$ است و نه روی محور $y$. پس $W_1\cup W_2$ تحت جمع بسته نیست.
 \begin{center}
-\begin{tikzpicture}[scale=0.8,>=Latex]
+\begin{tikzpicture}[scale=0.75,>=Latex]
   \draw[very thick, primary] (-2,0)--(2.5,0) node[right] {$W_1$};
-  \draw[very thick, excolor] (0,-1.5)--(0,2.3) node[above] {$W_2$};
+  \draw[very thick, excolor] (0,-1.3)--(0,2.2) node[above] {$W_2$};
   \draw[->, thick, primary!70!black] (0,0)--(1.4,0) node[below] {$\vv_1$};
   \draw[->, thick, excolor!80!black] (0,0)--(0,1.4) node[left] {$\vv_2$};
   \draw[->, thick, warncolor] (0,0)--(1.4,1.4) node[above right] {$\vv_1+\vv_2\notin W_1\cup W_2$};
   \draw[dashed, gray] (1.4,0)--(1.4,1.4)--(0,1.4);
 \end{tikzpicture}
+\\[1mm]{\small \fa{اجتماع دو محور مختصات تحت جمع بسته نیست.}}
 \end{center}
-\end{proof}
 
-\begin{theorem}[اجتماع زیرفضاها]\label{thm:union}
-اگر $W_1$ و $W_2$ زیرفضاهای $V$ باشند، $W_1\cup W_2$ زیرفضای $V$ است اگر و تنها اگر
-\[
-W_1\subseteq W_2\qquad\text{\fa{یا}}\qquad W_2\subseteq W_1 .
-\]
-یعنی اجتماع دو زیرفضا زیرفضا نیست، مگر این‌که یکی درون دیگری باشد.
-\end{theorem}
-\begin{proof}
-\textbf{(برگشت)} اگر $W_1\subseteq W_2$، آن‌گاه $W_1\cup W_2=W_2$ که زیرفضاست. حالت دیگر هم مشابه است.
-
-\textbf{(رفت)} با برهان خلف: فرض کنید $W_1\cup W_2$ زیرفضا باشد ولی هیچ‌کدام درون دیگری نباشد. پس:
-\begin{itemize}
-  \item چون $W_1\not\subseteq W_2$، برداری مثل $\vw_1\in W_1$ هست که $\vw_1\notin W_2$.
-  \item چون $W_2\not\subseteq W_1$، برداری مثل $\vw_2\in W_2$ هست که $\vw_2\notin W_1$.
-\end{itemize}
-هر دو بردار در $W_1\cup W_2$ هستند و چون این اجتماع زیرفضا فرض شده، $\vw_1+\vw_2\in W_1\cup W_2$. دو حالت داریم:
-\begin{itemize}
-  \item اگر $\vw_1+\vw_2\in W_1$، چون $\vw_1\in W_1$ و $W_1$ زیرفضاست: $\vw_2=(\vw_1+\vw_2)-\vw_1\in W_1$. تناقض!
-  \item اگر $\vw_1+\vw_2\in W_2$، به همین ترتیب $\vw_1=(\vw_1+\vw_2)-\vw_2\in W_2$. تناقض!
-\end{itemize}
-پس فرض خلف باطل است.
-\end{proof}
-
-\section{پوشش خطی (\lr{Span}) و زیرفضا}
+\section{پوشش خطی (\lr{Span})}
 
 \begin{definition}[پوشش خطی]
-اگر $\vv_1,\dots,\vv_p$ بردارهایی در فضای برداری $V$ (مثلاً $\R^n$) باشند، مجموعه‌ی \emph{همه‌ی} ترکیب‌های خطی آن‌ها را با $\Span\{\vv_1,\dots,\vv_p\}$ نشان می‌دهیم و به آن \term{پوشش خطی}{Span / Linear Hull} این بردارها یا زیرمجموعه‌ی \textbf{تولیدشده} توسط آن‌ها می‌گوییم:
+مجموعه‌ی همه‌ی ترکیب‌های خطی $\vv_1,\dots,\vv_p$ را \term{پوشش خطی}{Span} آن‌ها می‌نامیم:
 \[
-\Span\{\vv_1,\dots,\vv_p\}=\{c_1\vv_1+c_2\vv_2+\dots+c_p\vv_p\ :\ c_1,\dots,c_p\in\F\}.
+\Span\{\vv_1,\dots,\vv_p\}=\{c_1\vv_1+\dots+c_p\vv_p\ :\ c_i\in\F\}.
 \]
-اگر $\Span\{\vv_1,\dots,\vv_p\}=W$، می‌گوییم این بردارها $W$ را \textbf{تولید می‌کنند} \enterm{span} یا یک \term{مجموعه‌ی مولد}{Spanning Set} برای $W$ هستند. طبق قرارداد $\Span\emptyset=\{\zero\}$.
+اگر این مجموعه برابر $W$ باشد، می‌گوییم بردارها $W$ را \textbf{تولید می‌کنند} (\term{مجموعه‌ی مولد}{Spanning Set}). قرارداد: $\Span\emptyset=\{\zero\}$.
 \end{definition}
 
-\begin{intuition}[هندسه‌ی پوشش خطی]
-فرض کنید $\vu$ و $\vv$ بردارهای ناصفری در $\R^3$ باشند و $\vv$ مضربی از $\vu$ نباشد.
-\begin{itemize}
-  \item $\Span\{\vv\}$ همه‌ی مضرب‌های $\vv$ است: \textbf{خطی} که از مبدأ و نوک $\vv$ می‌گذرد.
-  \item $\Span\{\vu,\vv\}$ \textbf{صفحه‌ای} است که از مبدأ می‌گذرد و $\vu$ و $\vv$ را در خود دارد.
-\end{itemize}
-\begin{center}
-\begin{tikzpicture}[scale=0.8,>=Latex]
-  \draw[->, gray] (0,0)--(2.4,0) node[right] {\scriptsize $x_2$};
-  \draw[->, gray] (0,0)--(0,2.4) node[above] {\scriptsize $x_3$};
-  \draw[->, gray] (0,0)--(-1.2,-1.1) node[below left] {\scriptsize $x_1$};
-  \draw[very thick, primary] (-1.4,-0.9)--(2.6,1.7) node[right] {\small $\Span\{\vv\}$};
-  \draw[->, very thick, excolor] (0,0)--(1.2,0.78) node[above left] {$\vv$};
-  \begin{scope}[xshift=6.5cm]
-    \fill[primary!12] (-1.8,-0.9)--(1.6,-1.3)--(2.8,1.1)--(-0.6,1.5)--cycle;
-    \draw[primary!50] (-1.8,-0.9)--(1.6,-1.3)--(2.8,1.1)--(-0.6,1.5)--cycle;
-    \draw[->, gray] (0,0)--(2.4,0) node[right] {\scriptsize $x_2$};
-    \draw[->, gray] (0,0)--(0,2.4) node[above] {\scriptsize $x_3$};
-    \draw[->, gray] (0,0)--(-1.2,-1.1) node[below left] {\scriptsize $x_1$};
-    \draw[->, very thick, excolor] (0,0)--(1.3,-0.4) node[below] {$\vu$};
-    \draw[->, very thick, thmcolor] (0,0)--(0.5,0.9) node[left] {$\vv$};
-    \node[primary] at (2.2,1.5) {\small $\Span\{\vu,\vv\}$};
-  \end{scope}
-\end{tikzpicture}
-\end{center}
+\begin{intuition}
+در $\R^3$، $\Span\{\vv\}$ خطی است که از مبدأ و نوک $\vv$ می‌گذرد، و اگر $\vu$ و $\vv$ هم‌راستا نباشند، $\Span\{\vu,\vv\}$ صفحه‌ای است که از مبدأ می‌گذرد و هر دو را دارد.
 \end{intuition}
 
 \begin{theorem}\label{thm:span-subspace}
-اگر $\vv_1,\dots,\vv_p$ در فضای برداری $V$ باشند، $\Span\{\vv_1,\dots,\vv_p\}$ زیرفضای $V$ است.
+$\Span\{\vv_1,\dots,\vv_p\}$ زیرفضای $V$ است و کوچک‌ترین زیرفضایی است که همه‌ی $\vv_i$ها را دارد.
 \end{theorem}
 \begin{proof}
-فرض کنید $S=\Span\{\vv_1,\dots,\vv_p\}$.
-\begin{itemize}
-  \item $\zero=0\vv_1+\dots+0\vv_p\in S$؛ پس $S$ ناتهی است.
-  \item اگر $\vb=b_1\vv_1+\dots+b_p\vv_p$ و $\vc=c_1\vv_1+\dots+c_p\vv_p$ در $S$ باشند و $\alpha$ اسکالر باشد، با اصول فضای برداری:
-  \[
-  \alpha\vb+\vc=(\alpha b_1+c_1)\vv_1+\dots+(\alpha b_p+c_p)\vv_p ,
-  \]
-  که دوباره ترکیبی خطی از $\vv_i$هاست؛ پس در $S$ است.
-\end{itemize}
-طبق محک یک‌خطی، $S$ زیرفضاست.
+$\zero=0\vv_1+\dots+0\vv_p$ در آن است و
+$\alpha\sum b_i\vv_i+\sum c_i\vv_i=\sum(\alpha b_i+c_i)\vv_i$
+دوباره ترکیب خطی است. اگر زیرفضای $W$ همه‌ی $\vv_i$ها را داشته باشد، چون بسته است، هر ترکیب خطی آن‌ها هم در $W$ است.
 \end{proof}
 
-\begin{theorem}[پوشش خطی، کوچک‌ترین زیرفضاست]\label{thm:span-smallest}
-اگر $W$ زیرفضایی از $V$ باشد که $\vv_1,\dots,\vv_p$ را در خود دارد، آن‌گاه $\Span\{\vv_1,\dots,\vv_p\}\subseteq W$. یعنی پوشش خطی، کوچک‌ترین زیرفضایی است که این بردارها را دارد.
-\end{theorem}
-\begin{proof}
-$W$ تحت ضرب اسکالر بسته است، پس هر $c_i\vv_i\in W$؛ و تحت جمع بسته است، پس (با چند بار استفاده از بستاری جمع) $c_1\vv_1+\dots+c_p\vv_p\in W$. پس هر عضو پوشش خطی در $W$ است.
-\end{proof}
-
-\begin{note}[آیا $\vb$ در پوشش خطی هست؟]
-طبق قضیه‌ی \ref{thm:solvable-combination}، سؤال «آیا $\vb\in\Span\{\va_1,\dots,\va_n\}$؟» دقیقاً همان سؤال «آیا دستگاه با ماتریس افزوده‌ی $\begin{bmatrix}\va_1&\cdots&\va_n&|&\vb\end{bmatrix}$ سازگار است؟» است. پس جوابش را با کاهش سطری پیدا می‌کنیم.
+\begin{note}
+طبق قضیه‌ی \ref{thm:solvable-combination}، «آیا $\vb\in\Span\{\va_1,\dots,\va_n\}$؟» یعنی «آیا دستگاه $\aug{\va_1\ \cdots\ \va_n}{\vb}$ سازگار است؟».
 \end{note}
 
 \begin{example}
-آیا $\vb=(7,4,3)$ در $\Span\{\va_1,\va_2\}$ است که $\va_1=(1,-2,-5)$ و $\va_2=(2,5,6)$؟
+آیا $\vb=(7,4,3)\in\Span\{(1,-2,-5),(2,5,6)\}$؟
 \end{example}
 \begin{solution}
 \[
 \left[\begin{array}{cc|c}1&2&7\\-2&5&4\\-5&6&3\end{array}\right]
 \sim
-\left[\begin{array}{cc|c}1&2&7\\0&9&18\\0&16&38\end{array}\right]
-\sim
 \left[\begin{array}{cc|c}1&2&7\\0&1&2\\0&0&6\end{array}\right].
 \]
-سطر آخر یعنی $0=6$؛ دستگاه ناسازگار است. پس $\vb\notin\Span\{\va_1,\va_2\}$؛ یعنی $\vb$ روی صفحه‌ای که $\va_1$ و $\va_2$ تولید می‌کنند نیست.
+سطر آخر یعنی $0=6$؛ پس $\vb$ در این پوشش نیست.
 \end{solution}
 
-\section{جمع زیرفضاها}
+\section{جمع و جمع مستقیم}
 
-\begin{definition}[جمع دو مجموعه]
-فرض کنید $A$ و $B$ زیرمجموعه‌های ناتهی فضای برداری $V$ باشند. \term{جمع}{Sum} $A$ و $B$ مجموعه‌ی همه‌ی حاصل‌جمع‌های ممکن یک عضو از $A$ و یک عضو از $B$ است:
-\[
-A+B=\{\va+\vb\ :\ \va\in A,\ \vb\in B\}.
-\]
-به همین ترتیب $W_1+\dots+W_m=\{\vw_1+\dots+\vw_m: \vw_i\in W_i\}$.
+\begin{definition}[جمع زیرفضاها]
+$W_1+\dots+W_m=\{\vw_1+\dots+\vw_m: \vw_i\in W_i\}$.
 \end{definition}
-
-\begin{example}
-\begin{enumerate}
-  \item $A=\{t_1(2,3): t_1\in\R\}$ و $B=\{t_2(3,1): t_2\in\R\}$ در $\R^2$. \ $A+B$ چیست؟
-  \item $A=\{t_1(1,2,0)\}$ و $B=\{t_2(0,1,2)\}$ در $\R^3$. \ $A+B$ چیست؟
-\end{enumerate}
-\end{example}
-\begin{solution}
-\textbf{۱.} $A+B=\{t_1(2,3)+t_2(3,1)\}$. ادعا می‌کنیم این همه‌ی $\R^2$ است. برای $(x,y)$ دلخواه باید $t_1,t_2$ را از
-$2t_1+3t_2=x,\ 3t_1+t_2=y$
-پیدا کنیم. با حل این دستگاه:
-$t_1=\frac{3y-x}{7},\ t_2=\frac{3x-2y}{7}$
-(درستی را با جایگذاری بررسی کنید). پس $A+B=\R^2$: جمع دو خط غیرموازی گذرنده از مبدأ، کل صفحه است.
-
-\textbf{۲.} $A+B=\{(t_1,\ 2t_1+t_2,\ 2t_2)\}$ همان صفحه‌ای است که دو خط را در خود دارد. معادله‌اش: با $x=t_1$ و $z=2t_2$ داریم $y=2x+\frac z2$، یعنی
-\[
-A+B=\{(x,y,z)\in\R^3:\ 4x-2y+z=0\}.
-\]
-\end{solution}
 
 \begin{theorem}\label{thm:sum-subspace}
-اگر $W_1,\dots,W_m$ زیرفضاهای $V$ باشند، $W_1+\dots+W_m$ هم زیرفضای $V$ است. به‌علاوه این کوچک‌ترین زیرفضایی است که همه‌ی $W_i$ها را در خود دارد.
+$W_1+\dots+W_m$ زیرفضای $V$ و کوچک‌ترین زیرفضای شامل همه‌ی $W_i$هاست.
 \end{theorem}
 \begin{proof}
-فرض کنید $W=W_1+\dots+W_m$.
-\begin{itemize}
-  \item $\zero=\zero+\dots+\zero\in W$، چون $\zero$ در همه‌ی $W_i$هاست.
-  \item اگر $\vb=\vw_1+\dots+\vw_m$ و $\vc=\vw_1'+\dots+\vw_m'$ (با $\vw_i,\vw_i'\in W_i$) و $\alpha$ اسکالر باشد:
-  \[
-  \alpha\vb+\vc=(\alpha\vw_1+\vw_1')+\dots+(\alpha\vw_m+\vw_m') ,
-  \]
-  و هر پرانتز در $W_i$ مربوط به خودش است (چون $W_i$ زیرفضاست). پس $\alpha\vb+\vc\in W$.
-\end{itemize}
-پس $W$ زیرفضاست. هر $W_i$ درون $W$ است (مثلاً $\vw_1=\vw_1+\zero+\dots+\zero$). اگر $U$ زیرفضایی باشد که همه‌ی $W_i$ها را دارد، چون $U$ تحت جمع بسته است، هر $\vw_1+\dots+\vw_m$ در $U$ است؛ پس $W\subseteq U$.
+$\zero=\zero+\dots+\zero$ در آن است و
+$\alpha\sum\vw_i+\sum\vw_i'=\sum(\alpha\vw_i+\vw_i')$
+که هر جمله‌اش در $W_i$ خودش است. هر زیرفضای شامل همه‌ی $W_i$ها، تحت جمع بسته است و همه‌ی این مجموع‌ها را دارد.
 \end{proof}
 
-\begin{intuition}
-اجتماع دو زیرفضا معمولاً زیرفضا نیست (قضیه‌ی \ref{thm:union})؛ \textbf{جمع} آن‌ها همان چیزی است که باید به‌جای اجتماع استفاده کنیم: کوچک‌ترین زیرفضایی که هر دو را در خود دارد. در واقع $W_1+W_2=\Span(W_1\cup W_2)$.
-\end{intuition}
-
-\section{جمع مستقیم}
+پس جمع، جایگزین درستِ اجتماع است: $W_1+W_2=\Span(W_1\cup W_2)$. مثلاً جمع دو خط غیرموازی گذرنده از مبدأ در $\R^2$ کل صفحه است.
 
 \begin{definition}[جمع مستقیم]
-جمع $U+W$ را \term{جمع مستقیم}{Direct Sum} می‌نامیم اگر هر عضو $U+W$ را بتوان \textbf{به‌طور یکتا} به شکل $\vu+\vw$ با $\vu\in U$ و $\vw\in W$ نوشت. در این صورت می‌نویسیم $U\oplus W$.
+$U+W$ \term{جمع مستقیم}{Direct Sum} است و می‌نویسیم $U\oplus W$، اگر هر عضو آن \textbf{به‌طور یکتا} به شکل $\vu+\vw$ ($\vu\in U$، $\vw\in W$) نوشته شود.
 \end{definition}
 
-\begin{example}
-در هر حالت، آیا مجموع یک جمع مستقیم است؟
-\[
-\text{(\fa{الف})}\quad U=\left\{\begin{bmatrix}a\\b\\0\end{bmatrix}\right\},\ W=\left\{\begin{bmatrix}0\\0\\c\end{bmatrix}\right\};
-\qquad
-\text{(\fa{ب})}\quad U=\left\{\begin{bmatrix}a\\b\\0\end{bmatrix}\right\},\ W=\left\{\begin{bmatrix}0\\c\\d\end{bmatrix}\right\}.
-\]
-\end{example}
-\begin{solution}
-\textbf{(الف) بله.} هر بردار $(x,y,z)\in\R^3$ به شکل $(x,y,0)+(0,0,z)$ نوشته می‌شود؛ پس $U+W=\R^3$. این نمایش یکتاست: اگر $(x,y,z)=(a,b,0)+(0,0,c)$ آن‌گاه حتماً $a=x$، $b=y$ و $c=z$. پس $\R^3=U\oplus W$ (صفحه‌ی $xy$ «جمع مستقیم» محور $z$).
-
-\textbf{(ب) خیر.} باز $U+W=\R^3$ است، اما نمایش یکتا نیست؛ مثلاً
-\[
-\begin{bmatrix}0\\1\\0\end{bmatrix}=\begin{bmatrix}0\\1\\0\end{bmatrix}+\begin{bmatrix}0\\0\\0\end{bmatrix}=\begin{bmatrix}0\\0\\0\end{bmatrix}+\begin{bmatrix}0\\1\\0\end{bmatrix}.
-\]
-مشکل این است که $U$ و $W$ در محور $y$ مشترک‌اند: $U\cap W=\{(0,b,0)\}\neq\{\zero\}$.
-\end{solution}
-
-قضیه‌ی زیر نشان می‌دهد که مشکل حالت (ب) دقیقاً همین اشتراک است.
-
 \begin{theorem}[محک جمع مستقیم]\label{thm:direct-sum}
-اگر $U$ و $W$ زیرفضاهای $V$ باشند، $U+W$ جمع مستقیم است اگر و تنها اگر
-\[
-U\cap W=\{\zero\}.
-\]
+$U+W$ جمع مستقیم است اگر و تنها اگر $U\cap W=\{\zero\}$.
 \end{theorem}
 \begin{proof}
-\textbf{(رفت)} فرض کنید جمع مستقیم باشد و $\vv\in U\cap W$. آن‌گاه $\vv$ دو نمایش دارد:
-\[
-\vv=\underbrace{\vv}_{\in U}+\underbrace{\zero}_{\in W}=\underbrace{\zero}_{\in U}+\underbrace{\vv}_{\in W}.
-\]
-چون نمایش یکتاست، باید $\vv=\zero$. پس $U\cap W=\{\zero\}$.
+\textbf{(رفت)} اگر $\vv\in U\cap W$، آن‌گاه $\vv=\vv+\zero=\zero+\vv$ دو نمایش است؛ پس $\vv=\zero$.
 
-\textbf{(برگشت)} فرض کنید $U\cap W=\{\zero\}$ و برداری دو نمایش داشته باشد: $\vu+\vw=\vu'+\vw'$ که $\vu,\vu'\in U$ و $\vw,\vw'\in W$. آن‌گاه
-\[
-\underbrace{\vu-\vu'}_{\in U}=\underbrace{\vw'-\vw}_{\in W}.
-\]
-این بردار هم در $U$ است و هم در $W$، پس در $U\cap W=\{\zero\}$ است. بنابراین $\vu=\vu'$ و $\vw=\vw'$؛ نمایش یکتاست.
+\textbf{(برگشت)} اگر $\vu+\vw=\vu'+\vw'$، آن‌گاه $\vu-\vu'=\vw'-\vw$ هم در $U$ است و هم در $W$؛ پس صفر است و $\vu=\vu'$، $\vw=\vw'$.
 \end{proof}
 
-\begin{warning}[برای بیش از دو زیرفضا]
-برای سه زیرفضا یا بیشتر، صفر بودن اشتراک‌های \emph{دوبه‌دو} کافی نیست. در $\R^2$ سه خط $W_1$ (محور $x$)، $W_2$ (محور $y$) و $W_3$ (خط $y=x$) دوبه‌دو فقط در $\zero$ مشترک‌اند، اما
-$\zero=(1,0)+(0,1)+(-1,-1)$
-یک نمایش ناصفر از صفر است؛ پس $W_1+W_2+W_3$ جمع مستقیم نیست.
-\end{warning}
-
-\begin{example}[چندجمله‌ای‌های زوج و فرد]
-فرض کنید $E$ مجموعه‌ی همه‌ی چندجمله‌ای‌هایی باشد که فقط توان‌های زوج دارند:
-$E=\{a_nt^{2n}+a_{n-1}t^{2n-2}+\dots+a_0\}$
-و $O$ مجموعه‌ی چندجمله‌ای‌هایی که فقط توان‌های فرد دارند:
-$O=\{a_nt^{2n+1}+a_{n-1}t^{2n-1}+\dots+a_1t\}$.
-نشان دهید $P=E\oplus O$ (که $P$ مجموعه‌ی همه‌ی چندجمله‌ای‌هاست).
+\begin{example}
+در $\R^3$: (الف) $U=\{(a,b,0)\}$ و $W=\{(0,0,c)\}$؛ (ب) $U=\{(a,b,0)\}$ و $W=\{(0,c,d)\}$.
 \end{example}
 \begin{solution}
-$E$ و $O$ زیرفضا هستند (مجموع و مضرب چندجمله‌ای‌های زوج، زوج است؛ برای فرد هم همین‌طور).
-
-\textbf{$P=E+O$:} هر چندجمله‌ای را می‌توان به دو بخش «جمله‌های با توان زوج» و «جمله‌های با توان فرد» تقسیم کرد. به زبان دیگر، با تعریف
-\[
-p(t)=\underbrace{\frac{p(t)+p(-t)}{2}}_{p_e(t)}+\underbrace{\frac{p(t)-p(-t)}{2}}_{p_o(t)},
-\]
-داریم $p_e(-t)=p_e(t)$ (پس فقط توان‌های زوج دارد) و $p_o(-t)=-p_o(t)$ (فقط توان‌های فرد).
-
-\textbf{$E\cap O=\{0\}$:} اگر چندجمله‌ای‌ای هم فقط توان زوج داشته باشد و هم فقط توان فرد، هیچ جمله‌ی ناصفری ندارد؛ پس صفر است.
-
-طبق قضیه‌ی \ref{thm:direct-sum}، $P=E\oplus O$. (همین تجزیه برای هر تابع $f:\R\to\R$ هم کار می‌کند: هر تابع به‌طور یکتا مجموع یک تابع زوج و یک تابع فرد است.)
+در هر دو $U+W=\R^3$. در (الف) $U\cap W=\{\zero\}$؛ پس $\R^3=U\oplus W$. در (ب) محور $y$ مشترک است و نمایش یکتا نیست: $(0,1,0)=(0,1,0)+\zero=\zero+(0,1,0)$.
 \end{solution}
 
-\begin{example}[توابع کران‌دار]
-ثابت کنید مجموعه‌ی همه‌ی توابع کران‌دار
-\[
-W=\{f:\R\to\R\ \mid\ \exists M\in\R\ \text{\fa{به طوری که}}\ \abs{f(x)}\le M,\ \forall x\in\R\}
-\]
-زیرفضای $V=\{\text{\fa{همه‌ی توابع از $\R$ به $\R$}}\}$ است.
+\begin{warning}
+برای سه زیرفضا یا بیشتر، صفر بودن اشتراک‌های دوبه‌دو کافی نیست: سه خط $x$، $y$ و $y=x$ در $\R^2$ دوبه‌دو فقط در $\zero$ مشترک‌اند، اما $\zero=(1,0)+(0,1)+(-1,-1)$.
+\end{warning}
+
+\begin{example}[زوج و فرد]
+نشان دهید چندجمله‌ای‌ها جمع مستقیم چندجمله‌ای‌های زوج ($E$) و فرد ($O$) هستند.
 \end{example}
 \begin{solution}
-از \textbf{نامساوی مثلث} برای اعداد حقیقی استفاده می‌کنیم: $\abs{a+b}\le\abs{a}+\abs{b}$.
-\begin{itemize}
-  \item تابع صفر کران‌دار است (با $M=0$)؛ پس $W$ ناتهی است.
-  \item فرض کنید $f,g\in W$ با کران‌های $M_f$ و $M_g$، و $\alpha\in\R$. برای هر $x$:
-  \[
-  \abs{(\alpha f+g)(x)}=\abs{\alpha f(x)+g(x)}\le\abs{\alpha}\,\abs{f(x)}+\abs{g(x)}\le\abs{\alpha}M_f+M_g .
-  \]
-  پس $\alpha f+g$ با کران $M=\abs{\alpha}M_f+M_g$ کران‌دار است و در $W$ قرار دارد.
-\end{itemize}
-طبق محک یک‌خطی، $W$ زیرفضاست.
+هر $p$ را می‌شود نوشت
+$p(t)=\frac{p(t)+p(-t)}{2}+\frac{p(t)-p(-t)}{2}$
+که بخش اول زوج و بخش دوم فرد است؛ پس $P=E+O$. چندجمله‌ای‌ای که هم فقط توان زوج دارد و هم فقط توان فرد، صفر است؛ پس $E\cap O=\{0\}$ و $P=E\oplus O$.
 \end{solution}
 
 \section{جمع‌بندی و تمرین}
 
 \begin{summary}
 \begin{itemize}
-  \item زیرفضا = زیرمجموعه‌ای که با همان عمل‌ها فضای برداری است. محک: ناتهی بودن و $\alpha\vb+\vc\in U$ (یا: صفر + بستاری جمع + بستاری ضرب اسکالر).
-  \item اگر $\zero\notin U$، $U$ زیرفضا نیست. خط/صفحه‌ای که از مبدأ نگذرد زیرفضا نیست.
-  \item اشتراک هر تعداد زیرفضا، زیرفضاست؛ اجتماع دو زیرفضا فقط وقتی زیرفضاست که یکی درون دیگری باشد.
-  \item $\Span\{\vv_1,\dots,\vv_p\}$ کوچک‌ترین زیرفضایی است که این بردارها را دارد. $\vb\in\Span\{\va_i\}\iff$ دستگاه $\begin{bmatrix}\va_1&\cdots&\va_n&|&\vb\end{bmatrix}$ سازگار است.
-  \item $W_1+\dots+W_m$ زیرفضا و کوچک‌ترین زیرفضای شامل همه‌ی $W_i$هاست.
-  \item $U+W$ جمع مستقیم ($U\oplus W$) است $\iff$ نمایش یکتاست $\iff$ $U\cap W=\{\zero\}$.
+  \item محک زیرفضا: ناتهی و $\alpha\vb+\vc\in U$. اگر $\zero\notin U$، زیرفضا نیست.
+  \item اشتراک زیرفضاها زیرفضاست؛ اجتماع فقط وقتی که یکی درون دیگری باشد.
+  \item $\Span$ کوچک‌ترین زیرفضای شامل بردارهاست؛ $W_1+W_2$ کوچک‌ترین زیرفضای شامل هر دو.
+  \item $U\oplus W\iff U\cap W=\{\zero\}$.
 \end{itemize}
 \end{summary}
 
-\begin{exercise}
-آیا $\{(x,y,z)\in\R^3:\ x+y+z=0\}$ زیرفضای $\R^3$ است؟ $\{(x,y,z):\ x+y+z=1\}$ چطور؟
-\end{exercise}
-
-\begin{exercise}
-آیا $\{(x,y)\in\R^2:\ xy\ge0\}$ زیرفضای $\R^2$ است؟
-\end{exercise}
-
-\begin{exercise}
-نشان دهید $\{p\in P_2(\R):\ p(1)=0\}$ زیرفضای $P_2(\R)$ است.
-\end{exercise}
-
-\begin{exercise}
-فرض کنید $U=\{(a,a,0): a\in\R\}$ و $W=\{(0,b,b): b\in\R\}$. آیا $U+W$ جمع مستقیم است؟ $U\oplus W$ را به شکل یک معادله توصیف کنید.
-\end{exercise}
-
-\begin{exercise}
-ثابت کنید اگر $W_1\subseteq W_2$ زیرفضا باشند، $W_1+W_2=W_2$.
-\end{exercise}
+\subsection*{تمرین‌ها}
+\begin{enumerate}
+  \item آیا $\{(x,y,z): x+y+z=0\}$ زیرفضای $\R^3$ است؟ $\{(x,y,z): x+y+z=1\}$ چطور؟
+  \item آیا $\{(x,y)\in\R^2: xy\ge0\}$ زیرفضاست؟
+  \item آیا $U=\{(a,a,0)\}$ و $W=\{(0,b,b)\}$ جمع مستقیم می‌سازند؟ $U\oplus W$ را با یک معادله توصیف کنید.
+\end{enumerate}
 
 \subsection*{پاسخ‌های کوتاه}
 \begin{enumerate}
-  \item اولی بله (مجموعه‌ی جواب یک دستگاه همگن است)؛ دومی خیر ($\zero$ در آن نیست).
-  \item خیر. تحت ضرب اسکالر بسته است اما تحت جمع نه: $(1,0)+(0,-1)=(1,-1)$ و $1\cdot(-1)<0$.
-  \item چندجمله‌ای صفر در آن است و اگر $p(1)=q(1)=0$ آن‌گاه $(\alpha p+q)(1)=\alpha p(1)+q(1)=0$.
-  \item $(a,a,0)=(0,b,b)$ نتیجه می‌دهد $a=0$ و $b=0$؛ پس $U\cap W=\{\zero\}$ و جمع مستقیم است. $U\oplus W=\{(a,a+b,b)\}=\{(x,y,z): x-y+z=0\}$.
-  \item $W_2\subseteq W_1+W_2$ (چون $\vw=\zero+\vw$). برعکس، اگر $\vw_1\in W_1\subseteq W_2$ و $\vw_2\in W_2$، آن‌گاه $\vw_1+\vw_2\in W_2$.
+  \item اولی بله (جواب‌های یک دستگاه همگن)؛ دومی خیر ($\zero$ در آن نیست).
+  \item خیر؛ $(1,0)+(0,-1)=(1,-1)$ در آن نیست.
+  \item بله، $U\cap W=\{\zero\}$. $U\oplus W=\{(a,a+b,b)\}=\{(x,y,z): x-y+z=0\}$.
 \end{enumerate}

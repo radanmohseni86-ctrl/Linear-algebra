@@ -1,413 +1,201 @@
 \chapter{رتبه‌ی ماتریس و چهار زیرفضای اساسی}
 \label{ch:rank}
 
-هر ماتریس $m\times n$ مثل $A$ چهار زیرفضای مهم با خود دارد: فضای سطری، فضای ستونی، فضای پوچ و فضای پوچ چپ. در این فصل این چهار زیرفضا را می‌شناسیم، برایشان پایه پیدا می‌کنیم و بُعدشان را حساب می‌کنیم. نتیجه‌ی اصلی فصل این است که \textbf{رتبه‌ی سطری و رتبه‌ی ستونی هر ماتریس برابرند} و \textbf{رتبه + پوچی = تعداد ستون‌ها}. این دو حکم تصویر کاملی از حل‌پذیری دستگاه $A\vx=\vb$ می‌دهند.
-
-\section{یادآوری: فرم RREF}
-ماتریسی که در فرم پلکانی است، در فرم RREF است اگر: (۱) درایه‌ی پیشروی هر سطر ناصفر ۱ باشد؛ (۲) هر ۱ِ پیشرو تنها درایه‌ی ناصفر ستونش باشد؛ (۳) ۱ِ پیشروی هر سطر سمت راست ۱ِ پیشروی سطر بالایی باشد؛ (۴) سطرهای صفر پایین باشند. مثلاً
-\[
-\begin{bmatrix}1&0&0&29\\0&1&0&16\\0&0&1&3\end{bmatrix}.
-\]
-یادتان باشد: \hl{در RREF، تعداد سطرهای ناصفر = تعداد ستون‌های محوری.}
+هر ماتریس $m\times n$ چهار زیرفضای مهم دارد: فضای سطری، فضای ستونی، فضای پوچ و فضای پوچ چپ. در این فصل برایشان پایه پیدا می‌کنیم و دو حکم اصلی را ثابت می‌کنیم: \textbf{رتبه‌ی سطری = رتبه‌ی ستونی} و \textbf{رتبه + پوچی = تعداد ستون‌ها}.
 
 \section{فضای سطری و فضای ستونی}
 
-\begin{definition}[فضای ستونی و فضای سطری]
-فرض کنید $A$ یک ماتریس $m\times n$ باشد.
-\begin{itemize}
-  \item \term{فضای ستونی}{Column Space} $A$ مجموعه‌ی همه‌ی ترکیب‌های خطی ستون‌های آن است:
-  \[
-  \Col(A):=\{A\vx\ :\ \vx\in\R^n\}=\Span\{\va_1,\dots,\va_n\}.
-  \]
-  \item \term{فضای سطری}{Row Space} $A$ مجموعه‌ی همه‌ی ترکیب‌های خطی سطرهای آن است:
-  \[
-  \Row(A):=\{\vy\T A\ :\ \vy\in\R^m\}.
-  \]
-\end{itemize}
+\begin{definition}[فضای ستونی و سطری]
+برای $A_{m\times n}$:
+\[
+\Col(A):=\{A\vx: \vx\in\R^n\}=\Span\{\va_1,\dots,\va_n\}\subseteq\R^m,
+\]
+\[
+\Row(A):=\Span\{\text{\fa{سطرهای $A$}}\}=\Col(A\T)\subseteq\R^n .
+\]
+این دو زیرفضا هستند، چون پوشش خطی‌اند (قضیه‌ی \ref{thm:span-subspace}).
 \end{definition}
 
 \begin{note}
-ما بردارها را به شکل ستونی دوست داریم؛ پس با ترانهاده کردن، سطرهای $A$ ستون‌های $A\T$ می‌شوند و می‌توان نوشت
-\[
-\Row(A)=\Col(A\T).
-\]
-\end{note}
-
-\begin{example}
-برای $A=\begin{bmatrix}1&1\\0&0\end{bmatrix}$:
-\begin{itemize}
-  \item فضای سطری: همه‌ی بردارهای $c_1\begin{bmatrix}1&1\end{bmatrix}+c_2\begin{bmatrix}0&0\end{bmatrix}$، یعنی مضرب‌های $\begin{bmatrix}1&1\end{bmatrix}$ (خط $y=x$).
-  \item فضای ستونی: همه‌ی $c_1\begin{bmatrix}1\\0\end{bmatrix}+c_2\begin{bmatrix}1\\0\end{bmatrix}$، یعنی مضرب‌های $\begin{bmatrix}1\\0\end{bmatrix}$ (محور افقی).
-\end{itemize}
-\end{example}
-
-\begin{theorem}
-برای ماتریس $m\times n$ مثل $A$: فضای ستونی زیرفضای $\R^m$ و فضای سطری زیرفضای $\R^n$ است.
-\end{theorem}
-\begin{proof}
-ستون‌های $A$ بردارهایی در $\R^m$ هستند (هر ستون $m$ درایه دارد) و $\Col(A)$ پوشش خطی آن‌هاست؛ طبق قضیه‌ی \ref{thm:span-subspace} زیرفضای $\R^m$ است. به همین ترتیب سطرها $n$ درایه دارند و $\Row(A)$ پوشش آن‌ها در $\R^n$ است.
-\end{proof}
-
-\begin{note}
-فضای ستونی همان \textbf{تصویر} (برد) تبدیل $\vx\mapsto A\vx$ است: مجموعه‌ی همه‌ی خروجی‌های ممکن. طبق قضیه‌ی \ref{thm:solvable-combination}:
-\begin{center}
+$\Col(A)$ همان مجموعه‌ی همه‌ی خروجی‌های $\vx\mapsto A\vx$ است و طبق قضیه‌ی \ref{thm:solvable-combination}:
 \hl{$A\vx=\vb$ جواب دارد $\iff$ $\vb\in\Col(A)$.}
-\end{center}
 \end{note}
 
-\subsection{فضای سطری و عملیات سطری}
 \begin{theorem}\label{thm:row-space-same}
-اگر دو ماتریس $A$ و $B$ هم‌ارز سطری باشند، فضای سطری آن‌ها یکی است.
+ماتریس‌های هم‌ارز سطری فضای سطری یکسانی دارند.
 \end{theorem}
 \begin{proof}
-طبق قضیه‌ی \ref{thm:row-equiv-PA}، $B=PA$ با $P$ وارون‌پذیر. طبق نگاه چهارم ضرب ماتریس‌ها، هر سطر $PA$ ترکیبی خطی از سطرهای $A$ است؛ پس هر سطر $B$ در $\Row(A)$ است و در نتیجه (چون $\Row(A)$ زیرفضاست) $\Row(B)\subseteq\Row(A)$. از طرف دیگر $A=P^{-1}B$، پس با همین استدلال $\Row(A)\subseteq\Row(B)$.
+طبق قضیه‌ی \ref{thm:row-equiv-PA}، $B=PA$ با $P$ وارون‌پذیر؛ پس هر سطر $B$ ترکیب خطی سطرهای $A$ است و $\Row(B)\subseteq\Row(A)$. از $A=P^{-1}B$ عکسش هم به دست می‌آید.
 \end{proof}
 
 \begin{theorem}\label{thm:row-basis}
-اگر $A$ و $B$ هم‌ارز سطری باشند و $B$ در فرم پلکانی باشد، \textbf{سطرهای ناصفر $B$} (سطرهای محوری) پایه‌ای برای فضای سطری $A$ (و $B$) هستند.
+اگر $B$ فرم پلکانی $A$ باشد، \textbf{سطرهای ناصفر $B$} پایه‌ای برای $\Row(A)$ هستند.
 \end{theorem}
 \begin{proof}
-\textbf{تولید:} طبق قضیه‌ی قبل $\Row(A)=\Row(B)$، و سطرهای صفر چیزی به پوشش اضافه نمی‌کنند؛ پس سطرهای ناصفر $B$ فضای $\Row(A)$ را تولید می‌کنند.
-
-\textbf{استقلال:} فرض کنید $\vr_1,\dots,\vr_k$ سطرهای ناصفر $B$ با محورهایی در ستون‌های $p_1<p_2<\dots<p_k$ باشند و
-\[
-c_1\vr_1+c_2\vr_2+\dots+c_k\vr_k=\zero .
-\]
-به درایه‌ی ستون $p_1$ نگاه کنید: در فرم پلکانی همه‌ی درایه‌های زیر محور صفرند، پس فقط $\vr_1$ در ستون $p_1$ ناصفر است. پس $c_1\cdot(\text{\fa{محور}})=0$ و $c_1=0$. حالا با $c_1=0$، به ستون $p_2$ نگاه کنید: از بین $\vr_2,\dots,\vr_k$ فقط $\vr_2$ آن‌جا ناصفر است؛ پس $c_2=0$. با ادامه‌ی همین روند همه‌ی $c_i$ها صفر می‌شوند.
-\end{proof}
-
-\begin{intuition}
-\begin{itemize}
-  \item عملیات سطری \textbf{فضای سطری را تغییر نمی‌دهند}. پس یک ماتریس و فرم پلکانی‌اش فضای سطری یکسانی دارند.
-  \item سطرهای محوری یک فرم پلکانی مستقل‌اند و فضای سطری ماتریس اصلی را تولید می‌کنند:
-  \[
-  \begin{bmatrix}\blacksquare&*&*&*&*\\0&0&\blacksquare&*&*\\0&0&0&\blacksquare&*\end{bmatrix}.
-  \]
-  \item پس بُعد فضای سطری = تعداد سطرهای محوری؛ و این عدد از تعداد کل سطرها بیشتر نیست.
-\end{itemize}
-\end{intuition}
-
-\subsection{فضای ستونی و ستون‌های محوری}
-\begin{warning}
-عملیات سطری \textbf{فضای ستونی را تغییر می‌دهند!} یک ماتریس و فرم پلکانی‌اش معمولاً فضای ستونی متفاوتی دارند. اما (طبق لم \ref{lem:col-relations}) عملیات سطری \textbf{روابط خطی بین ستون‌ها} را حفظ می‌کنند. برای همین ستون‌های فرم پلکانی و ستون‌های ماتریس اصلی از روابط یکسانی پیروی می‌کنند.
-\end{warning}
-
-\begin{theorem}[ستون‌های محوری، پایه‌ی فضای ستونی]\label{thm:pivot-cols-basis}
-\begin{enumerate}
-  \item ستون‌های محوری یک ماتریس $R$ در فرم RREF، پایه‌ای برای $\Col(R)$ هستند.
-  \item ستون‌های محوری \textbf{خودِ} ماتریس $A$ (یعنی ستون‌هایی از $A$ که در $\RREF(A)$ محوری‌اند) پایه‌ای برای $\Col(A)$ هستند.
-\end{enumerate}
-\end{theorem}
-\begin{proof}
-فرض کنید ستون‌های محوری $p_1<\dots<p_r$ باشند.
-
-\textbf{۱. لم اول: ستون‌های محوری $R$ مستقل‌اند.} در RREF، ستون $p_k$ برابر $\ve_k$ است و $\ve_1,\dots,\ve_r$ مستقل‌اند.
-
-\textbf{لم دوم: ستون‌های محوری $R$ فضای ستونی $R$ را تولید می‌کنند.} اگر $R$ تعداد $r$ سطر ناصفر داشته باشد، هر ستون آن فقط در $r$ مؤلفه‌ی اول ممکن است ناصفر باشد؛ پس هر ستون $\vect{c}$ برابر $c_1\ve_1+\dots+c_r\ve_r$ است، که ترکیبی از ستون‌های محوری است. پس پوشش ستون‌های محوری همان پوشش همه‌ی ستون‌هاست.
-
-\textbf{۲.} فرض کنید $R=\RREF(A)$. طبق لم \ref{lem:col-relations}، برای هر $\vx$: $A\vx=\zero\iff R\vx=\zero$؛ یعنی هر رابطه‌ی خطی بین ستون‌های $A$ دقیقاً بین ستون‌های متناظر $R$ هم برقرار است و برعکس.
-\begin{itemize}
-  \item \textbf{استقلال:} اگر $\sum_k c_k\va_{p_k}=\zero$، همین رابطه برای ستون‌های $R$ برقرار است: $\sum_k c_k\ve_k=\zero$؛ پس همه‌ی $c_k=0$.
-  \item \textbf{تولید:} هر ستون غیرمحوری $R$ ترکیبی از ستون‌های محوری $R$ است (لم دوم). این یک رابطه‌ی خطی است، پس همان رابطه بین ستون‌های متناظر $A$ هم برقرار است: هر ستون غیرمحوری $A$ ترکیب خطی ستون‌های محوری $A$ است. طبق قضیه‌ی \ref{thm:remove-dependent} (با حذف تک‌تک ستون‌های غیرمحوری) پوشش ستون‌های محوری $A$ همان $\Col(A)$ است.
-\end{itemize}
+طبق قضیه‌ی قبل این سطرها $\Row(A)$ را تولید می‌کنند. برای استقلال، در $c_1\vr_1+\dots+c_k\vr_k=\zero$ به ستون محور اول نگاه کنید: فقط $\vr_1$ آن‌جا ناصفر است، پس $c_1=0$. سپس ستون محور دوم $c_2=0$ می‌دهد و همین‌طور تا آخر.
 \end{proof}
 
 \begin{warning}
-برای پایه‌ی $\Col(A)$ باید \textbf{ستون‌های خودِ $A$} را برداریم، نه ستون‌های $\RREF(A)$! فرم RREF فقط به ما می‌گوید \emph{کدام} ستون‌ها را برداریم.
+عملیات سطری \textbf{فضای ستونی را تغییر می‌دهند}، اما روابط خطی بین ستون‌ها را حفظ می‌کنند (لم \ref{lem:col-relations}).
 \end{warning}
 
-\begin{example}[فضای ستونی تغییر می‌کند]
-$A=\begin{bmatrix}1&2&3&1\\1&1&2&1\\1&2&3&1\end{bmatrix}$ و $B=\RREF(A)=\begin{bmatrix}1&0&1&1\\0&1&1&0\\0&0&0&0\end{bmatrix}$.
-فضای ستونی و فضای سطری این دو را مقایسه کنید.
-\end{example}
-\begin{solution}
-\begin{itemize}
-  \item همه‌ی ستون‌های $B$ مؤلفه‌ی سوم صفر دارند؛ پس $\Col(B)=\{(x,y,0)\}$ (صفحه‌ی $xy$).
-  \item در $A$ سطر اول و سوم برابرند؛ پس هر ستون آن (و هر ترکیبی از ستون‌ها) مؤلفه‌ی اول و سومش برابر است: $\Col(A)=\{(x,y,x)\}$، که یک صفحه‌ی \emph{دیگر} است. مثلاً $(1,1,1)\in\Col(A)$ اما $\notin\Col(B)$.
-  \item ستون‌های محوری ستون‌های ۱ و ۲ هستند؛ پس پایه‌ی $\Col(A)$ برابر $\{(1,1,1),(2,1,2)\}$ است (ستون‌های $A$!).
-  \item اما فضای سطری یکی است: $\Row(A)=\Row(B)$ با پایه‌ی $\{(1,0,1,1),(0,1,1,0)\}$.
-\end{itemize}
-\end{solution}
+\begin{theorem}[ستون‌های محوری]\label{thm:pivot-cols-basis}
+ستون‌های محوری \textbf{خودِ} $A$ (ستون‌هایی که در $\RREF(A)$ محوری‌اند) پایه‌ای برای $\Col(A)$ هستند.
+\end{theorem}
+\begin{proof}
+در $R=\RREF(A)$ با $r$ سطر ناصفر، ستون محوری $k$ام برابر $\ve_k$ است؛ پس ستون‌های محوری $R$ مستقل‌اند. هر ستون $R$ فقط در $r$ مؤلفه‌ی اول ناصفر است؛ پس ترکیبی از $\ve_1,\dots,\ve_r$ است.
+
+چون $A\vx=\zero\iff R\vx=\zero$ (لم \ref{lem:col-relations})، روابط خطی بین ستون‌های $A$ و $R$ یکی است. پس ستون‌های محوری $A$ هم مستقل‌اند و هر ستون غیرمحوری $A$ ترکیب خطی آن‌هاست؛ طبق قضیه‌ی \ref{thm:remove-dependent} پوششان $\Col(A)$ است.
+\end{proof}
+
+\begin{warning}
+برای پایه‌ی $\Col(A)$ \textbf{ستون‌های خودِ $A$} را بردارید، نه ستون‌های RREF! RREF فقط می‌گوید \emph{کدام} ستون‌ها.
+\end{warning}
 
 \begin{example}
-برای ماتریس
-\[
-B=\begin{bmatrix}1&2&3&4&5\\2&5&8&11&14\\1&3&5&8&11\\4&10&16&23&30\end{bmatrix},\qquad
-B_{\mathrm{rref}}=\begin{bmatrix}1&0&-1&0&1\\0&1&2&0&-2\\0&0&0&1&2\\0&0&0&0&0\end{bmatrix},
-\]
-پایه‌ای برای فضای ستونی، فضای سطری و جواب‌های $B\vx=\zero$ بیابید.
+برای
+$B=\begin{bmatrix}1&2&3&4&5\\2&5&8&11&14\\1&3&5&8&11\\4&10&16&23&30\end{bmatrix}$
+با
+$\RREF(B)=\begin{bmatrix}1&0&-1&0&1\\0&1&2&0&-2\\0&0&0&1&2\\0&0&0&0&0\end{bmatrix}$،
+پایه‌ی $\Col(B)$، $\Row(B)$ و جواب‌های $B\vx=\zero$ را بیابید.
 \end{example}
 \begin{solution}
 ستون‌های محوری ۱، ۲ و ۴ هستند.
 \begin{itemize}
-  \item \textbf{فضای ستونی} سه‌بعدی است و یک پایه‌اش (ستون‌های ۱، ۲ و ۴ ماتریس $B$):
-  \[
-  \left\{\begin{bmatrix}1\\2\\1\\4\end{bmatrix},\begin{bmatrix}2\\5\\3\\10\end{bmatrix},\begin{bmatrix}4\\11\\8\\23\end{bmatrix}\right\}.
-  \]
-  دقت کنید که از ستون‌های $B_{\mathrm{rref}}$ استفاده \emph{نکردیم}.
-  \item \textbf{فضای سطری}: سطرهای ناصفر $B_{\mathrm{rref}}$:
-  $\{(1,0,-1,0,1),\ (0,1,2,0,-2),\ (0,0,0,1,2)\}$.
-  \item \textbf{جواب‌های $B\vx=\zero$}: از RREF، $x_1=x_3-x_5$، $x_2=-2x_3+2x_5$، $x_4=-2x_5$ و $x_3,x_5$ آزادند:
-  \[
-  \vx=x_3\begin{bmatrix}1\\-2\\1\\0\\0\end{bmatrix}+x_5\begin{bmatrix}-1\\2\\0\\-2\\1\end{bmatrix}.
-  \]
+  \item $\Col(B)$: ستون‌های ۱، ۲ و ۴ \emph{خودِ} $B$، یعنی $(1,2,1,4)$، $(2,5,3,10)$ و $(4,11,8,23)$.
+  \item $\Row(B)$: سطرهای ناصفر RREF، یعنی $(1,0,-1,0,1)$، $(0,1,2,0,-2)$ و $(0,0,0,1,2)$.
+  \item $B\vx=\zero$: $\vx=x_3(1,-2,1,0,0)+x_5(-1,2,0,-2,1)$.
 \end{itemize}
 \end{solution}
-
-\begin{summary}[خلاصه‌ی فضای ستونی]
-\begin{itemize}
-  \item ستون‌های محوری یک ماتریس RREF فضای ستونی آن را تولید می‌کنند.
-  \item ستون‌های محوری هر ماتریس مستقل خطی‌اند و فضای ستونی آن را تولید می‌کنند.
-  \item بُعد فضای ستونی = تعداد ستون‌های محوری؛ و این عدد از تعداد کل ستون‌ها بیشتر نیست.
-\end{itemize}
-\end{summary}
 
 \section{فضای پوچ}
 
-\begin{intuition}[بیایید فکر کنیم!]
-\begin{itemize}
-  \item معادله‌ی $A_{m\times n}\vx_{n\times1}=\vb_{m\times1}$ را در نظر بگیرید. آیا همه‌ی جواب‌های $\vx$ یک زیرفضای $\R^n$ می‌سازند؟ \textbf{نه} (اگر $\vb\neq\zero$)، چون $\zero$ جواب نیست.
-  \item معادله‌ی $A_{m\times n}\vx_{n\times1}=\zero_{m\times1}$ چطور؟ \textbf{بله}! این را در فصل زیرفضا دیدیم.
-\end{itemize}
-\end{intuition}
-
 \begin{definition}[فضای پوچ]
-فرض کنید $A$ ماتریسی $m\times n$ باشد. \term{فضای پوچ}{Null Space} یا \term{هسته‌ی}{Kernel} $A$ عبارت است از
-\[
-\Nul(A):=\{\vx\in\R^n\ :\ A\vx=\zero\}.
-\]
+\term{فضای پوچ}{Null Space} (\term{هسته‌ی}{Kernel}) $A_{m\times n}$:
+$\Nul(A):=\{\vx\in\R^n: A\vx=\zero\}$.
+\term{فضای پوچ چپ}{Left Null Space}:
+$\Nul(A\T)=\{\vy\in\R^m: \vy\T A=\zero\T\}$.
 \end{definition}
 
 \begin{theorem}\label{thm:null-subspace}
-فرض کنید درایه‌های ماتریس $A_{m\times n}$ از میدان $\F$ باشند. فضای پوچ $A$ زیرفضای $\F^n$ است؛ پس خودش یک فضای برداری است.
+$\Nul(A)$ زیرفضای $\F^n$ است.
 \end{theorem}
 \begin{proof}
-\begin{itemize}
-  \item $A\zero=\zero$، پس $\zero\in\Nul(A)$.
-  \item اگر $\vu,\vv\in\Nul(A)$ و $\alpha\in\F$: \ $A(\alpha\vu+\vv)=\alpha A\vu+A\vv=\alpha\zero+\zero=\zero$؛ پس $\alpha\vu+\vv\in\Nul(A)$.
-\end{itemize}
-طبق محک یک‌خطی، $\Nul(A)$ زیرفضاست.
+$A\zero=\zero$ و $A(\alpha\vu+\vv)=\alpha A\vu+A\vv=\zero$.
 \end{proof}
 
-\begin{definition}[فضای پوچ چپ]
-فضای پوچ $A\T$ را \term{فضای پوچ چپ}{Left Null Space} $A$ می‌نامیم:
-\[
-\Nul(A\T)=\{\vx\in\R^m\ :\ A\T\vx=\zero\}=\{\vx\in\R^m\ :\ \vx\T A=\zero\T\}.
-\]
-(تساوی دوم با ترانهاده گرفتن از $A\T\vx=\zero$ به دست می‌آید. اسم «چپ» از این است که $\vx\T$ از \emph{چپ} در $A$ ضرب می‌شود.)
-\end{definition}
-
-\subsection{یافتن پایه‌ی فضای پوچ}
-\begin{enumerate}
-  \item معادله‌ی $A\vx=\zero$ را (با کاهش به RREF) حل کنید و جواب را به شکل برداری-پارامتری بنویسید.
-  \item بردارهایی که در این جواب عمومی ظاهر می‌شوند، یک \textbf{پایه} برای فضای پوچ هستند: آن را تولید می‌کنند (به‌وضوح) و طبق قضیه‌ی \ref{thm:null-vectors-indep} مستقل‌اند.
-  \item پس \textbf{تعداد متغیرهای آزاد} = تعداد بردارهای پایه = $\dim\Nul(A)$.
-\end{enumerate}
+برای یافتن پایه‌ی $\Nul(A)$، جواب $A\vx=\zero$ را به شکل برداری-پارامتری بنویسید؛ بردارهای آن پایه‌اند (قضیه‌ی \ref{thm:null-vectors-indep}). پس $\dim\Nul(A)$ = تعداد متغیرهای آزاد.
 
 \begin{example}
-پایه‌ای برای $\Nul(A)$ بیابید:
-$A=\begin{bmatrix}0&0&0&-1\\4&-1&1&-1\\8&-2&3&-1\end{bmatrix}$.
+پایه‌ی $\Nul(A)$ را برای $A=\begin{bmatrix}0&0&0&-1\\4&-1&1&-1\\8&-2&3&-1\end{bmatrix}$ بیابید.
 \end{example}
 \begin{solution}
-\[
-A\xrightarrow{R_1\leftrightarrow R_2}\begin{bmatrix}4&-1&1&-1\\0&0&0&-1\\8&-2&3&-1\end{bmatrix}
-\xrightarrow{R_3\leftarrow R_3-2R_1}\begin{bmatrix}4&-1&1&-1\\0&0&0&-1\\0&0&1&1\end{bmatrix}
-\xrightarrow{R_2\leftrightarrow R_3}\begin{bmatrix}4&-1&1&-1\\0&0&1&1\\0&0&0&-1\end{bmatrix}
-\]
-\[
-\sim\begin{bmatrix}1&-\frac14&0&0\\0&0&1&0\\0&0&0&1\end{bmatrix}.
-\]
-ستون‌های محوری ۱، ۳ و ۴ هستند و فقط $x_2$ آزاد است: $x_4=0$، $x_3=0$ و $x_1=\frac14x_2$. با $x_2=4t$:
-\[
-\Nul(A)=\Span\left\{\begin{bmatrix}1\\4\\0\\0\end{bmatrix}\right\},\qquad \dim\Nul(A)=1 .
-\]
-(بررسی: $A(1,4,0,0)\T=(0,\ 4-4,\ 8-8)=\zero$.)\footnote{در اسلایدهای درس، فرم کاهش‌یافته‌ی این ماتریس به شکل دیگری نوشته شده بود که با $A$ هم‌ارز سطری نیست؛ این‌جا محاسبه از نو و دقیق انجام شده است.}
+$A\sim\begin{bmatrix}1&-\frac14&0&0\\0&0&1&0\\0&0&0&1\end{bmatrix}$؛ فقط $x_2$ آزاد است: $x_3=x_4=0$ و $x_1=\frac14x_2$. پس $\Nul(A)=\Span\{(1,4,0,0)\}$.\footnote{فرم کاهش‌یافته‌ی این ماتریس در اسلایدها با $A$ هم‌ارز سطری نبود؛ این‌جا از نو محاسبه شده است.}
 \end{solution}
 
-\section{رتبه‌ی ستونی، رتبه‌ی سطری و پوچی}
+\section{رتبه و پوچی}
 
-فضای ستونی، فضای سطری و فضای پوچ همه فضای برداری‌اند؛ پس می‌توانیم برایشان پایه پیدا کنیم و \textbf{بُعد} آن‌ها را تعریف کنیم.
-
-\begin{definition}[رتبه‌ی ستونی]
-پایه‌ای از $\Col(A)$ را که از ستون‌های خود $A$ تشکیل شده، \textbf{پایه‌ی ستونی} می‌نامیم. به $\dim\Col(A)$ \term{رتبه‌ی ستونی}{Column Rank} $A$ می‌گوییم:
+\begin{definition}[رتبه‌ی ستونی، رتبه‌ی سطری و پوچی]
 \[
-\ColRank(A)=\dim\Col(A)=\text{\fa{تعداد ستون‌های مستقل خطی}}=\text{\fa{تعداد ستون‌های محوری}}.
+\ColRank(A)=\dim\Col(A),\qquad \RowRank(A)=\dim\Row(A),\qquad \nullity(A)=\dim\Nul(A).
 \]
+طبق بخش‌های قبل: $\ColRank$ = تعداد ستون‌های محوری، $\RowRank$ = تعداد سطرهای ناصفر RREF و $\nullity$ = تعداد متغیرهای آزاد.
 \end{definition}
 
-\begin{definition}[رتبه‌ی سطری]
-پایه‌ای از $\Row(A)$ را که از سطرهای خود $A$ تشکیل شده، \textbf{پایه‌ی سطری} می‌نامیم. به $\dim\Row(A)$ \term{رتبه‌ی سطری}{Row Rank} $A$ می‌گوییم:
-\begin{align*}
-\RowRank(A)&=\dim\Row(A)=\dim\Col(A\T)\\
-&=\text{\fa{تعداد سطرهای ناصفر در RREF}}=\text{\fa{تعداد ستون‌های محوری $A\T$}}.
-\end{align*}
-\end{definition}
-
-\begin{definition}[پوچی]
-به $\dim\Nul(A)$ \term{پوچی}{Nullity} $A$ می‌گوییم:
-\[
-\nullity(A)=\dim\Nul(A)=\text{\fa{تعداد متغیرهای آزاد}}.
-\]
-\end{definition}
-
-\begin{example}
-اگر ستون‌های ماتریس $A_{m\times n}$ مستقل خطی باشند، $\nullity(A)$ و $\ColRank(A)$ چقدرند؟
-\end{example}
-\begin{solution}
-ستون‌ها مستقل‌اند، پس $A\vx=\zero$ فقط جواب بدیهی دارد: $\Nul(A)=\{\zero\}$ و $\nullity(A)=0$. همه‌ی $n$ ستون یک پایه برای $\Col(A)$ هستند: $\ColRank(A)=n$.
-\end{solution}
-
-\section{رتبه‌ی ماتریس}
-
-\begin{theorem}[قضیه‌ی رتبه-پوچی (نسخه‌ی ستونی)]\label{thm:rank-nullity-col}
-برای هر ماتریس $m\times n$ مثل $A$:
-\[
-\nullity(A)+\ColRank(A)=n .
-\]
+\begin{theorem}[رتبه-پوچی، نسخه‌ی ستونی]\label{thm:rank-nullity-col}
+$\nullity(A)+\ColRank(A)=n$.
 \end{theorem}
 \begin{proof}
-ستون‌های $A$ (یا متغیرهای $x_1,\dots,x_n$) به دو دسته تقسیم می‌شوند: محوری و غیرمحوری. طبق قضیه‌ی \ref{thm:pivot-cols-basis}، $\ColRank(A)$ = تعداد ستون‌های محوری؛ و طبق بخش قبل، $\nullity(A)$ = تعداد متغیرهای آزاد = تعداد ستون‌های غیرمحوری. پس
-\[
-\underbrace{\text{\fa{تعداد ستون‌های غیرمحوری}}}_{\nullity(A)}+\underbrace{\text{\fa{تعداد ستون‌های محوری}}}_{\ColRank(A)}=\text{\fa{تعداد ستون‌ها}}=n .
-\]
+هر ستون یا محوری است یا غیرمحوری (متغیر آزاد).
 \end{proof}
 
-حالا به مهم‌ترین حکم فصل می‌رسیم. اسلایدها آن را با سه لم ثابت می‌کنند؛ ما هم همین مسیر را می‌رویم (و یک اثبات دوم هم می‌آوریم).
+حالا مهم‌ترین حکم فصل را با سه لم ثابت می‌کنیم.
 
 \begin{lemma}\label{lem:ATA-null}
-برای هر ماتریس حقیقی $A$: \quad $A\vx=\zero\iff A\T A\vx=\zero$. \quad یعنی $\Nul(A\T A)=\Nul(A)$.
+برای ماتریس حقیقی $A$: $\Nul(A\T A)=\Nul(A)$.
 \end{lemma}
 \begin{proof}
-\textbf{(رفت)} اگر $A\vx=\zero$ آن‌گاه $A\T A\vx=A\T\zero=\zero$.
-
-\textbf{(برگشت)} اگر $A\T A\vx=\zero$، دو طرف را از چپ در $\vx\T$ ضرب کنید:
-\[
-0=\vx\T A\T A\vx=(A\vx)\T(A\vx)=\norm{A\vx}^2 .
-\]
-طول یک بردار حقیقی فقط وقتی صفر است که خود بردار صفر باشد (قضیه‌ی \ref{thm:dot-props}). پس $A\vx=\zero$.
+اگر $A\vx=\zero$ آن‌گاه $A\T A\vx=\zero$. برعکس، اگر $A\T A\vx=\zero$، آن‌گاه
+$0=\vx\T A\T A\vx=\norm{A\vx}^2$
+و طبق قضیه‌ی \ref{thm:dot-props}، $A\vx=\zero$.
 \end{proof}
 
 \begin{lemma}\label{lem:ATA-rank}
 $\ColRank(A\T A)=\ColRank(A)$.
 \end{lemma}
 \begin{proof}
-$A$ و $A\T A$ هر دو $n$ ستون دارند و طبق لم قبل فضای پوچ یکسان (و در نتیجه پوچی یکسان) دارند. طبق قضیه‌ی رتبه-پوچی:
-\[
-\ColRank(A\T A)=n-\nullity(A\T A)=n-\nullity(A)=\ColRank(A).
-\]
+هر دو $n$ ستون و طبق لم قبل پوچی برابر دارند؛ از رتبه-پوچی نتیجه می‌شود.
 \end{proof}
 
 \begin{lemma}\label{lem:rank-product}
-برای ماتریس‌های $B$ و $D$ با ابعاد سازگار: $\Col(BD)\subseteq\Col(B)$ و در نتیجه $\ColRank(BD)\le\ColRank(B)$.
+$\Col(BD)\subseteq\Col(B)$؛ پس $\ColRank(BD)\le\ColRank(B)$.
 \end{lemma}
 \begin{proof}
-هر عضو $\Col(BD)$ به شکل $(BD)\vx=B(D\vx)$ است، که عضوی از $\Col(B)$ است (با بردار $D\vx$). پس $\Col(BD)\subseteq\Col(B)$ و بُعد زیرفضا از بُعد فضای بزرگ‌تر بیشتر نیست (نتیجه‌ی \ref{cor:proper-subspace}).
+$(BD)\vx=B(D\vx)\in\Col(B)$؛ و بُعد زیرفضا بیشتر نیست (نتیجه‌ی \ref{cor:proper-subspace}).
 \end{proof}
 
 \begin{theorem}[رتبه‌ی ستونی = رتبه‌ی سطری]\label{thm:colrank-rowrank}
-برای هر ماتریس $m\times n$ مثل $A$:
-\[
-\ColRank(A)=\RowRank(A).
-\]
+برای هر ماتریس $A$: $\ColRank(A)=\RowRank(A)$.
 \end{theorem}
-\begin{proof}[با سه لم]
-با لم \ref{lem:ATA-rank} و سپس لم \ref{lem:rank-product} (با $B=A\T$ و $D=A$):
-\[
-\ColRank(A)=\ColRank(A\T A)\le\ColRank(A\T)=\RowRank(A).
-\]
-پس برای \emph{هر} ماتریس، رتبه‌ی ستونی $\le$ رتبه‌ی سطری. همین نامساوی را برای ماتریس $A\T$ می‌نویسیم:
-\[
-\ColRank(A\T)\le\RowRank(A\T)=\ColRank\big((A\T)\T\big)=\ColRank(A),
-\]
-یعنی $\RowRank(A)\le\ColRank(A)$. از دو نامساوی، تساوی نتیجه می‌شود.
-\end{proof}
-\begin{proof}[دوم، با RREF]
-طبق قضیه‌ی \ref{thm:row-basis}، $\RowRank(A)$ = تعداد سطرهای ناصفر $\RREF(A)$؛ و طبق قضیه‌ی \ref{thm:pivot-cols-basis}، $\ColRank(A)$ = تعداد ستون‌های محوری. در RREF هر سطر ناصفر دقیقاً یک محور دارد و هر محور در یک ستون جداست؛ پس این دو عدد برابرند.
+\begin{proof}
+با دو لم قبل:
+$\ColRank(A)=\ColRank(A\T A)\le\ColRank(A\T)=\RowRank(A)$.
+همین را برای $A\T$ بنویسید: $\RowRank(A)=\ColRank(A\T)\le\RowRank(A\T)=\ColRank(A)$.
 \end{proof}
 
 \begin{definition}[رتبه]
-به عدد مشترک $\ColRank(A)=\RowRank(A)$ \term{رتبه}{Rank} ماتریس $A$ می‌گوییم و با $\rank(A)$ نشان می‌دهیم. پس رتبه یعنی بیشترین تعداد ستون‌های مستقل، که برابر بیشترین تعداد سطرهای مستقل است. همچنین $\rank(A)=\rank(A\T)$.
+عدد مشترک را \term{رتبه}{Rank} می‌نامیم: $\rank(A)$. پس $\rank(A)=\rank(A\T)$ = تعداد محورها.
 \end{definition}
 
 \begin{theorem}[قضیه‌ی رتبه-پوچی]\label{thm:rank-nullity}
-برای هر ماتریس $m\times n$ مثل $A$:
 \begin{keyformula}
 \[
-\nullity(A)+\rank(A)=n=\text{\fa{تعداد ستون‌ها}}.
+\rank(A)+\nullity(A)=n=\text{\fa{تعداد ستون‌ها}}.
 \]
 \end{keyformula}
 \end{theorem}
 
-\begin{theorem}[رتبه‌ی حاصل‌ضرب]\label{thm:rank-AB}
-برای ماتریس‌های $A$ و $B$ با ابعاد سازگار:
-\[
-\rank(AB)\le\min\{\rank(A),\ \rank(B)\}.
-\]
+\begin{theorem}\label{thm:rank-AB}
+$\rank(AB)\le\min\{\rank(A),\rank(B)\}$.
 \end{theorem}
 \begin{proof}
-طبق لم \ref{lem:rank-product}، $\rank(AB)\le\rank(A)$. برای مقایسه با $B$ از ترانهاده استفاده می‌کنیم:
-\[
-\rank(AB)=\rank\big((AB)\T\big)=\rank(B\T A\T)\le\rank(B\T)=\rank(B),
-\]
-که نامساوی وسط دوباره لم \ref{lem:rank-product} است (با $B\T$ به جای $B$ و $A\T$ به جای $D$).
+طبق لم \ref{lem:rank-product}، $\rank(AB)\le\rank(A)$ و $\rank(AB)=\rank(B\T A\T)\le\rank(B\T)=\rank(B)$.
 \end{proof}
 
 \begin{example}
-یک ماتریس $5\times7$ با رتبه‌ی ۳: $\dim\Nul(A)=7-3=4$، $\dim\Row(A)=3$، $\dim\Col(A)=3$ و $\dim\Nul(A\T)=5-3=2$ (رتبه-پوچی برای $A\T$ که ۵ ستون دارد).
+ماتریس $5\times7$ با رتبه‌ی ۳: $\dim\Nul(A)=4$، $\dim\Row(A)=\dim\Col(A)=3$ و $\dim\Nul(A\T)=5-3=2$.
 \end{example}
 
-\section{ماتریس‌های وارون‌پذیر و رتبه}
-برای ماتریس‌های مربعی، رتبه همه‌چیز را درباره‌ی وارون‌پذیری می‌گوید.
+\section{ماتریس‌های وارون‌پذیر}
 
 \begin{theorem}[قضیه‌ی ماتریس وارون‌پذیر]\label{thm:imt}
-برای ماتریس مربعی $n\times n$ مثل $A$، گزاره‌های زیر هم‌ارزند:
+برای $A_{n\times n}$ این گزاره‌ها هم‌ارزند:
+\begin{multicols}{2}
 \begin{enumerate}[label=(\alph*)]
   \item $A$ وارون‌پذیر است.
   \item $\RREF(A)=I_n$.
   \item $\rank(A)=n$.
-  \item $\Nul(A)=\{\zero\}$؛ یعنی $A\vx=\zero$ فقط جواب بدیهی دارد.
-  \item ستون‌های $A$ مستقل خطی‌اند.
-  \item ستون‌های $A$ فضای $\R^n$ را تولید می‌کنند.
-  \item $A\vx=\vb$ برای هر $\vb\in\R^n$ جواب دارد.
-  \item $A$ حاصل‌ضرب چند ماتریس مقدماتی است.
+  \item $\Nul(A)=\{\zero\}$.
+  \item ستون‌های $A$ مستقل‌اند.
+  \item ستون‌های $A$، $\R^n$ را تولید می‌کنند.
+  \item $A\vx=\vb$ برای هر $\vb$ جواب دارد.
+  \item $A$ حاصل‌ضرب ماتریس‌های مقدماتی است.
 \end{enumerate}
+\end{multicols}
 \end{theorem}
 \begin{proof}
-\textbf{از (آ) به (د):} اگر $A\vx=\zero$ آن‌گاه $\vx=A^{-1}A\vx=A^{-1}\zero=\zero$.
-
-\textbf{(د) و (ه) هم‌ارزند:} تعریف استقلال ستون‌ها (فصل ۵).
-
-\textbf{از (د) به (ب):} متغیر آزادی نیست، پس هر $n$ ستون محوری‌اند. یک ماتریس $n\times n$ در فرم RREF با $n$ ستون محوری، همان $I_n$ است.
-
-\textbf{از (ب) به (ح):} اگر $E_k\cdots E_1A=I$، با ضرب از چپ در وارون‌ها: $A=E_1^{-1}\cdots E_k^{-1}$ و طبق نتیجه‌ی \ref{cor:elem-invertible} هر $E_i^{-1}$ مقدماتی است.
-
-\textbf{از (ح) به (آ):} حاصل‌ضرب ماتریس‌های وارون‌پذیر، وارون‌پذیر است (قضیه‌ی \ref{thm:inverse-props}).
-
-\textbf{(ب) و (ج) هم‌ارزند:} رتبه = تعداد محورها؛ و RREF مربعی با $n$ محور یعنی $I_n$.
-
-\textbf{(ج) و (و) هم‌ارزند:} $\Col(A)$ زیرفضای $\R^n$ است؛ بُعدش $n$ است اگر و تنها اگر برابر $\R^n$ باشد (نتیجه‌ی \ref{cor:proper-subspace}).
-
-\textbf{(و) و (ز) هم‌ارزند:} قضیه‌ی \ref{thm:solvable-combination}.
+\textbf{(آ)$\to$(د):} $\vx=A^{-1}A\vx=\zero$.
+\textbf{(د)$\leftrightarrow$(ه):} تعریف استقلال.
+\textbf{(د)$\to$(ب):} متغیر آزاد نداریم؛ پس $n$ محور و RREF برابر $I_n$ است.
+\textbf{(ب)$\to$(ح):} از $E_k\cdots E_1A=I$ داریم $A=E_1^{-1}\cdots E_k^{-1}$ (نتیجه‌ی \ref{cor:elem-invertible}).
+\textbf{(ح)$\to$(آ):} حاصل‌ضرب وارون‌پذیرها وارون‌پذیر است (قضیه‌ی \ref{thm:inverse-props}).
+\textbf{(ب)$\leftrightarrow$(ج):} رتبه = تعداد محورها.
+\textbf{(ج)$\leftrightarrow$(و):} زیرفضای $n$-بعدی $\R^n$ خودش است (نتیجه‌ی \ref{cor:proper-subspace}).
+\textbf{(و)$\leftrightarrow$(ز):} قضیه‌ی \ref{thm:solvable-combination}.
 \end{proof}
 
-\begin{note}[وارون یک‌طرفه کافی است]
-اگر برای ماتریس مربعی $A$ ماتریسی مثل $B$ باشد که $BA=I$، آن‌گاه $A$ وارون‌پذیر است و $B=A^{-1}$: از $A\vx=\zero$ داریم $\vx=BA\vx=\zero$ (شرط د)؛ پس $A^{-1}$ وجود دارد و $B=B(AA^{-1})=(BA)A^{-1}=A^{-1}$.
-\end{note}
-
-\begin{note}[محاسبه‌ی وارون با گاوس-جردن]
-اگر $[A\ |\ I]$ را با عملیات سطری به $[I\ |\ X]$ برسانیم، $X=A^{-1}$. چون اگر $E_k\cdots E_1A=I$، همان ماتریس‌ها $I$ را به $E_k\cdots E_1=A^{-1}$ تبدیل می‌کنند. مثلاً:
-\[
-\left[\begin{array}{cc|cc}2&1&1&0\\5&3&0&1\end{array}\right]
-\xrightarrow{R_2-\frac52R_1}
-\left[\begin{array}{cc|cc}2&1&1&0\\0&\frac12&-\frac52&1\end{array}\right]
-\]
-\[
-\xrightarrow{2R_2}
-\left[\begin{array}{cc|cc}2&1&1&0\\0&1&-5&2\end{array}\right]
-\xrightarrow{\frac12(R_1-R_2)}
-\left[\begin{array}{cc|cc}1&0&3&-1\\0&1&-5&2\end{array}\right].
-\]
-پس $\begin{bmatrix}2&1\\5&3\end{bmatrix}^{-1}=\begin{bmatrix}3&-1\\-5&2\end{bmatrix}$. اگر در حین کار، سمت چپ به سطر صفر برسد، $A$ وارون‌پذیر نیست.
+\begin{note}[محاسبه‌ی وارون]
+اگر $[A\,|\,I]$ با عملیات سطری به $[I\,|\,X]$ برسد، $X=A^{-1}$؛ چون همان $E_k\cdots E_1$ که $A$ را به $I$ می‌برد، برابر $A^{-1}$ است. اگر سمت چپ سطر صفر بدهد، $A$ وارون‌پذیر نیست.
 \end{note}
 
 \section{چهار زیرفضای اساسی}
@@ -442,57 +230,24 @@ $A$ و $A\T A$ هر دو $n$ ستون دارند و طبق لم قبل فضای 
 \end{tikzpicture}
 \end{center}
 
-\begin{theorem}[تعامد زیرفضاهای اساسی]\label{thm:orthogonal-subspaces}
-برای ماتریس حقیقی $A_{m\times n}$:
-\begin{enumerate}
-  \item هر بردار $\Nul(A)$ بر هر بردار $\Row(A)=\Col(A\T)$ عمود است.
-  \item هر بردار $\Nul(A\T)$ بر هر بردار $\Col(A)$ عمود است.
-\end{enumerate}
+\begin{theorem}[تعامد]\label{thm:orthogonal-subspaces}
+$\Nul(A)\perp\Row(A)$ و $\Nul(A\T)\perp\Col(A)$.
 \end{theorem}
 \begin{proof}
-\textbf{۱.} اگر $A\vx=\zero$، طبق نگاه سطری ضرب ماتریس در بردار، ضرب داخلی هر سطر $A$ در $\vx$ صفر است: $\va_i\T\vx=0$. پس $\vx$ بر هر سطر عمود است و در نتیجه بر هر ترکیب خطی سطرها:
-$(\sum c_i\va_i)\T\vx=\sum c_i(\va_i\T\vx)=0$.
-
-\textbf{۲.} همان استدلال برای $A\T$ (که سطرهایش ستون‌های $A$ هستند).
+اگر $A\vx=\zero$، ضرب داخلی هر سطر $A$ در $\vx$ صفر است؛ پس $\vx$ بر هر ترکیب خطی سطرها هم عمود است. بخش دوم همین استدلال برای $A\T$ است.
 \end{proof}
 
 \begin{intuition}
-هر $\vx\in\R^n$ را می‌توان به شکل $\vx=\vx_r+\vx_n$ نوشت که $\vx_r$ در فضای سطری و $\vx_n$ در فضای پوچ است. آن‌گاه
-\[
-A\vx=A(\vx_r+\vx_n)=A\vx_r+A\vx_n=A\vx_r .
-\]
-یعنی $A$ بخش فضای پوچ را «له» می‌کند و فقط بخش فضای سطری به فضای ستونی منتقل می‌شود.
+اگر $\vx=\vx_r+\vx_n$ ($\vx_r\in\Row(A)$، $\vx_n\in\Nul(A)$)، آن‌گاه $A\vx=A\vx_r$: $A$ بخش فضای پوچ را «له» می‌کند.
 \end{intuition}
 
 \begin{example}
-چهار زیرفضای اساسی $A=\begin{bmatrix}1&2\\3&6\end{bmatrix}$ را پیدا کنید ($m=n=2$ و $r=1$).
+چهار زیرفضای $A=\begin{bmatrix}1&2\\3&6\end{bmatrix}$ ($r=1$).
 \end{example}
 \begin{solution}
-\begin{itemize}
-  \item \textbf{فضای ستونی:} همه‌ی مضرب‌های $\begin{bmatrix}1\\3\end{bmatrix}$ (ستون دوم دو برابر اولی است).
-  \item \textbf{فضای سطری:} همه‌ی مضرب‌های $\begin{bmatrix}1\\2\end{bmatrix}$ (سطر دوم سه برابر اولی است).
-  \item \textbf{فضای پوچ:} $x_1+2x_2=0$، پس همه‌ی مضرب‌های $\begin{bmatrix}-2\\1\end{bmatrix}$.
-  \item \textbf{فضای پوچ چپ:} همه‌ی مضرب‌های $\vy=\begin{bmatrix}-3\\1\end{bmatrix}$؛ چون سطرهای $A$ با ضرایب $-3$ و $1$ جمعشان صفر می‌شود: $A\T\vy=\zero$.
-\end{itemize}
-می‌بینیم که $(1,2)\cdot(-2,1)=0$ (فضای سطری $\perp$ فضای پوچ) و $(1,3)\cdot(-3,1)=0$ (فضای ستونی $\perp$ فضای پوچ چپ). در $\R^2$ هر کدام از این‌ها یک خط است و هر جفت، دو خط عمود بر هم.
-\begin{center}
-\begin{tikzpicture}[scale=0.7,>=Latex]
-  \draw[->, gray] (-2.4,0)--(2.4,0); \draw[->, gray] (0,-2.2)--(0,2.6);
-  \draw[very thick, primary] (-1,-2)--(1.2,2.4) node[above] {\small $\Row(A)$};
-  \draw[very thick, excolor] (-2.4,1.2)--(2.4,-1.2) node[right] {\small $\Nul(A)$};
-  \node at (0,-2.8) {\small $\R^n=\R^2$};
-  \begin{scope}[xshift=7.5cm]
-  \draw[->, gray] (-2.4,0)--(2.4,0); \draw[->, gray] (0,-2.2)--(0,2.6);
-  \draw[very thick, thmcolor] (-0.75,-2.25)--(0.85,2.55) node[above] {\small $\Col(A)$};
-  \draw[very thick, notecolor] (-2.4,0.8)--(2.4,-0.8) node[right] {\small $\Nul(A\T)$};
-  \node at (0,-2.8) {\small $\R^m=\R^2$};
-  \end{scope}
-\end{tikzpicture}
-\end{center}
+$\Col(A)=\Span\{(1,3)\}$، $\Row(A)=\Span\{(1,2)\}$، $\Nul(A)=\Span\{(-2,1)\}$ و $\Nul(A\T)=\Span\{(-3,1)\}$ (سطر دوم سه برابر اولی است). می‌بینیم $(1,2)\perp(-2,1)$ و $(1,3)\perp(-3,1)$.
 \end{solution}
 
-\subsection{خلاصه‌ی چهار زیرفضا و حل‌پذیری}
-فرض کنید $A$ ماتریسی $m\times n$ با رتبه‌ی $r$ باشد. همیشه $r\le\min(m,n)$.
 \begin{center}
 \renewcommand{\arraystretch}{1.5}
 \resizebox{\linewidth}{!}{%
@@ -500,65 +255,37 @@ A\vx=A(\vx_r+\vx_n)=A\vx_r+A\vx_n=A\vx_r .
 \toprule
 \lr{$m,n,r$} & $\dim\Row(A)$ & $\dim\Nul(A)$ & $\dim\Col(A)$ & $\dim\Nul(A\T)$ & \textbf{حل‌پذیری $A\vx=\vb$}\\
 \midrule
-$m=n=r$ & $r$ & $0$ & $r$ & $0$ & همیشه حل‌پذیر؛ جواب یکتای $\vx=A^{-1}\vb$\\
-$m>n=r$ & $r$ & $0$ & $r$ & $m-r$ & فقط اگر $\vb\in\Col(A)$؛ آن‌وقت جواب یکتا\\
-$n>m=r$ & $r$ & $n-r$ & $r$ & $0$ & همیشه حل‌پذیر؛ بی‌شمار جواب $\vx=\vx_p+\Nul(A)$\\
-$r<\min(m,n)$ & $r$ & $n-r$ & $r$ & $m-r$ & فقط اگر $\vb\in\Col(A)$؛ آن‌وقت بی‌شمار جواب\\
+$m=n=r$ & $r$ & $0$ & $r$ & $0$ & همیشه؛ جواب یکتای $\vx=A^{-1}\vb$\\
+$m>n=r$ & $r$ & $0$ & $r$ & $m-r$ & فقط اگر $\vb\in\Col(A)$؛ آن‌وقت یکتا\\
+$n>m=r$ & $r$ & $n-r$ & $r$ & $0$ & همیشه؛ بی‌شمار جواب $\vx_p+\Nul(A)$\\
+$r<\min(m,n)$ & $r$ & $n-r$ & $r$ & $m-r$ & فقط اگر $\vb\in\Col(A)$؛ آن‌وقت بی‌شمار\\
 \bottomrule
 \end{tabular}}
 \end{center}
-\textbf{چرا؟}
-\begin{itemize}
-  \item اگر $r=m$ (رتبه‌ی کامل سطری)، $\Col(A)$ یک زیرفضای $m$-بعدی از $\R^m$ یعنی کل $\R^m$ است؛ پس هر $\vb$ قابل دسترسی است.
-  \item اگر $r<m$، $\Col(A)$ زیرفضای سره‌ی $\R^m$ است و بعضی $\vb$ها بیرون آن‌اند.
-  \item اگر $r=n$ (رتبه‌ی کامل ستونی)، $\Nul(A)=\{\zero\}$ و طبق قضیه‌ی \ref{thm:general-solution} جواب (اگر باشد) یکتاست.
-  \item اگر $r<n$، $\Nul(A)$ ناصفر است و هر جواب، با افزودن عضوهای فضای پوچ، بی‌شمار جواب دیگر می‌سازد.
-\end{itemize}
+اگر $r=m$، $\Col(A)=\R^m$ و هر $\vb$ قابل دسترسی است. اگر $r=n$، $\Nul(A)=\{\zero\}$ و جواب (اگر باشد) یکتاست (قضیه‌ی \ref{thm:general-solution}).
 
 \section{جمع‌بندی و تمرین}
 
 \begin{summary}
 \begin{itemize}
-  \item $\Col(A)=\{A\vx\}\subseteq\R^m$، $\Row(A)=\Col(A\T)\subseteq\R^n$، $\Nul(A)=\{\vx: A\vx=\zero\}\subseteq\R^n$، $\Nul(A\T)\subseteq\R^m$.
-  \item عملیات سطری فضای سطری و فضای پوچ را حفظ می‌کنند، اما فضای ستونی را نه.
-  \item پایه‌ها: سطرهای ناصفر فرم پلکانی (برای $\Row$)، ستون‌های محوری \emph{خودِ} $A$ (برای $\Col$)، بردارهای جواب برداری-پارامتری (برای $\Nul$).
-  \item $\rank(A)=\ColRank=\RowRank$ = تعداد محورها؛ $\nullity(A)$ = تعداد متغیرهای آزاد؛ $\rank(A)+\nullity(A)=n$.
-  \item $\rank(AB)\le\min(\rank A,\rank B)$ و $\rank(A\T A)=\rank(A)$.
+  \item عملیات سطری $\Row$ و $\Nul$ را حفظ می‌کنند، اما $\Col$ را نه.
+  \item پایه‌ها: سطرهای ناصفر فرم پلکانی ($\Row$)، ستون‌های محوری خودِ $A$ ($\Col$)، بردارهای جواب برداری-پارامتری ($\Nul$).
+  \item $\rank(A)=\ColRank=\RowRank$ و $\rank(A)+\nullity(A)=n$؛ $\rank(AB)\le\min(\rank A,\rank B)$.
   \item $A_{n\times n}$ وارون‌پذیر $\iff\rank A=n\iff\Nul(A)=\{\zero\}\iff\RREF(A)=I$.
   \item $\Nul(A)\perp\Row(A)$ و $\Nul(A\T)\perp\Col(A)$؛ بُعدها: $r,\ n-r,\ r,\ m-r$.
 \end{itemize}
 \end{summary}
 
-\begin{exercise}
-رتبه و پوچی $\begin{bmatrix}1&2&3\\2&4&6\end{bmatrix}$ را بیابید.
-\end{exercise}
-
-\begin{exercise}
-آیا یک ماتریس $3\times5$ می‌تواند پوچی ۱ داشته باشد؟
-\end{exercise}
-
-\begin{exercise}
-برای $A=\begin{bmatrix}1&2&0&1\\2&4&1&4\\3&6&1&5\end{bmatrix}$ پایه‌ای برای $\Col(A)$ و $\Nul(A)$ بیابید و قضیه‌ی رتبه-پوچی را بررسی کنید.
-\end{exercise}
-
-\begin{exercise}
-نشان دهید اگر $A_{m\times n}$ و $A\vx=\vb$ برای هر $\vb\in\R^m$ جواب داشته باشد، آن‌گاه $\rank(A)=m$ و $n\ge m$.
-\end{exercise}
-
-\begin{exercise}
-وارون $\begin{bmatrix}1&2\\3&5\end{bmatrix}$ را با روش گاوس-جردن حساب کنید.
-\end{exercise}
-
-\begin{exercise}
-در مثال ماتریس $4\times5$ (ماتریس $B$)، یک بردار ناصفر در $\Nul(B\T)$ پیدا کنید. این بردار چه رابطه‌ای بین سطرهای $B$ نشان می‌دهد؟
-\end{exercise}
+\subsection*{تمرین‌ها}
+\begin{enumerate}
+  \item آیا یک ماتریس $3\times5$ می‌تواند پوچی ۱ داشته باشد؟
+  \item برای $A=\begin{bmatrix}1&2&0&1\\2&4&1&4\\3&6&1&5\end{bmatrix}$ پایه‌ی $\Col(A)$ و $\Nul(A)$ را بیابید.
+  \item وارون $\begin{bmatrix}1&2\\3&5\end{bmatrix}$ را با روش گاوس-جردن حساب کنید.
+\end{enumerate}
 
 \subsection*{پاسخ‌های کوتاه}
 \begin{enumerate}
-  \item سطر دوم دو برابر اولی است: $\rank=1$ و $\nullity=3-1=2$.
-  \item خیر: رتبه حداکثر ۳ است، پس پوچی دست‌کم $5-3=2$ است.
-  \item $\RREF(A)=\begin{bmatrix}1&2&0&1\\0&0&1&2\\0&0&0&0\end{bmatrix}$؛ ستون‌های محوری ۱ و ۳. پایه‌ی $\Col(A)$: $\{(1,2,3),(0,1,1)\}$. پایه‌ی $\Nul(A)$: $\{(-2,1,0,0),(-1,0,-2,1)\}$. $2+2=4$ (درست است).
-  \item $\Col(A)=\R^m$ پس $\rank(A)=m$؛ و رتبه از تعداد ستون‌ها بیشتر نیست، پس $m\le n$.
+  \item خیر؛ رتبه حداکثر ۳ است، پس پوچی دست‌کم ۲ است.
+  \item $\RREF(A)=\begin{bmatrix}1&2&0&1\\0&0&1&2\\0&0&0&0\end{bmatrix}$. $\Col(A)$: $\{(1,2,3),(0,1,1)\}$؛ $\Nul(A)$: $\{(-2,1,0,0),(-1,0,-2,1)\}$؛ و $2+2=4$.
   \item $\begin{bmatrix}-5&2\\3&-1\end{bmatrix}$.
-  \item $\vy=(-1,-1,-1,1)$؛ یعنی سطر چهارم مجموع سه سطر اول است. ($\dim\Nul(B\T)=4-3=1$.)
 \end{enumerate}
