@@ -34,7 +34,7 @@
         window.katex.render(el.textContent, el, {
           displayMode: display, macros: Object.assign({}, MACROS), throwOnError: false, strict: 'ignore', output: 'html'
         });
-      } catch (e) { /* leave the TeX source visible */ }
+      } catch (e) { }
       el.setAttribute('data-done', '');
     });
     console.warn = warn;
@@ -116,7 +116,6 @@
   window.addEventListener('hashchange', route);
   route();
 
-  /* Drawer: popover + scroll snap; in RTL the sheet sits at scrollLeft 0 and the closed stop is negative. */
   const drawer = document.getElementById('drawer');
   const openBtn = document.getElementById('drawer-open');
   const closeBtn = document.getElementById('drawer-close');

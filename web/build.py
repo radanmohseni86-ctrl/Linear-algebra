@@ -1,15 +1,4 @@
 #!/usr/bin/env python3
-"""Build the web version of the notes from the LaTeX sources.
-
-Usage (from the repository root, after `make` so build/jozve.aux exists):
-    cd web && npm install && cd ..
-    python3 web/build.py
-
-Outputs:
-    site/index.html     full page for GitHub Pages
-    site/artifact.html  the same page without the document skeleton
-    site/jozve.pdf      copy of the PDF
-"""
 import base64
 import html
 import json
