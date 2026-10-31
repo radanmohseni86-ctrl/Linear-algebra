@@ -8,3 +8,5 @@ build/
 *.xdv
 *.synctex.gz
 _part.tex
+site/
+web/node_modules/

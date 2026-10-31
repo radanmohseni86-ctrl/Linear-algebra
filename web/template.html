@@ -1,0 +1,90 @@
+<title>جزوه‌ی جبر خطی</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap">
+<style>/*KATEX_CSS*/</style>
+<style>/*STYLE*/</style>
+<!--BODY-->
+<div class="app" dir="rtl" lang="fa">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button id="drawer-open" class="icon-btn menu-btn" type="button" aria-label="فهرست مطالب" aria-expanded="false" aria-controls="drawer">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22"><path d="M4 6h16M4 12h16M4 18h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 19 L13 15 M4 19 L8 9 M4 19 L17 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>جبر خطی</a>
+      <span class="crumb" id="crumb"></span>
+      <a class="pdf-btn" href="{{PDF_URL}}" target="_blank" rel="noopener">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 19h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>PDF</span>
+      </a>
+    </div>
+    <div class="progress" aria-hidden="true"></div>
+  </header>
+
+  <div class="layout">
+    <nav class="toc-side" aria-label="فهرست مطالب"><div class="toc" id="toc-side"></div></nav>
+    <main id="main">
+      <section class="view home" id="home">
+        <div class="hero">
+          <div class="hero-inner">
+            <div class="hero-text">
+              <p class="hero-eyebrow">جزوه‌ی درس <span lang="en">CE282</span> · دانشکده‌ی مهندسی کامپیوتر · دانشگاه صنعتی شریف</p>
+              <h1 class="hero-title">جبر خطی</h1>
+              <p class="hero-sub">از دستگاه معادلات خطی تا فضای ضرب داخلی؛ با اثبات کامل قضیه‌ها، مثال‌های حل‌شده و تمرین با پاسخ.</p>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#ch-1">شروع از فصل ۱</a>
+                <a class="btn btn-ghost" href="#preface">درباره‌ی جزوه</a>
+                <a class="btn btn-ghost" href="{{PDF_URL}}" target="_blank" rel="noopener">نسخه‌ی <span lang="en">PDF</span></a>
+              </div>
+              <p class="hero-meta">نیم‌سال اول ۱۴۰۵–۱۴۰۶ · بر پایه‌ی اسلایدهای حمیدرضا ربیعی و مریم رمضانی</p>
+            </div>
+            <figure class="hero-art" aria-hidden="true">
+              <svg viewBox="0 0 320 260" role="img">
+                <defs>
+                  <pattern id="hero-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="currentColor" stroke-opacity=".14"/></pattern>
+                  <marker id="hero-tip" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker>
+                  <marker id="hero-tip-sum" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" class="hero-sum-fill"/></marker>
+                </defs>
+                <rect width="320" height="260" fill="url(#hero-grid)"/>
+                <path d="M40 220 L210 180 L262 70 L92 110 Z" fill="currentColor" fill-opacity=".1"/>
+                <path d="M210 180 L262 70 M92 110 L262 70" fill="none" stroke="currentColor" stroke-opacity=".45" stroke-dasharray="5 5"/>
+                <line x1="40" y1="220" x2="206" y2="181" stroke="currentColor" stroke-width="3.5" marker-end="url(#hero-tip)"/>
+                <line x1="40" y1="220" x2="90" y2="114" stroke="currentColor" stroke-width="3.5" marker-end="url(#hero-tip)"/>
+                <line x1="40" y1="220" x2="257" y2="73" class="hero-sum" stroke-width="4" marker-end="url(#hero-tip-sum)"/>
+                <circle cx="40" cy="220" r="5" fill="currentColor"/>
+                <text x="214" y="204" class="hero-label">u</text>
+                <text x="70" y="104" class="hero-label">v</text>
+                <text x="268" y="62" class="hero-label hero-sum-label">u + v</text>
+              </svg>
+            </figure>
+          </div>
+        </div>
+        <div class="home-body">
+          <h2 class="home-h">فصل‌ها</h2>
+          <ol class="chapter-grid" id="chapter-grid"></ol>
+        </div>
+      </section>
+      <!--CHAPTERS-->
+    </main>
+  </div>
+
+  <div class="Drawer" id="drawer" popover="manual">
+    <div class="Drawer-scroller">
+      <nav class="Drawer-sheet" tabindex="-1" aria-label="فهرست مطالب">
+        <div class="drawer-head">
+          <span>فهرست مطالب</span>
+          <button class="icon-btn" id="drawer-close" type="button" aria-label="بستن فهرست">
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+        <div class="toc" id="toc-drawer"></div>
+      </nav>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script>
+const TOC = /*TOC_JSON*/;
+/*APP_JS*/
+</script>

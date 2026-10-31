@@ -10,4 +10,8 @@ clean:
 	latexmk -C $(MAIN).tex
 	rm -rf build
 
-.PHONY: all clean
+web: $(MAIN).pdf
+	cd web && npm install --no-audit --no-fund
+	python3 web/build.py
+
+.PHONY: all clean web

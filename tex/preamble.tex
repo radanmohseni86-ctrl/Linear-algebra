@@ -116,6 +116,7 @@
 \newcounter{boxnum}[chapter]
 \makeatletter
 \renewcommand{\theboxnum}{\thechapter\@SepMark\arabic{boxnum}}
+\newcommand{\setboxlabel}{\protected@edef\@currentlabel{\theboxnum}}
 \makeatother
 
 \tcbset{
@@ -136,27 +137,27 @@
 \newtcolorbox{definition}[1][]{jozvebase, colback=defbg, colframe=defcolor,
   borderline east={3pt}{0pt}{defcolor},
   boxed title style={colback=defcolor},
-  step=boxnum, title={\boxtitle{تعریف \theboxnum}{#1}}}
+  step=boxnum, before upper=\setboxlabel, title={\boxtitle{تعریف \theboxnum}{#1}}}
 
 \newtcolorbox{theorem}[1][]{jozvebase, colback=thmbg, colframe=thmcolor,
   borderline east={3pt}{0pt}{thmcolor},
   boxed title style={colback=thmcolor},
-  step=boxnum, title={\boxtitle{قضیه \theboxnum}{#1}}}
+  step=boxnum, before upper=\setboxlabel, title={\boxtitle{قضیه \theboxnum}{#1}}}
 
 \newtcolorbox{lemma}[1][]{jozvebase, colback=lembg, colframe=lemcolor,
   borderline east={3pt}{0pt}{lemcolor},
   boxed title style={colback=lemcolor},
-  step=boxnum, title={\boxtitle{لم \theboxnum}{#1}}}
+  step=boxnum, before upper=\setboxlabel, title={\boxtitle{لم \theboxnum}{#1}}}
 
 \newtcolorbox{corollary}[1][]{jozvebase, colback=lembg, colframe=lemcolor,
   borderline east={3pt}{0pt}{lemcolor},
   boxed title style={colback=lemcolor},
-  step=boxnum, title={\boxtitle{نتیجه \theboxnum}{#1}}}
+  step=boxnum, before upper=\setboxlabel, title={\boxtitle{نتیجه \theboxnum}{#1}}}
 
 \newtcolorbox{example}[1][]{jozvebase, colback=exbg, colframe=excolor,
   borderline east={3pt}{0pt}{excolor},
   boxed title style={colback=excolor},
-  step=boxnum, title={\boxtitle{مثال \theboxnum}{#1}}}
+  step=boxnum, before upper=\setboxlabel, title={\boxtitle{مثال \theboxnum}{#1}}}
 
 \newtcolorbox{note}[1][]{jozvebase, colback=notebg, colframe=notecolor,
   borderline east={3pt}{0pt}{notecolor},
@@ -181,7 +182,7 @@
 \newtcolorbox{exercise}[1][]{jozvebase, colback=white, colframe=excolor!70!black,
   boxrule=0.6pt, drop fuzzy shadow=black!0,
   boxed title style={colback=excolor!70!black},
-  step=boxnum, title={\boxtitle{تمرین \theboxnum}{#1}}}
+  step=boxnum, before upper=\setboxlabel, title={\boxtitle{تمرین \theboxnum}{#1}}}
 
 \newcommand{\qedsymbolbox}{\textcolor{proofcolor}{$\blacksquare$}}
 \newtcolorbox{proof}[1][]{enhanced, breakable, frame hidden, sharp corners,

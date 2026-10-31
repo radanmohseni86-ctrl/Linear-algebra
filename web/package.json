@@ -1,0 +1,8 @@
+{
+  "name": "linear-algebra-notes-web",
+  "private": true,
+  "description": "Build dependencies for the web edition of the notes",
+  "dependencies": {
+    "katex": "0.16.9"
+  }
+}
