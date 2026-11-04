@@ -10,6 +10,7 @@
 
 - **نسخه‌ی وب (روی موبایل هم راحت خوانده می‌شود):** https://radanmohseni86-ctrl.github.io/Linear-algebra/
 - **[دانلود فایل PDF جزوه (jozve.pdf)](jozve.pdf)** — حدود ۸۵ صفحه.
+- **همه‌ی جزوه‌ها (جبر خطی، اتوماتا و …):** https://radanmohseni86-ctrl.github.io/
 
 ## چه چیزی در این جزوه هست؟
 
