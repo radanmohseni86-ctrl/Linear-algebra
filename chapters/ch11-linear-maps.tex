@@ -1,0 +1,278 @@
+\chapter{تبدیل خطی}
+\label{ch:linear-maps}
+
+هر ماتریس $A_{m\times n}$ یک «ماشین» است که بردار $\vx\in\R^n$ را می‌گیرد و $A\vx\in\R^m$ را برمی‌گرداند. تبدیل خطی همین ایده را برای هر فضای برداری تعمیم می‌دهد. در این فصل می‌بینیم چنین تابعی چه خاصیتی دارد، با دو زیرفضای \emph{هسته} و \emph{برد} چه چیزهایی درباره‌اش می‌فهمیم، و چرا دو فضای هم‌بُعد در واقع «یکی»اند.
+
+\section{تعریف و مثال}
+
+\begin{definition}[تبدیل خطی]
+فرض کنید $V$ و $W$ فضاهای برداری روی $\F$ باشند. تابع $T:V\to W$ یک \term{تبدیل خطی}{Linear Transformation / Linear Map} است اگر برای هر $\vx,\vy\in V$ و $\alpha\in\F$:
+\[
+T(\vx+\vy)=T(\vx)+T(\vy),\qquad T(\alpha\vx)=\alpha\,T(\vx).
+\]
+$V$ \term{دامنه}{Domain} و $W$ \term{هم‌دامنه}{Codomain} است. مجموعه‌ی همه‌ی تبدیل‌های خطی از $V$ به $W$ را $\mathcal{L}(V,W)$ و $\mathcal{L}(V,V)$ را $\mathcal{L}(V)$ می‌نامیم.
+\end{definition}
+
+\begin{note}
+(۱) $T(\zero)=\zero$ (با $\alpha=0$). (۲) $T$ ترکیب خطی را حفظ می‌کند: $T(\sum\alpha_i\vx_i)=\sum\alpha_iT(\vx_i)$. پس تابع $\vx\mapsto A\vx$ همیشه خطی است.
+\end{note}
+
+\begin{theorem}[تعیین تبدیل با تصویر پایه]\label{thm:linmap-basis}
+اگر $(\vv_1,\dots,\vv_n)$ پایه‌ی مرتب $V$ باشد و $\vw_1,\dots,\vw_n\in W$ دلخواه، تبدیل خطی یکتای $T:V\to W$ با $T(\vv_i)=\vw_i$ وجود دارد.
+\end{theorem}
+\begin{proof}
+\textbf{وجود:} هر $\vv\in V$ نمایش یکتای $\vv=\sum a_i\vv_i$ دارد؛ تعریف می‌کنیم $T(\vv)=\sum a_i\vw_i$. اگر $\vu=\sum b_i\vv_i$، مختصات $\alpha\vv+\beta\vu$ برابر $\alpha a_i+\beta b_i$ است؛ پس $T(\alpha\vv+\beta\vu)=\alpha T(\vv)+\beta T(\vu)$ و $T(\vv_i)=\vw_i$.
+
+\textbf{یکتایی:} اگر $S$ هم خطی و $S(\vv_i)=\vw_i$ باشد، $S(\vv)=\sum a_iS(\vv_i)=\sum a_i\vw_i=T(\vv)$.
+\end{proof}
+
+\begin{example}
+کدام خطی‌اند؟ نگاشت صفر و همانی؛ مشتق‌گیری $p\mapsto p'$ روی $P(\F)$؛ $T(x,y)=(x-2y,\,3x+y)$؛ $x\mapsto e^x$؛ $x\mapsto x-1$.
+\end{example}
+\begin{solution}
+صفر و همانی خطی‌اند. مشتق خطی است چون $(\alpha p+\beta q)'=\alpha p'+\beta q'$. نگاشت $(x,y)\mapsto(x-2y,3x+y)$ ضرب در ماتریس $\begin{bmatrix}1&-2\\3&1\end{bmatrix}$ است؛ پس خطی است. $e^x$ و $x-1$ خطی نیستند، چون در $0$ مقدارشان $1$ و $-1$ است (و $T(0)=0$ لازم است).
+\end{solution}
+
+\section{جبر تبدیل‌های خطی}
+
+برای $S,T\in\mathcal{L}(V,W)$: $(S+T)(\vv)=S\vv+T\vv$ و $(\lambda T)(\vv)=\lambda(T\vv)$. برای $T\in\mathcal{L}(U,V)$ و $S\in\mathcal{L}(V,W)$ \term{ضرب}{Product} $ST\in\mathcal{L}(U,W)$ با $(ST)(\vu)=S(T\vu)$ تعریف می‌شود.
+
+\begin{theorem}\label{thm:LVW}
+$S+T$، $\lambda T$ و $ST$ خطی‌اند و $\mathcal{L}(V,W)$ با این جمع و ضرب اسکالر یک فضای برداری است.
+\end{theorem}
+\begin{proof}
+$(S+T)(\alpha\vu+\beta\vv)=\alpha S\vu+\beta S\vv+\alpha T\vu+\beta T\vv=\alpha(S+T)\vu+\beta(S+T)\vv$ و $(\lambda T)(\alpha\vu+\beta\vv)=\alpha(\lambda T)\vu+\beta(\lambda T)\vv$. برای ضرب: $ST(\alpha\vu+\beta\vv)=S(\alpha T\vu+\beta T\vv)=\alpha ST\vu+\beta ST\vv$. تبدیل صفر خنثی و $-T$ قرینه‌ی $T$ است؛ بقیه‌ی اصول از اصول $W$ می‌آیند، چون جمع و ضرب نقطه‌به‌نقطه تعریف شده‌اند (مثل $\F^X$ در فصل ۳).
+\end{proof}
+
+\section{دوران، تصویر و بازتاب در صفحه}
+
+یک تبدیل خطی $\R^2\to\R^2$ با تصویر $\ve_1$ و $\ve_2$ معلوم می‌شود (قضیه‌ی \ref{thm:linmap-basis}) و این دو تصویر ستون‌های ماتریسش‌اند.
+
+\textbf{دوران به اندازه‌ی $\theta$:} $\ve_1=(1,0)$ به $(\cos\theta,\sin\theta)$ و $\ve_2=(0,1)$ به $(-\sin\theta,\cos\theta)$ می‌رود؛ پس
+\[
+R_\theta=\begin{bmatrix}\cos\theta&-\sin\theta\\ \sin\theta&\cos\theta\end{bmatrix}.
+\]
+
+\textbf{تصویر روی خط با جهت یکه‌ی $\vu=(\cos\theta,\sin\theta)$:} $P(\vv)=(\vv\T\vu)\vu$؛ پس $P=\vu\vu\T$:
+\[
+P=\begin{bmatrix}\cos^2\theta&\cos\theta\sin\theta\\ \cos\theta\sin\theta&\sin^2\theta\end{bmatrix},\qquad P^2=\vu(\vu\T\vu)\vu\T=P.
+\]
+
+\textbf{بازتاب نسبت به همان خط:} مؤلفه‌ی موازی خط می‌ماند و مؤلفه‌ی عمود برعکس می‌شود: $R(\vv)=P\vv-(\vv-P\vv)=2P\vv-\vv$؛ پس
+\[
+R=2P-I=\begin{bmatrix}\cos2\theta&\sin2\theta\\ \sin2\theta&-\cos2\theta\end{bmatrix},\qquad R^2=4P^2-4P+I=I.
+\]
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85,>=Latex]
+  \draw[->, gray] (-0.4,0)--(3.6,0); \draw[->, gray] (0,-0.4)--(0,3.2);
+  \draw[->, very thick, excolor] (0,0)--(2.8,1.0) node[right] {$\vx$};
+  \draw[->, very thick, warncolor] (0,0)--(1.0,2.8) node[above] {$R_\theta\vx$};
+  \draw (1.2,0.43) arc (19.6:70.4:1.28);
+  \node at (1.05,1.3) {\scriptsize $\theta$};
+  \node at (1.8,-0.7) {\small \fa{دوران}};
+  \begin{scope}[xshift=6.3cm]
+  \draw[->, gray] (-0.4,0)--(3.6,0); \draw[->, gray] (0,-0.4)--(0,3.2);
+  \draw[thick, primary] (-0.3,-0.18)--(3.41,2.09) node[right] {\small \fa{خط}};
+  \draw[->, very thick, excolor] (0,0)--(2.8,0.4) node[below right] {$\vx$};
+  \draw[->, very thick, thmcolor] (0,0)--(2.215,1.358) node[above left] {$P\vx$};
+  \draw[->, very thick, warncolor] (0,0)--(1.63,2.316) node[above] {$R\vx$};
+  \draw[dashed, gray] (2.8,0.4)--(2.215,1.358)--(1.63,2.316);
+  \node at (1.8,-0.7) {\small \fa{تصویر و بازتاب}};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lc}
+\toprule
+\textbf{تبدیل} & \textbf{ماتریس استاندارد}\\
+\midrule
+تصویر روی محور $x_1$ & $\begin{bmatrix}1&0\\0&0\end{bmatrix}$\\
+تصویر روی محور $x_2$ & $\begin{bmatrix}0&0\\0&1\end{bmatrix}$\\
+بازتاب نسبت به محور $x_1$ & $\begin{bmatrix}1&0\\0&-1\end{bmatrix}$\\
+بازتاب نسبت به محور $x_2$ & $\begin{bmatrix}-1&0\\0&1\end{bmatrix}$\\
+بازتاب نسبت به خط $x_2=x_1$ & $\begin{bmatrix}0&1\\1&0\end{bmatrix}$\\
+بازتاب نسبت به خط $x_2=-x_1$ & $\begin{bmatrix}0&-1\\-1&0\end{bmatrix}$\\
+بازتاب نسبت به مبدأ & $\begin{bmatrix}-1&0\\0&-1\end{bmatrix}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+در $\R^3$ هم $\begin{bmatrix}1&0&0\\0&1&0\\0&0&0\end{bmatrix}$ هر نقطه را روی صفحه‌ی $x_1x_2$ می‌اندازد.
+
+\begin{warning}[انتقال خطی نیست]
+$T(\vx)=\vx+\vb$ با $\vb\neq\zero$ خطی نیست، چون $T(\zero)=\vb\neq\zero$.
+\end{warning}
+
+\section{هسته و برد}
+
+\begin{definition}[هسته و برد]
+برای $T\in\mathcal{L}(V,W)$:
+\begin{itemize}
+  \item \term{هسته}{Null Space / Kernel}: $\Null(T)=\{\vv\in V: T\vv=\zero\}$؛ و $\nullity(T)=\dim\Null(T)$.
+  \item \term{برد}{Range}: $\Range(T)=\{T\vv:\vv\in V\}\subseteq W$.
+\end{itemize} برای $T_A(\vx)=A\vx$ داریم $\Null(T_A)=\Nul(A)$ و $\Range(T_A)=\Col(A)$.
+\end{definition}
+
+\begin{theorem}\label{thm:null-range-subspace}
+$\Null(T)$ زیرفضای $V$ و $\Range(T)$ زیرفضای $W$ است.
+\end{theorem}
+\begin{proof}
+$T(\zero)=\zero$ در هر دو هست. اگر $\vu,\vv\in\Null(T)$، $T(\alpha\vu+\beta\vv)=\alpha T\vu+\beta T\vv=\zero$. اگر $\vw_1=T\vv_1$ و $\vw_2=T\vv_2$ در برد باشند، $\alpha\vw_1+\beta\vw_2=T(\alpha\vv_1+\beta\vv_2)\in\Range(T)$.
+\end{proof}
+
+\begin{example}
+هسته‌ی $T(x,y,z)=x+2y+3z$ و برد مشتق‌گیری $T:P\to P$ را بیابید.
+\end{example}
+\begin{solution}
+$x=-2y-3z$؛ پس $\Null(T)=\Span\{(-2,1,0),(-3,0,1)\}$. برای مشتق، هر چندجمله‌ای $q=b_0+b_1z+\dots+b_mz^m$ مشتق $p=b_0z+\frac{b_1z^2}2+\dots+\frac{b_mz^{m+1}}{m+1}$ است؛ پس $\Range(T)=P$ (و هسته‌ی مشتق، ثابت‌هاست).
+\end{solution}
+
+\section{یک‌به‌یک و پوشا}
+
+\begin{definition}[یک‌به‌یک و پوشا]
+$T:V\to W$ \term{یک‌به‌یک}{Injective / One-to-One} است اگر هر $\vb\in W$ تصویر \emph{حداکثر یک} $\vx$ باشد؛ یعنی $T(\vu)=T(\vv)\Rightarrow\vu=\vv$. \term{پوشا}{Surjective / Onto} است اگر هر $\vb\in W$ تصویر \emph{دست‌کم یک} $\vx$ باشد؛ یعنی $\Range(T)=W$. هر دو: \term{دوسویی}{Bijective}؛ یعنی $T(\vx)=\vb$ برای هر $\vb$ دقیقاً یک جواب دارد.
+\end{definition}
+
+\begin{theorem}\label{thm:injective-null}
+$T$ یک‌به‌یک است اگر و تنها اگر $\Null(T)=\{\zero\}$ (یعنی $T(\vx)=\zero$ فقط جواب بدیهی دارد).
+\end{theorem}
+\begin{proof}
+اگر $T$ یک‌به‌یک و $T\vv=\zero=T\zero$، آن‌گاه $\vv=\zero$. برعکس، اگر $T\vu=T\vv$، آن‌گاه $T(\vu-\vv)=\zero$؛ پس $\vu-\vv\in\Null(T)=\{\zero\}$ و $\vu=\vv$.
+\end{proof}
+
+برای ماتریس $A_{m\times n}$ و $T(\vx)=A\vx$:
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{p{6.3cm}p{6.3cm}}
+\toprule
+\textbf{یک‌به‌یک} & \textbf{پوشا}\\
+\midrule
+$T(\vx)=\vb$ حداکثر یک جواب دارد & برای هر $\vb$ دست‌کم یک جواب دارد\\
+ستون‌های $A$ مستقل‌اند & ستون‌های $A$، $\R^m$ را تولید می‌کنند\\
+در هر ستون محور داریم & در هر سطر محور داریم\\
+$\dim\Range(T)=n$ & $\dim\Range(T)=m$\\
+\bottomrule
+\end{tabular}
+\end{center}
+پس برای ماتریس مربعی یک‌به‌یک بودن و پوشا بودن یکی است (محور در هر ستون $\iff$ محور در هر سطر)؛ و اگر $T:\R^m\to\R^n$ هر دو باشد، $m=n$.
+
+\section{قضیه‌ی بنیادی تبدیل‌های خطی}
+
+\begin{theorem}[رتبه-پوچی برای تبدیل خطی]\label{thm:rank-nullity-map}
+اگر $V$ متناهی‌البُعد و $T\in\mathcal{L}(V,W)$ باشد، $\Range(T)$ متناهی‌البُعد است و
+\begin{keyformula}
+\[
+\dim V=\dim\Null(T)+\dim\Range(T).
+\]
+\end{keyformula}
+\end{theorem}
+\begin{proof}
+پایه‌ی $\{\vu_1,\dots,\vu_k\}$ از $\Null(T)$ را به پایه‌ی $\{\vu_1,\dots,\vu_k,\vv_1,\dots,\vv_r\}$ از $V$ گسترش می‌دهیم (قضیه‌ی \ref{thm:extend-basis}). ادعا: $\{T\vv_1,\dots,T\vv_r\}$ پایه‌ی $\Range(T)$ است.
+
+\textbf{تولید:} هر بردار $V$ ترکیب خطی $\vu_i$ و $\vv_j$ است و $T\vu_i=\zero$؛ پس هر عضو برد ترکیب خطی $T\vv_j$هاست.
+
+\textbf{استقلال:} اگر $\sum b_jT\vv_j=\zero$، آن‌گاه $T(\sum b_j\vv_j)=\zero$ و $\sum b_j\vv_j\in\Null(T)$ ترکیب خطی $\vu_i$هاست. چون $\{\vu_i,\vv_j\}$ مستقل است، همه‌ی $b_j=0$.
+
+پس $\dim V=k+r$.
+\end{proof}
+
+\begin{corollary}\label{cor:map-dims}
+تبدیل خطی به فضایی با بُعد کمتر هرگز یک‌به‌یک نیست و تبدیل خطی به فضایی با بُعد بیشتر هرگز پوشا نیست.
+\end{corollary}
+\begin{proof}
+اگر $\dim V>\dim W$، $\dim\Null(T)=\dim V-\dim\Range(T)\ge\dim V-\dim W>0$؛ پس بردار ناصفری در هسته هست. اگر $\dim V<\dim W$، $\dim\Range(T)=\dim V-\dim\Null(T)\le\dim V<\dim W$؛ پس $\Range(T)$ زیرفضای سره‌ی $W$ است.
+\end{proof}
+
+مثلاً $T:\F^4\to\F^3$ هر ضابطه‌ای هم داشته باشد، $\dim\Null(T)=4-\dim\Range(T)\ge1$ و یک‌به‌یک نیست.
+
+\section{تبدیل وارون‌پذیر و یکریختی}
+
+\begin{definition}[وارون‌پذیر]
+$T\in\mathcal{L}(V,W)$ \term{وارون‌پذیر}{Invertible} است اگر $S\in\mathcal{L}(W,V)$ باشد با $ST=I_V$ و $TS=I_W$. چنین $S$ را وارون $T$ می‌نامیم.
+\end{definition}
+
+\begin{theorem}\label{thm:map-inverse-unique}
+وارون تبدیل وارون‌پذیر یکتاست و با $T^{-1}$ نشان داده می‌شود.
+\end{theorem}
+\begin{proof}
+اگر $S$ و $R$ هر دو وارون باشند، $R=R(TS)=(RT)S=S$.
+\end{proof}
+
+\begin{example}
+وارون $T(x,y,z)=(-y,x,4z)$ را بیابید.
+\end{example}
+\begin{solution}
+از $(u,v,w)=(-y,x,4z)$ داریم $x=v$، $y=-u$ و $z=\frac w4$؛ پس $T^{-1}(u,v,w)=(v,-u,\frac w4)$ و هر دو ترکیب همانی می‌دهند.
+\end{solution}
+
+\begin{theorem}\label{thm:invertible-bijective}
+(الف) $T$ وارون‌پذیر است اگر و تنها اگر یک‌به‌یک و پوشا باشد.
+(ب) اگر $\dim V=\dim W<\infty$، سه شرط «وارون‌پذیر»، «یک‌به‌یک» و «پوشا» هم‌ارزند.
+\end{theorem}
+\begin{proof}
+(الف) اگر $S$ وارون $T$ باشد: $T\vu=T\vv\Rightarrow\vu=ST\vu=ST\vv=\vv$ و $T(S\vw)=\vw$. برعکس، اگر $T$ دوسویی باشد، $S(\vw)$ را «تنها $\vv$ با $T\vv=\vw$» تعریف می‌کنیم؛ پس $ST=I$ و $TS=I$. خطی بودن $S$: تصویر $\alpha S\vw_1+\beta S\vw_2$ زیر $T$ برابر $\alpha\vw_1+\beta\vw_2$ است؛ از یکتایی $S(\alpha\vw_1+\beta\vw_2)=\alpha S\vw_1+\beta S\vw_2$.
+
+(ب) طبق قضیه‌ی رتبه-پوچی، $\dim\Null(T)=0\iff\dim\Range(T)=\dim W$؛ یعنی یک‌به‌یک بودن (قضیه‌ی \ref{thm:injective-null}) با پوشا بودن هم‌ارز است و (الف) وارون‌پذیری را می‌دهد.
+\end{proof}
+
+\begin{definition}[یکریختی]
+تبدیل وارون‌پذیر را \term{یکریختی}{Isomorphism} می‌نامیم و دو فضا را \term{یکریخت}{Isomorphic} ($V\cong W$) می‌گوییم اگر یکریختی $V\to W$ وجود داشته باشد. وارون و ترکیب یکریختی‌ها یکریختی است؛ پس $\cong$ بازتابی (با $I$)، متقارن و ترایاست.
+\end{definition}
+
+\begin{theorem}\label{thm:isomorphic-dim}
+دو فضای متناهی‌البُعد روی $\F$ یکریختند اگر و تنها اگر بُعد یکسان داشته باشند.
+\end{theorem}
+\begin{proof}
+اگر $T:V\to W$ یکریختی باشد، $\Null(T)=\{\zero\}$ و $\Range(T)=W$؛ پس طبق رتبه-پوچی $\dim V=\dim W$. برعکس، اگر $\dim V=\dim W=n$ با پایه‌های $\vv_i$ و $\vw_i$، تبدیل $T(\sum a_i\vv_i)=\sum a_i\vw_i$ (قضیه‌ی \ref{thm:linmap-basis}) هر $\vw\in W$ را از مختصات یکتایش به دست می‌دهد؛ پس دوسویی است.
+\end{proof}
+
+\begin{example}
+نشان دهید $V=\Span\{e^x,xe^x,x^2e^x\}$ با $\R^3$ یکریخت است.
+\end{example}
+\begin{solution}
+تبدیل $T(a,b,c)=ae^x+bxe^x+cx^2e^x$ خطی و پوشا بر $V$ است. یک‌به‌یک هم هست: اگر $(a+bx+cx^2)e^x=0$ برای همه‌ی $x$، چون $e^x\neq0$ چندجمله‌ای $a+bx+cx^2$ صفر است و طبق قضیه‌ی \ref{thm:monomials-indep} $a=b=c=0$. پس $T$ یکریختی است. (ماتریس $T$ نسبت به پایه‌های $\{\ve_i\}$ و $\{e^x,xe^x,x^2e^x\}$ همان $I$ است.)
+\end{solution}
+
+\begin{theorem}[قضیه‌ی ماتریس وارون‌پذیر، نسخه‌ی کامل]\label{thm:imt-full}
+برای $A_{n\times n}$ این‌ها هم‌ارزند:
+\begin{enumerate}
+  \item $A$ وارون‌پذیر (منفرد نیست) است؛ $A$ هم‌ارز سطری $I_n$ است؛ $A$ دارای $n$ محور است.
+  \item $A\vx=\zero$ فقط جواب بدیهی دارد؛ ستون‌های $A$ مستقل‌اند؛ $\vx\mapsto A\vx$ یک‌به‌یک است.
+  \item $A\vx=\vb$ برای هر $\vb$ جواب دارد؛ ستون‌های $A$، $\R^n$ را تولید می‌کنند؛ $\vx\mapsto A\vx$ پوشاست.
+  \item $A$ وارون چپ دارد؛ $A$ وارون راست دارد؛ $A\T$ وارون‌پذیر است؛ سطرهای $A$ مستقل‌اند.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+قضیه‌ی \ref{thm:imt} را بخوانید و تبدیل $T_A$ را به آن اضافه کنید: یک‌به‌یک بودن $\iff\Nul(A)=\{\zero\}$ (قضیه‌ی \ref{thm:injective-null}) و پوشا بودن $\iff\Col(A)=\R^n$. بند ۴ از قضیه‌ی \ref{thm:left-right-square} و قضیه‌ی \ref{thm:inv-props} می‌آید.
+\end{proof}
+
+\section{جمع‌بندی و تمرین}
+
+\begin{summary}
+\begin{itemize}
+  \item $T$ خطی است اگر $T(\alpha\vx+\beta\vy)=\alpha T\vx+\beta T\vy$؛ $T(\zero)=\zero$ و $T$ با تصویر پایه یکتا تعیین می‌شود. ماتریس هر تبدیل $\R^n\to\R^m$ ستون‌هایش $T(\ve_j)$ است.
+  \item دوران $R_\theta$، تصویر $P=\vu\vu\T$ ($P^2=P$) و بازتاب $2P-I$ ($R^2=I$) نمونه‌های اصلی در $\R^2$ هستند. انتقال خطی نیست.
+  \item $\Null(T)$ و $\Range(T)$ زیرفضا هستند؛ $T$ یک‌به‌یک است $\iff\Null(T)=\{\zero\}$.
+  \item $\dim V=\dim\Null(T)+\dim\Range(T)$؛ به فضای کوچک‌تر یک‌به‌یک نیست و به فضای بزرگ‌تر پوشا نیست.
+  \item $T$ وارون‌پذیر $\iff$ یک‌به‌یک و پوشا؛ در بُعد برابر کافی است یکی را بررسی کنیم. دو فضای متناهی‌البُعد یکریختند $\iff$ هم‌بُعدند.
+\end{itemize}
+\end{summary}
+
+\subsection*{تمرین‌ها}
+\begin{enumerate}
+  \item آیا $T(x,y)=(x+1,y)$ خطی است؟ $T(x,y)=(xy,y)$ چطور؟
+  \item هسته و برد $T(x,y,z)=(x+y,\,y+z)$ را بیابید. آیا یک‌به‌یک یا پوشاست؟
+  \item ماتریس بازتاب نسبت به خط $x_2=\sqrt3\,x_1$ را بیابید.
+  \item ثابت کنید اگر $T:V\to V$ با $T^2=T$ و $T$ وارون‌پذیر باشد، $T=I$.
+\end{enumerate}
+
+\subsection*{پاسخ‌های کوتاه}
+\begin{enumerate}
+  \item هیچ‌کدام: $T(0,0)=(1,0)\neq\zero$ در اولی؛ $T(2\vx)\neq2T(\vx)$ در دومی ($\vx=(1,1)$).
+  \item $\Null(T)=\Span\{(1,-1,1)\}$ پس یک‌به‌یک نیست؛ $\dim\Range=3-1=2$ پس پوشاست ($\Range=\R^2$).
+  \item $\theta=60^\circ$: $\begin{bmatrix}\cos120^\circ&\sin120^\circ\\ \sin120^\circ&-\cos120^\circ\end{bmatrix}=\begin{bmatrix}-\frac12&\frac{\sqrt3}2\\ \frac{\sqrt3}2&\frac12\end{bmatrix}$.
+  \item $T=T^{-1}T^2=T^{-1}T=I$.
+\end{enumerate}

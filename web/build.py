@@ -25,6 +25,8 @@ CHAPTERS = [
     ('ch-7', 'chapters/ch07-rank.tex', 7),
     ('ch-8', 'chapters/ch08-inner-product.tex', 8),
     ('ch-9', 'chapters/ch09-orthogonality.tex', 9),
+    ('ch-10', 'chapters/ch10-inverse.tex', 10),
+    ('ch-11', 'chapters/ch11-linear-maps.tex', 11),
     ('appendix', 'chapters/appendix.tex', 'a'),
 ]
 
@@ -483,7 +485,7 @@ def main():
             '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
             '<meta name="description" content="جزوه‌ی کامل درس جبر خطی (CE282) دانشگاه صنعتی شریف، با اثبات‌ها، مثال‌های حل‌شده و تمرین.">\n'
             '<meta property="og:title" content="جزوه‌ی جبر خطی">\n'
-            '<meta property="og:description" content="جزوه‌ی درس جبر خطی (CE282) دانشگاه صنعتی شریف: از دستگاه معادلات تا تعامد و گرام-اشمیت.">\n'
+            '<meta property="og:description" content="جزوه‌ی درس جبر خطی (CE282) دانشگاه صنعتی شریف: از دستگاه معادلات تا تعامد، وارون و تبدیل خطی.">\n'
             '<meta property="og:type" content="website">\n'
             '<meta name="theme-color" content="#1d4e89">\n')
     full_doc = head + full.replace('<!--BODY-->', '</head>\n<body>', 1) + '\n</body>\n</html>\n'

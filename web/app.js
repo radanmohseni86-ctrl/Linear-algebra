@@ -6,6 +6,7 @@
     '\\Span': '\\operatorname{Span}', '\\rank': '\\operatorname{rank}', '\\nullity': '\\operatorname{nullity}',
     '\\tr': '\\operatorname{trace}', '\\RREF': '\\operatorname{RREF}', '\\ColRank': '\\operatorname{ColRank}',
     '\\RowRank': '\\operatorname{RowRank}', '\\dist': '\\operatorname{dist}',
+    '\\Null': '\\operatorname{Null}', '\\Range': '\\operatorname{Range}',
     '\\Col': 'C', '\\Nul': 'N', '\\Row': 'R',
     '\\inner': '\\left\\langle #1,#2\\right\\rangle',
     '\\norm': '\\left\\lVert #1\\right\\rVert',
