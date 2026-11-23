@@ -153,19 +153,19 @@ $\vx=P\coord{\vx}{\mathcal{B}}$ و $T\vx=A\vx=AP\coord{\vx}{\mathcal{B}}$. مخ�
 
 ماتریس‌های $A$ و $P^{-1}AP$ را \term{متشابه}{Similar} می‌نامیم؛ هر دو یک تبدیل را در دو پایه نشان می‌دهند. با انتخاب پایه‌ی مناسب، $P^{-1}AP$ می‌تواند خیلی ساده‌تر از $A$ باشد.
 
-\section{ایزومورفیسم و ماتریس}
+\section{یکریختی و ماتریس}
 
-مختصات‌گیری $\vx\mapsto\coord{\vx}{\mathcal{B}}$ یک ایزومورفیسم \enterm{Isomorphism} $V\to\F^n$ است (خطی طبق قضیه‌ی \ref{thm:coord-map}، و دوسویی \enterm{Bijective} چون نمایش یکتاست). از آن، یک روش استاندارد برای بررسی ایزومورف \enterm{Isomorphic} بودن به دست می‌آید.
+مختصات‌گیری $\vx\mapsto\coord{\vx}{\mathcal{B}}$ یک یکریختی \enterm{Isomorphism} $V\to\F^n$ است (خطی طبق قضیه‌ی \ref{thm:coord-map}، و دوسویی \enterm{Bijective} چون نمایش یکتاست). از آن، یک روش استاندارد برای بررسی یکریخت \enterm{Isomorphic} بودن به دست می‌آید.
 
 \begin{theorem}\label{thm:matrix-invertible-map}
 اگر $\dim V=\dim W=n$ و $T\in\mathcal{L}(V,W)$، آن‌گاه $T$ وارون‌پذیر است اگر و تنها اگر $[T]_{\mathcal{B}\leftarrow\mathcal{E}}$ وارون‌پذیر باشد.
 \end{theorem}
 \begin{proof}
-اگر $A=[T]_{\mathcal{B}\leftarrow\mathcal{E}}$ و $\varphi_{\mathcal{E}}$ و $\varphi_{\mathcal{B}}$ نگاشت‌های مختصات باشند، قضیه‌ی \ref{thm:matrix-of-map} می‌گوید $\varphi_{\mathcal{B}}\circ T=T_A\circ\varphi_{\mathcal{E}}$؛ یعنی $T=\varphi_{\mathcal{B}}^{-1}\circ T_A\circ\varphi_{\mathcal{E}}$. چون $\varphi$ها ایزومورفیسم‌اند، $T$ دوسویی است اگر و تنها اگر $T_A$ دوسویی باشد؛ یعنی $A$ وارون‌پذیر باشد (قضیه‌ی \ref{thm:imt-full}).
+اگر $A=[T]_{\mathcal{B}\leftarrow\mathcal{E}}$ و $\varphi_{\mathcal{E}}$ و $\varphi_{\mathcal{B}}$ نگاشت‌های مختصات باشند، قضیه‌ی \ref{thm:matrix-of-map} می‌گوید $\varphi_{\mathcal{B}}\circ T=T_A\circ\varphi_{\mathcal{E}}$؛ یعنی $T=\varphi_{\mathcal{B}}^{-1}\circ T_A\circ\varphi_{\mathcal{E}}$. چون $\varphi$ها یکریختی‌اند، $T$ دوسویی است اگر و تنها اگر $T_A$ دوسویی باشد؛ یعنی $A$ وارون‌پذیر باشد (قضیه‌ی \ref{thm:imt-full}).
 \end{proof}
 
 \begin{example}
-در مثال $e^x$ فصل ۱۱، ماتریس $T(a,b,c)=ae^x+bxe^x+cx^2e^x$ نسبت به پایه‌ی استاندارد و پایه‌ی $\{e^x,xe^x,x^2e^x\}$ برابر $I_3$ است؛ پس وارون‌پذیر است و $T$ ایزومورفیسم است.
+در مثال $e^x$ فصل ۱۱، ماتریس $T(a,b,c)=ae^x+bxe^x+cx^2e^x$ نسبت به پایه‌ی استاندارد و پایه‌ی $\{e^x,xe^x,x^2e^x\}$ برابر $I_3$ است؛ پس وارون‌پذیر است و $T$ یکریختی است.
 \end{example}
 
 \section{جمع‌بندی و تمرین}

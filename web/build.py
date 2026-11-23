@@ -153,6 +153,40 @@ def strip_wrapper_cmd(s, name, nargs_before):
     return replace_cmd(s, name, nargs_before + 1, lambda *a: a[-1])
 
 
+EXTRA_TERMS = {
+    'پوچی': 'Nullity', 'فضای ستونی': 'Column Space', 'فضای سطری': 'Row Space',
+    'رتبه‌ی ستونی': 'Column Rank', 'رتبه‌ی سطری': 'Row Rank', 'ماتریس مقدماتی': 'Elementary Matrix',
+    'عملیات سطری': 'Row Operations', 'عمل سطری': 'Row Operation', 'حذف گاوسی': 'Gaussian Elimination',
+    'گاوس-جردن': 'Gauss–Jordan Elimination', 'نامساوی کوشی-شوارتز': 'Cauchy–Schwarz Inequality',
+    'کوشی-شوارتز': 'Cauchy–Schwarz', 'بردار یکه': 'Unit Vector', 'بازتاب': 'Reflection', 'دوران': 'Rotation',
+    'گرام-اشمیت': 'Gram–Schmidt', 'ماتریس تغییر پایه': 'Change-of-Basis Matrix',
+    'قضیه‌ی رتبه-پوچی': 'Rank–Nullity Theorem', 'رتبه-پوچی': 'Rank–Nullity', 'ماتریس': 'Matrix',
+    'دستگاه همگن': 'Homogeneous System', 'ضرب ماتریسی': 'Matrix Multiplication', 'ماتریس همانی': 'Identity Matrix',
+    'نگاشت مختصات': 'Coordinate Map', 'تشابه': 'Similarity', 'فرم خطی': 'Linear Form',
+    'استقلال خطی': 'Linear Independence', 'وابستگی خطی': 'Linear Dependence', 'مولد': 'Spanning',
+    'پوچی': 'Nullity', 'یکتا': 'Unique',
+}
+EXTRA_TERMS.pop('یکتا')
+EXTRA_TERMS.pop('مولد')
+EXTRA_TERMS.pop('ماتریس')
+
+
+def collect_terms():
+    terms = {}
+    for _, path, _ in CHAPTERS:
+        src = open(os.path.join(ROOT, path), encoding='utf-8').read()
+        for fa_t, en in re.findall(r'\\term\{([^{}]*)\}\{([^{}]*)\}', src):
+            if '$' in fa_t or '\\' in fa_t or len(fa_t) < 3:
+                continue
+            terms.setdefault(fa_t, en.replace('--', '–').strip())
+    for fa_t, en in EXTRA_TERMS.items():
+        terms.setdefault(fa_t, en)
+    for generic in ('خطی', 'جواب', 'ضرب', 'بردار', 'مقدماتی', 'عمود', 'سره', 'بسته', 'یکه', 'دسته‌ای', 'متر'):
+        terms.pop(generic, None)
+    return terms
+
+
+
 class Converter:
     def __init__(self):
         self.labels = load_labels()
@@ -468,6 +502,7 @@ def main():
             '<header class="chapter-head"><p class="chapter-label">%s</p><h1>%s</h1><span class="chapter-mark" aria-hidden="true">%s</span></header>'
             '%s%s</article>' % (v['id'], label, html.escape(v['title']), ('آ' if v['num'] == 'a' else fa(v['num'])) if v['num'] is not None else '', v['html'], nav))
 
+    terms = collect_terms()
     toc = [{'id': v['id'], 'label': ('' if v['id'] == 'preface' else ('پیوست' if v['num'] == 'a' else 'فصل ' + fa(v['num']))),
             'title': v['title'], 'sections': v['sections']} for v in views]
 
@@ -476,6 +511,7 @@ def main():
     page = page.replace('/*STYLE*/', style)
     page = page.replace('<!--CHAPTERS-->', '\n'.join(chapter_html))
     page = page.replace('/*TOC_JSON*/', json.dumps(toc, ensure_ascii=False))
+    page = page.replace('/*TERMS_JSON*/', json.dumps(terms, ensure_ascii=False))
     page = page.replace('/*APP_JS*/', app)
 
     os.makedirs(OUT, exist_ok=True)

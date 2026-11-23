@@ -18,7 +18,7 @@ $V$ \term{دامنه}{Domain} و $W$ \term{هم‌دامنه}{Codomain} است. 
 \end{note}
 
 \begin{theorem}[تعیین تبدیل با تصویر پایه]\label{thm:linmap-basis}
-اگر $(\vv_1,\dots,\vv_n)$ پایه‌ی مرتب \enterm{Ordered Basis} $V$ باشد و $\vw_1,\dots,\vw_n\in W$ دلخواه، تبدیل خطی یکتای $T:V\to W$ با $T(\vv_i)=\vw_i$ وجود دارد.
+اگر $(\vv_1,\dots,\vv_n)$ پایه‌ی \enterm{Basis} مرتب \enterm{Ordered Basis} $V$ باشد و $\vw_1,\dots,\vw_n\in W$ دلخواه، تبدیل خطی یکتای $T:V\to W$ با $T(\vv_i)=\vw_i$ وجود دارد.
 \end{theorem}
 \begin{proof}
 \textbf{وجود:} هر $\vv\in V$ نمایش یکتای $\vv=\sum a_i\vv_i$ دارد؛ تعریف می‌کنیم $T(\vv)=\sum a_i\vw_i$. اگر $\vu=\sum b_i\vv_i$، مختصات $\alpha\vv+\beta\vu$ برابر $\alpha a_i+\beta b_i$ است؛ پس $T(\alpha\vv+\beta\vu)=\alpha T(\vv)+\beta T(\vu)$ و $T(\vv_i)=\vw_i$.
@@ -192,7 +192,7 @@ $\dim\Range(T)=n$ & $\dim\Range(T)=m$\\
 
 مثلاً $T:\F^4\to\F^3$ هر ضابطه‌ای هم داشته باشد، $\dim\Null(T)=4-\dim\Range(T)\ge1$ و یک‌به‌یک نیست.
 
-\section{تبدیل وارون‌پذیر و ایزومورفیسم}
+\section{تبدیل وارون‌پذیر و یکریختی}
 
 \begin{definition}[وارون‌پذیر]
 $T\in\mathcal{L}(V,W)$ \term{وارون‌پذیر}{Invertible} است اگر $S\in\mathcal{L}(W,V)$ باشد با $ST=I_V$ و $TS=I_W$. چنین $S$ را وارون \enterm{Inverse} $T$ می‌نامیم.
@@ -219,25 +219,25 @@ $T\in\mathcal{L}(V,W)$ \term{وارون‌پذیر}{Invertible} است اگر $S
 \begin{proof}
 (الف) اگر $S$ وارون $T$ باشد: $T\vu=T\vv\Rightarrow\vu=ST\vu=ST\vv=\vv$ و $T(S\vw)=\vw$. برعکس، اگر $T$ دوسویی باشد، $S(\vw)$ را «تنها $\vv$ با $T\vv=\vw$» تعریف می‌کنیم؛ پس $ST=I$ و $TS=I$. خطی بودن $S$: تصویر $\alpha S\vw_1+\beta S\vw_2$ زیر $T$ برابر $\alpha\vw_1+\beta\vw_2$ است؛ از یکتایی $S(\alpha\vw_1+\beta\vw_2)=\alpha S\vw_1+\beta S\vw_2$.
 
-(ب) طبق قضیه‌ی رتبه-پوچی \enterm{Rank--Nullity}، $\dim\Null(T)=0\iff\dim\Range(T)=\dim W$؛ یعنی یک‌به‌یک بودن (قضیه‌ی \ref{thm:injective-null}) با پوشا بودن هم‌ارز است و (الف) وارون‌پذیری را می‌دهد.
+(ب) طبق قضیه‌ی رتبه \enterm{Rank}-پوچی \enterm{Rank--Nullity}، $\dim\Null(T)=0\iff\dim\Range(T)=\dim W$؛ یعنی یک‌به‌یک بودن (قضیه‌ی \ref{thm:injective-null}) با پوشا بودن هم‌ارز است و (الف) وارون‌پذیری را می‌دهد.
 \end{proof}
 
-\begin{definition}[ایزومورفیسم]
-تبدیل وارون‌پذیر را \term{ایزومورفیسم}{Isomorphism} می‌نامیم و دو فضا را \term{ایزومورف}{Isomorphic} ($V\cong W$) می‌گوییم اگر ایزومورفیسم $V\to W$ وجود داشته باشد. وارون و ترکیب ایزومورفیسم‌ها ایزومورفیسم است؛ پس $\cong$ بازتابی (با $I$)، متقارن \enterm{Symmetric} و ترایاست.
+\begin{definition}[یکریختی]
+تبدیل وارون‌پذیر را \term{یکریختی}{Isomorphism} می‌نامیم و دو فضا را \term{یکریخت}{Isomorphic} ($V\cong W$) می‌گوییم اگر یکریختی $V\to W$ وجود داشته باشد. وارون و ترکیب یکریختی‌ها یکریختی است؛ پس $\cong$ بازتابی (با $I$)، متقارن \enterm{Symmetric} و ترایاست.
 \end{definition}
 
 \begin{theorem}\label{thm:isomorphic-dim}
-دو فضای متناهی‌البُعد روی $\F$ ایزومورفند اگر و تنها اگر بُعد یکسان داشته باشند.
+دو فضای متناهی‌البُعد روی $\F$ یکریختند اگر و تنها اگر بُعد یکسان داشته باشند.
 \end{theorem}
 \begin{proof}
-اگر $T:V\to W$ ایزومورفیسم باشد، $\Null(T)=\{\zero\}$ و $\Range(T)=W$؛ پس طبق رتبه-پوچی \enterm{Rank--Nullity} $\dim V=\dim W$. برعکس، اگر $\dim V=\dim W=n$ با پایه‌های $\vv_i$ و $\vw_i$، تبدیل $T(\sum a_i\vv_i)=\sum a_i\vw_i$ (قضیه‌ی \ref{thm:linmap-basis}) هر $\vw\in W$ را از مختصات یکتایش به دست می‌دهد؛ پس دوسویی است.
+اگر $T:V\to W$ یکریختی باشد، $\Null(T)=\{\zero\}$ و $\Range(T)=W$؛ پس طبق رتبه-پوچی \enterm{Rank--Nullity} $\dim V=\dim W$. برعکس، اگر $\dim V=\dim W=n$ با پایه‌های $\vv_i$ و $\vw_i$، تبدیل $T(\sum a_i\vv_i)=\sum a_i\vw_i$ (قضیه‌ی \ref{thm:linmap-basis}) هر $\vw\in W$ را از مختصات یکتایش به دست می‌دهد؛ پس دوسویی است.
 \end{proof}
 
 \begin{example}
-نشان دهید $V=\Span\{e^x,xe^x,x^2e^x\}$ با $\R^3$ ایزومورف است.
+نشان دهید $V=\Span\{e^x,xe^x,x^2e^x\}$ با $\R^3$ یکریخت است.
 \end{example}
 \begin{solution}
-تبدیل $T(a,b,c)=ae^x+bxe^x+cx^2e^x$ خطی و پوشا بر $V$ است. یک‌به‌یک هم هست: اگر $(a+bx+cx^2)e^x=0$ برای همه‌ی $x$، چون $e^x\neq0$ چندجمله‌ای $a+bx+cx^2$ صفر است و طبق قضیه‌ی \ref{thm:monomials-indep} $a=b=c=0$. پس $T$ ایزومورفیسم است. (ماتریس $T$ نسبت به پایه‌های $\{\ve_i\}$ و $\{e^x,xe^x,x^2e^x\}$ همان $I$ است.)
+تبدیل $T(a,b,c)=ae^x+bxe^x+cx^2e^x$ خطی و پوشا بر $V$ است. یک‌به‌یک هم هست: اگر $(a+bx+cx^2)e^x=0$ برای همه‌ی $x$، چون $e^x\neq0$ چندجمله‌ای $a+bx+cx^2$ صفر است و طبق قضیه‌ی \ref{thm:monomials-indep} $a=b=c=0$. پس $T$ یکریختی است. (ماتریس $T$ نسبت به پایه‌های $\{\ve_i\}$ و $\{e^x,xe^x,x^2e^x\}$ همان $I$ است.)
 \end{solution}
 
 \begin{theorem}[قضیه‌ی ماتریس وارون‌پذیر، نسخه‌ی کامل]\label{thm:imt-full}
@@ -261,7 +261,7 @@ $T\in\mathcal{L}(V,W)$ \term{وارون‌پذیر}{Invertible} است اگر $S
   \item دوران $R_\theta$، تصویر $P=\vu\vu\T$ ($P^2=P$) و بازتاب $2P-I$ ($R^2=I$) نمونه‌های اصلی در $\R^2$ هستند. انتقال خطی نیست.
   \item $\Null(T)$ و $\Range(T)$ زیرفضا هستند؛ $T$ یک‌به‌یک است $\iff\Null(T)=\{\zero\}$.
   \item $\dim V=\dim\Null(T)+\dim\Range(T)$؛ به فضای کوچک‌تر یک‌به‌یک نیست و به فضای بزرگ‌تر پوشا نیست.
-  \item $T$ وارون‌پذیر $\iff$ یک‌به‌یک و پوشا؛ در بُعد برابر کافی است یکی را بررسی کنیم. دو فضای متناهی‌البُعد ایزومورفند $\iff$ هم‌بُعدند.
+  \item $T$ وارون‌پذیر $\iff$ یک‌به‌یک و پوشا؛ در بُعد برابر کافی است یکی را بررسی کنیم. دو فضای متناهی‌البُعد یکریختند $\iff$ هم‌بُعدند.
 \end{itemize}
 \end{summary}
 

@@ -80,6 +80,111 @@
     grid.innerHTML = out;
   }
 
+  const FA_CHARS = '\\u0600-\\u06FF\\u200c';
+  let termRe = null;
+
+  function buildTermRe() {
+    const keys = Object.keys(TERMS).sort(function (a, b) { return b.length - a.length; });
+    if (!keys.length) return null;
+    const alt = keys.map(function (k) { return k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }).join('|');
+    return new RegExp('(?<![' + FA_CHARS + '])(' + alt + ')((?:\\u200c?(?:ی|هایی|های|ها))?)(?![' + FA_CHARS + '])', 'g');
+  }
+
+  const SKIP = 'h1,h2,h3,h4,.box-title,.math,.katex,a,[lang="en"],script,style,.tt,.pager,.chapter-head,table.glossary';
+
+  function annotateTerms(view) {
+    if (view.hasAttribute('data-terms') || view.id === 'appendix' || view.id === 'home') return;
+    view.setAttribute('data-terms', '');
+    if (!termRe) termRe = buildTermRe();
+    if (!termRe) return;
+    const walker = document.createTreeWalker(view, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!n.nodeValue || n.nodeValue.length < 3) return NodeFilter.FILTER_REJECT;
+        const p = n.parentElement;
+        if (!p || p.closest(SKIP)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (node) {
+      const text = node.nodeValue;
+      termRe.lastIndex = 0;
+      let m, last = 0, frag = null;
+      while ((m = termRe.exec(text))) {
+        if (!frag) frag = document.createDocumentFragment();
+        if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        const span = document.createElement('span');
+        span.className = 'tt';
+        span.tabIndex = 0;
+        span.setAttribute('data-en', TERMS[m[1]]);
+        span.textContent = m[0];
+        frag.appendChild(span);
+        last = m.index + m[0].length;
+      }
+      if (frag) {
+        if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+        node.parentNode.replaceChild(frag, node);
+      }
+    });
+  }
+
+  const tip = document.createElement('div');
+  tip.className = 'term-tip';
+  tip.setAttribute('role', 'tooltip');
+  tip.hidden = true;
+  document.body.appendChild(tip);
+  let tipTimer = 0;
+  let tipY = 0;
+
+  function showTip(el) {
+    clearTimeout(tipTimer);
+    tipY = window.pageYOffset;
+    tip.textContent = el.getAttribute('data-en');
+    tip.hidden = false;
+    const r = el.getBoundingClientRect();
+    const t = tip.getBoundingClientRect();
+    let left = r.left + r.width / 2 - t.width / 2;
+    left = Math.max(8, Math.min(left, window.innerWidth - t.width - 8));
+    let top = r.top - t.height - 8;
+    if (top < 8) top = r.bottom + 8;
+    tip.style.left = left + 'px';
+    tip.style.top = top + 'px';
+  }
+
+  function hideTip() { clearTimeout(tipTimer); tip.hidden = true; }
+
+  document.addEventListener('mouseover', function (e) {
+    const el = e.target.closest && e.target.closest('.tt');
+    if (el) showTip(el);
+  });
+  let lastTouch = 0;
+  document.addEventListener('touchstart', function () { lastTouch = Date.now(); }, { passive: true });
+  document.addEventListener('mouseout', function (e) {
+    if (Date.now() - lastTouch < 1200) return;
+    if (e.target.closest && e.target.closest('.tt')) hideTip();
+  });
+  document.addEventListener('focusin', function (e) {
+    const el = e.target.closest && e.target.closest('.tt');
+    if (el) showTip(el);
+  });
+  document.addEventListener('focusout', function () {
+    if (Date.now() - lastTouch < 1200) return;
+    hideTip();
+  });
+  document.addEventListener('click', function (e) {
+    const el = e.target.closest && e.target.closest('.tt');
+    if (el) {
+      showTip(el);
+      tipTimer = setTimeout(hideTip, 2800);
+    } else {
+      hideTip();
+    }
+  });
+  window.addEventListener('scroll', function () {
+    if (!tip.hidden && Math.abs(window.pageYOffset - tipY) > 24) hideTip();
+  }, { passive: true });
+
   function show(viewId, target) {
     let view = null;
     views.forEach(function (v) {
@@ -88,6 +193,7 @@
       if (on) view = v;
     });
     if (!view) return;
+    annotateTerms(view);
     renderMath(view);
     updateToc(viewId);
     const entry = TOC.find(function (c) { return c.id === viewId; });
