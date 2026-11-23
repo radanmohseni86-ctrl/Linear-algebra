@@ -1,7 +1,7 @@
 \chapter{وارون ماتریس}
 \label{ch:inverse}
 
-برای عدد $a\neq0$ وارون $\frac1a$ را داریم. برای ماتریس‌ها دو جور وارون پیدا می‌شود: وارون \emph{چپ} ($XA=I$) و وارون \emph{راست} ($AX=I$). در این فصل می‌بینیم هر کدام چه زمانی هست، چه چیزی درباره‌ی دستگاه $A\vx=\vb$ می‌گوید، و چرا برای ماتریس مربعی این دو یکی می‌شوند.
+برای عدد $a\neq0$ وارون \enterm{Inverse} $\frac1a$ را داریم. برای ماتریس‌ها دو جور وارون پیدا می‌شود: وارون \emph{چپ} ($XA=I$) و وارون \emph{راست} ($AX=I$). در این فصل می‌بینیم هر کدام چه زمانی هست، چه چیزی درباره‌ی دستگاه $A\vx=\vb$ می‌گوید، و چرا برای ماتریس مربعی این دو یکی می‌شوند.
 
 \section{وارون ماتریس مربعی}
 
@@ -29,7 +29,11 @@
 $X$ را یک \term{وارون چپ}{Left Inverse} $A_{m\times n}$ می‌نامیم اگر $XA=I_n$؛ پس $X$ ابعاد $n\times m$ دارد. اگر وجود داشته باشد، $A$ \term{چپ‌وارون‌پذیر}{Left-Invertible} است.
 \end{definition}
 
-وارون چپ لزوماً یکتا نیست. برای $A=\begin{bmatrix}-3&-4\\4&6\\1&1\end{bmatrix}$ هر دو ماتریس
+وارون چپ لزوماً یکتا نیست. برای 
+\[
+A=\begin{bmatrix}-3&-4\\4&6\\1&1\end{bmatrix}
+\]
+هر دو ماتریس
 \[
 B=\frac19\begin{bmatrix}-11&-10&16\\7&8&-11\end{bmatrix},\qquad
 C=\frac12\begin{bmatrix}0&-1&6\\0&1&-4\end{bmatrix}
@@ -42,7 +46,7 @@ C=\frac12\begin{bmatrix}0&-1&6\\0&1&-4\end{bmatrix}
 \begin{proof}
 اگر $XA=I$ و $A\vx=\zero$، آن‌گاه $\vx=XA\vx=\zero$؛ پس ستون‌ها مستقل‌اند.
 
-برعکس، اگر ستون‌های $A_{m\times n}$ مستقل باشند، طبق لم \ref{lem:ATA-null} داریم $\Nul(A\T A)=\Nul(A)=\{\zero\}$. ماتریس $A\T A$ مربعی ($n\times n$) با فضای پوچ صفر است؛ پس طبق قضیه‌ی \ref{thm:imt} وارون‌پذیر است و
+برعکس، اگر ستون‌های $A_{m\times n}$ مستقل باشند، طبق لم \ref{lem:ATA-null} داریم $\Nul(A\T A)=\Nul(A)=\{\zero\}$. ماتریس $A\T A$ مربعی ($n\times n$) با فضای پوچ \enterm{Null Space} صفر است؛ پس طبق قضیه‌ی \ref{thm:imt} وارون‌پذیر است و
 $X=(A\T A)^{-1}A\T$
 یک وارون چپ است: $XA=(A\T A)^{-1}(A\T A)=I$.
 \end{proof}
@@ -55,7 +59,15 @@ $X=(A\T A)^{-1}A\T$
 وارون چپ $\va=(1,0,3)\T$ را به دو روش بیابید.
 \end{example}
 \begin{solution}
-(۱) $\frac1{a_i}\ve_i\T$ با $a_i\neq0$، مثلاً $\begin{bmatrix}1&0&0\end{bmatrix}$. \quad (۲) چون $\va\T\va=\norm{\va}^2$، ماتریس $\frac{\va\T}{\norm{\va}^2}=\frac1{10}\begin{bmatrix}1&0&3\end{bmatrix}$ هم وارون چپ است. اگر ستون‌های $A$ یکامتعامد باشند، $A\T A=I$ و $A\T$ وارون چپ $A$ است.
+(۱) $\frac1{a_i}\ve_i\T$ با $a_i\neq0$، مثلاً 
+\[
+\begin{bmatrix}1&0&0\end{bmatrix}.
+\]
+ \quad (۲) چون $\va\T\va=\norm{\va}^2$، ماتریس 
+\[
+\frac{\va\T}{\norm{\va}^2}=\frac1{10}\begin{bmatrix}1&0&3\end{bmatrix}
+\]
+هم وارون چپ است. اگر ستون‌های $A$ ارتونرمال \enterm{Orthonormal} باشند، $A\T A=I$ و $A\T$ وارون چپ $A$ است.
 \end{solution}
 
 \section{وارون راست}
@@ -75,15 +87,23 @@ $X$ یک \term{وارون راست}{Right Inverse} $A$ است اگر $AX=I$. ا�
 
 \begin{itemize}
   \item \textbf{وارون چپ:} اگر $XA=I$ و $A\vx=\vb$ جواب داشته باشد، $\vx=XA\vx=X\vb$. پس \emph{حداکثر یک} جواب هست، و تنها نامزد آن $X\vb$ است؛ اما باید با جایگذاری بررسی شود که واقعاً جواب است.
-  \item \textbf{وارون راست:} اگر $AB=I$، آن‌گاه $A(B\vb)=\vb$؛ پس $\vx=B\vb$ برای \emph{هر} $\vb$ یک جواب است، بدون نیاز به بررسی سازگاری. اما یکتا بودنش معلوم نیست.
+  \item \textbf{وارون راست:} اگر $AB=I$، آن‌گاه $A(B\vb)=\vb$؛ پس $\vx=B\vb$ برای \emph{هر} $\vb$ یک جواب است، بدون نیاز به بررسی سازگاری \enterm{Consistent}. اما یکتا بودنش معلوم نیست.
   \item \textbf{وارون دوطرفه:} $A\vx=\vb\iff\vx=A^{-1}\vb$؛ جواب همیشه هست و یکتاست.
 \end{itemize}
 
 \begin{example}
-$A=\begin{bmatrix}-1&1\\0&-1\\2&1\end{bmatrix}$ وارون چپ $X=\begin{bmatrix}1&2&1\\4&5&2\end{bmatrix}$ دارد ($XA=I$). دستگاه $A\vx=(-4,3,0)$ را بررسی کنید.
+ 
+\[
+A=\begin{bmatrix}-1&1\\0&-1\\2&1\end{bmatrix}
+\]
+ وارون چپ 
+\[
+X=\begin{bmatrix}1&2&1\\4&5&2\end{bmatrix}
+\]
+دارد ($XA=I$). دستگاه $A\vx=(-4,3,0)$ را بررسی کنید.
 \end{example}
 \begin{solution}
-تنها نامزد $X\vb=(2,-1)$ است، اما $A(2,-1)=(-3,1,3)\neq\vb$. دستگاه ناسازگار است (کاهش سطری ستون آخر را محوری می‌کند). پس وارون چپ بدون بررسی جایگذاری کافی نیست. در مقابل، برای $A\T$ که وارون راست $X\T$ دارد، دستگاه $A\T\vx=(1,2)$ برای هر سمت راستی جواب دارد؛ مثلاً $B\T(1,2)=(\frac13,\frac23,-\frac23)$ و $C\T(1,2)=(0,\frac12,-1)$ دو جواب متفاوت‌اند.
+تنها نامزد $X\vb=(2,-1)$ است، اما $A(2,-1)=(-3,1,3)\neq\vb$. دستگاه ناسازگار \enterm{Inconsistent} است (کاهش سطری ستون آخر را محوری می‌کند). پس وارون چپ بدون بررسی جایگذاری کافی نیست. در مقابل، برای $A\T$ که وارون راست $X\T$ دارد، دستگاه $A\T\vx=(1,2)$ برای هر سمت راستی جواب دارد؛ مثلاً $B\T(1,2)=(\frac13,\frac23,-\frac23)$ و $C\T(1,2)=(0,\frac12,-1)$ دو جواب متفاوت‌اند.
 \end{solution}
 
 \section{وارون چپ و راست یکی می‌شوند}
@@ -92,7 +112,7 @@ $A=\begin{bmatrix}-1&1\\0&-1\\2&1\end{bmatrix}$ وارون چپ $X=\begin{bmatri
 برای ماتریس مربعی $A$: اگر $A$ وارون چپ یا راست داشته باشد، وارون‌پذیر است و آن وارون همان $A^{-1}$ است.
 \end{theorem}
 \begin{proof}
-اگر $XA=I$، طبق قضیه‌ی \ref{thm:left-inv} ستون‌های $A$ مستقل‌اند و طبق قضیه‌ی \ref{thm:square-inv-indep} $A$ وارون‌پذیر است؛ پس $X=XAA^{-1}=A^{-1}$. اگر $AX=I$، سطرها مستقل‌اند و $A\T$ وارون‌پذیر است؛ پس $A$ هم وارون‌پذیر است (با ترانهاده $(A\T)^{-1}$ وارون $A$ می‌شود) و $X=A^{-1}AX=A^{-1}$.
+اگر $XA=I$، طبق قضیه‌ی \ref{thm:left-inv} ستون‌های $A$ مستقل‌اند و طبق قضیه‌ی \ref{thm:square-inv-indep} $A$ وارون‌پذیر است؛ پس $X=XAA^{-1}=A^{-1}$. اگر $AX=I$، سطرها مستقل‌اند و $A\T$ وارون‌پذیر است؛ پس $A$ هم وارون‌پذیر است (با ترانهاده \enterm{Transpose} $(A\T)^{-1}$ وارون $A$ می‌شود) و $X=A^{-1}AX=A^{-1}$.
 \end{proof}
 
 \begin{center}
@@ -110,7 +130,7 @@ $A=\begin{bmatrix}-1&1\\0&-1\\2&1\end{bmatrix}$ وارون چپ $X=\begin{bmatri
 
 \section{محاسبه‌ی وارون}
 
-برای $n\times n$: ماتریس $[A\,|\,I_n]$ را با عملیات سطری به RREF می‌بریم. اگر نتیجه $[I_n\,|\,B]$ شد، $B=A^{-1}$؛ اگر بخش چپ $I_n$ نشد، $A$ وارون ندارد. دلیل: $AX=I$ یعنی $n$ دستگاه $A\vx_j=\ve_j$ با ماتریس ضرایب یکسان؛ پس یک کاهش سطری همه‌شان را حل می‌کند (روش فصل ۷ برای محاسبه‌ی وارون). یعنی $n\times n$ وارون‌پذیر است اگر و تنها اگر $\RREF(A)=I_n$.
+برای $n\times n$: ماتریس $[A\,|\,I_n]$ را با عملیات سطری \enterm{Row Operations} به RREF می‌بریم. اگر نتیجه $[I_n\,|\,B]$ شد، $B=A^{-1}$؛ اگر بخش چپ $I_n$ نشد، $A$ وارون ندارد. دلیل: $AX=I$ یعنی $n$ دستگاه $A\vx_j=\ve_j$ با ماتریس ضرایب \enterm{Coefficient Matrix} یکسان؛ پس یک کاهش سطری همه‌شان را حل می‌کند (روش فصل ۷ برای محاسبه‌ی وارون). یعنی $n\times n$ وارون‌پذیر است اگر و تنها اگر $\RREF(A)=I_n$.
 
 \begin{example}
 وارون $A=\begin{bmatrix}1&4\\-1&-3\end{bmatrix}$ را بیابید.
@@ -124,9 +144,17 @@ $A=\begin{bmatrix}-1&1\\0&-1\\2&1\end{bmatrix}$ وارون چپ $X=\begin{bmatri
 \end{solution}
 
 \begin{theorem}[ماتریس مقدماتی]\label{thm:elem-inv}
-هر ماتریس مقدماتی وارون‌پذیر است و وارونش ماتریس مقدماتیِ همان نوع است که آن را به $I$ برمی‌گرداند (نتیجه‌ی \ref{cor:elem-invertible}).
+هر ماتریس مقدماتی \enterm{Elementary Matrix} وارون‌پذیر است و وارونش ماتریس مقدماتیِ همان نوع است که آن را به $I$ برمی‌گرداند (نتیجه‌ی \ref{cor:elem-invertible}).
 \end{theorem}
-مثلاً برای $E=\begin{bmatrix}1&0&0\\0&1&0\\-4&0&1\end{bmatrix}$ (عمل $R_3\leftarrow R_3-4R_1$) وارون $E^{-1}=\begin{bmatrix}1&0&0\\0&1&0\\4&0&1\end{bmatrix}$ است.
+مثلاً برای 
+\[
+E=\begin{bmatrix}1&0&0\\0&1&0\\-4&0&1\end{bmatrix}
+\]
+ (عمل $R_3\leftarrow R_3-4R_1$) وارون 
+\[
+E^{-1}=\begin{bmatrix}1&0&0\\0&1&0\\4&0&1\end{bmatrix}
+\]
+است.
 
 \section{ویژگی‌های وارون}
 
@@ -159,7 +187,7 @@ $A\vx=\vb$ ($n$ معادله، $n$ مجهول) \textbf{دقیقاً یک جوا�
 \end{proof}
 
 \begin{note}
-ماتریس تغییر پایه همیشه وارون‌پذیر است، چون ستون‌هایش یک پایه‌اند و در نتیجه مستقل (قضیه‌ی \ref{thm:square-inv-indep}).
+ماتریس تغییر پایه \enterm{Basis} همیشه وارون‌پذیر است، چون ستون‌هایش یک پایه‌اند و در نتیجه مستقل (قضیه‌ی \ref{thm:square-inv-indep}).
 \end{note}
 
 \section{رتبه و وارون}
@@ -168,7 +196,7 @@ $A\vx=\vb$ ($n$ معادله، $n$ مجهول) \textbf{دقیقاً یک جوا�
 (الف) اگر $M$ وارون‌پذیر باشد، $\rank(M)=\rank(M^{-1})=n$. (ب) اگر $A_{m\times n}$ و $B_{n\times n}$ وارون‌پذیر باشد، $\rank(AB)=\rank(A)$.
 \end{theorem}
 \begin{proof}
-(ب) طبق قضیه‌ی \ref{thm:rank-AB}، $\rank(AB)\le\rank(A)$. از $A=(AB)B^{-1}$ هم $\rank(A)\le\rank(AB)$. (الف) رتبه‌ی وارون‌پذیر $n$ است (قضیه‌ی \ref{thm:imt}) و $M^{-1}$ هم وارون‌پذیر است.
+(ب) طبق قضیه‌ی \ref{thm:rank-AB}، $\rank(AB)\le\rank(A)$. از $A=(AB)B^{-1}$ هم $\rank(A)\le\rank(AB)$. (الف) رتبه‌ی \enterm{Rank} وارون‌پذیر $n$ است (قضیه‌ی \ref{thm:imt}) و $M^{-1}$ هم وارون‌پذیر است.
 \end{proof}
 
 \section{جمع‌بندی و تمرین}
@@ -186,7 +214,7 @@ $A\vx=\vb$ ($n$ معادله، $n$ مجهول) \textbf{دقیقاً یک جوا�
 \subsection*{تمرین‌ها}
 \begin{enumerate}
   \item آیا $\begin{bmatrix}1&1\\0&1\\3&0\end{bmatrix}$ چپ‌وارون‌پذیر است؟ یک وارون چپ بیابید.
-  \item وارون $\begin{bmatrix}2&1\\5&3\end{bmatrix}$ را به دو روش (فرمول $2\times2$ و گاوس-جردن) بیابید.
+  \item وارون $\begin{bmatrix}2&1\\5&3\end{bmatrix}$ را به دو روش (فرمول $2\times2$ و گاوس-جردن \enterm{Gauss--Jordan Elimination}) بیابید.
   \item ثابت کنید اگر $A$ و $B$ مربعی باشند و $AB$ وارون‌پذیر باشد، هر دو وارون‌پذیرند.
 \end{enumerate}
 

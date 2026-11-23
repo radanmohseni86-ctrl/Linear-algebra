@@ -44,7 +44,7 @@
 \definecolor{accent}{HTML}{E07A1F}
 
 \settextfont[Path=fonts/,Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Regular,ItalicFeatures={FakeSlant=0.18},BoldItalicFont=*-Bold,BoldItalicFeatures={FakeSlant=0.18},Scale=0.94]{Vazirmatn}
-\setlatintextfont[Scale=1.0]{Latin Modern Roman}
+\setlatintextfont[Path=fonts/,Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Regular,ItalicFeatures={FakeSlant=0.18},BoldItalicFont=*-Bold,BoldItalicFeatures={FakeSlant=0.18},Scale=0.94]{Vazirmatn}
 \setlatinsansfont{Latin Modern Sans}
 \setlatinmonofont{Latin Modern Mono}
 \defpersianfont\headfont[Path=fonts/,Extension=.ttf,UprightFont=*-Black,BoldFont=*-Black,Scale=0.94]{Vazirmatn}
@@ -61,8 +61,8 @@
 \hypersetup{colorlinks=true,linkcolor=primary,urlcolor=primary,citecolor=primary,pdftitle={Linear Algebra Notes},pdfauthor={CE282 Linear Algebra Notes}}
 
 \newcommand{\en}[1]{\lr{#1}}
-\newcommand{\term}[2]{\textbf{\textcolor{primary}{#1}}\,{\small(\lr{#2})}}
-\newcommand{\enterm}[1]{{\small(\lr{#1})}}
+\newcommand{\term}[2]{\textbf{\textcolor{primary}{#1}}\ \lr{\small(#2)}}
+\newcommand{\enterm}[1]{\lr{\small(#1)}}
 \newcommand{\hl}[1]{\textcolor{primary}{\semifont #1}}
 \newcommand{\fa}[1]{\rl{#1}}
 

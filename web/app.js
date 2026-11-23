@@ -36,6 +36,10 @@
           displayMode: display, macros: Object.assign({}, MACROS), throwOnError: false, strict: 'ignore', output: 'html'
         });
       } catch (e) { }
+      if (!display) {
+        el.classList.add('keep');
+        if (el.getBoundingClientRect().width > window.innerWidth * 0.42) el.classList.remove('keep');
+      }
       el.setAttribute('data-done', '');
     });
     console.warn = warn;

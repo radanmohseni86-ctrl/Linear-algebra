@@ -8,8 +8,8 @@
 \section{پایه}
 
 \begin{definition}[پایه]
-مجموعه‌ی $\mathcal{B}=\{\vb_1,\dots,\vb_n\}$ یک \term{پایه}{Basis} برای زیرفضای $H$ است اگر
-(۱) $\mathcal{B}$ مستقل خطی باشد و (۲) $H=\Span\{\vb_1,\dots,\vb_n\}$.
+مجموعه‌ی $\mathcal{B}=\{\vb_1,\dots,\vb_n\}$ یک \term{پایه}{Basis} برای زیرفضای \enterm{Subspace} $H$ است اگر
+(۱) $\mathcal{B}$ مستقل خطی \enterm{Linearly Independent} باشد و (۲) $H=\Span\{\vb_1,\dots,\vb_n\}$.
 \end{definition}
 
 شرط دوم یعنی «به اندازه‌ی کافی بردار داریم» و شرط اول یعنی «بردار اضافه نداریم».
@@ -54,7 +54,7 @@ $a+bx+cx^2=\frac{a-b}{2}(1-x)+\frac{a+b}{2}(1+x)+c\,x^2$.
 \[
 c_1\vy_1+\dots+c_n\vy_n=\sum_{j=1}^m\Big(\sum_{i=1}^n a_{ij}c_i\Big)\vx_j .
 \]
-دستگاه همگن $\sum_i a_{ij}c_i=0$ ($j=1,\dots,m$) $m$ معادله و $n>m$ مجهول دارد و طبق نتیجه‌ی \ref{cor:more-unknowns} جواب نابدیهی دارد. با این $c_i$ها، $\sum c_i\vy_i=\zero$.
+دستگاه همگن \enterm{Homogeneous} $\sum_i a_{ij}c_i=0$ ($j=1,\dots,m$) $m$ معادله و $n>m$ مجهول دارد و طبق نتیجه‌ی \ref{cor:more-unknowns} جواب نابدیهی دارد. با این $c_i$ها، $\sum c_i\vy_i=\zero$.
 \end{proof}
 
 \begin{theorem}[همه‌ی پایه‌ها هم‌اندازه‌اند]\label{thm:bases-same-size}
@@ -147,7 +147,7 @@ $P$ نامتناهی‌البُعد است، چون برای هر $d$ مجموع
 \begin{proof}
 پایه‌ی $\{\vv_1,\dots,\vv_m\}$ از $W_1\cap W_2$ را به پایه‌ی $\{\vv_i,\vu_1,\dots,\vu_j\}$ از $W_1$ و پایه‌ی $\{\vv_i,\vw_1,\dots,\vw_k\}$ از $W_2$ گسترش دهید. نشان می‌دهیم $\mathcal{B}=\{\vv_i,\vu_i,\vw_i\}$ پایه‌ی $W_1+W_2$ است؛ آن‌گاه $\dim(W_1+W_2)=m+j+k=(m+j)+(m+k)-m$.
 
-\textbf{تولید:} هر $\vx_1+\vx_2$ با $\vx_1\in W_1$ و $\vx_2\in W_2$ ترکیب خطی اعضای $\mathcal{B}$ است.
+\textbf{تولید:} هر $\vx_1+\vx_2$ با $\vx_1\in W_1$ و $\vx_2\in W_2$ ترکیب خطی \enterm{Linear Combination} اعضای $\mathcal{B}$ است.
 
 \textbf{استقلال:} اگر $\sum a_i\vv_i+\sum b_i\vu_i+\sum c_i\vw_i=\zero$، بردار $\sum c_i\vw_i=-\sum a_i\vv_i-\sum b_i\vu_i$ هم در $W_2$ است و هم در $W_1$؛ پس $\sum c_i\vw_i=\sum d_i\vv_i$. چون $\{\vv_i,\vw_i\}$ مستقل است، همه‌ی $c_i$ صفرند؛ و سپس چون $\{\vv_i,\vu_i\}$ مستقل است، $a_i$ و $b_i$ هم صفرند.
 \end{proof}
@@ -215,18 +215,18 @@ $\coord{\vu+\vv}{\mathcal{B}}=\coord{\vu}{\mathcal{B}}+\coord{\vv}{\mathcal{B}}$
 
 \begin{summary}
 \begin{itemize}
-  \item پایه = مستقل + مولد. هر مجموعه‌ی مولد متناهی یک پایه در خود دارد و هر مجموعه‌ی مستقل به پایه گسترش می‌یابد.
+  \item پایه = مستقل + مولد. هر مجموعه‌ی مولد \enterm{Spanning Set} متناهی یک پایه در خود دارد و هر مجموعه‌ی مستقل به پایه گسترش می‌یابد.
   \item تعداد مستقل‌ها $\le$ تعداد مولدها؛ پس همه‌ی پایه‌ها هم‌اندازه‌اند و $\dim V$ خوش‌تعریف است.
-  \item در فضای $n$-بعدی: $n$ بردار مستقل یا $n$ بردار مولد، پایه‌اند؛ زیرفضای سره بُعد کمتری دارد.
+  \item در فضای $n$-بعدی: $n$ بردار مستقل یا $n$ بردار مولد، پایه‌اند؛ زیرفضای سره \enterm{Proper Subspace} بُعد کمتری دارد.
   \item $\dim W_1+\dim W_2=\dim(W_1\cap W_2)+\dim(W_1+W_2)$.
-  \item مختصات نسبت به پایه‌ی مرتب یکتاست و با جمع و ضرب اسکالر سازگار است.
+  \item مختصات نسبت به پایه‌ی مرتب یکتاست و با جمع و ضرب اسکالر سازگار \enterm{Consistent} است.
 \end{itemize}
 \end{summary}
 
 \subsection*{تمرین‌ها}
 \begin{enumerate}
   \item یک پایه و بُعد $W=\{(x,y,z): x+y+z=0\}$ را بیابید.
-  \item بُعد فضای ماتریس‌های متقارن $2\times2$ چیست؟
+  \item بُعد فضای ماتریس‌های متقارن \enterm{Symmetric} $2\times2$ چیست؟
   \item مختصات $1+2x+3x^2$ را نسبت به پایه‌ی $\{1-x,\ 1+x,\ x^2\}$ بیابید.
   \item اگر $\dim V=5$ و $W_1,W_2$ زیرفضاهای سه‌بعدی باشند، نشان دهید $W_1\cap W_2\neq\{\zero\}$.
 \end{enumerate}

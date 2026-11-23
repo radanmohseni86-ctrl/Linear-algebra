@@ -1,7 +1,7 @@
 \chapter{رتبه‌ی ماتریس و چهار زیرفضای اساسی}
 \label{ch:rank}
 
-هر ماتریس $m\times n$ چهار زیرفضای مهم دارد: فضای سطری، فضای ستونی، فضای پوچ و فضای پوچ چپ. در این فصل برایشان پایه پیدا می‌کنیم و دو حکم اصلی را ثابت می‌کنیم: \textbf{رتبه‌ی سطری = رتبه‌ی ستونی} و \textbf{رتبه + پوچی = تعداد ستون‌ها}.
+هر ماتریس $m\times n$ چهار زیرفضای \enterm{Subspace} مهم دارد: فضای سطری، فضای ستونی، فضای پوچ و فضای پوچ چپ. در این فصل برایشان پایه \enterm{Basis} پیدا می‌کنیم و دو حکم اصلی را ثابت می‌کنیم: \textbf{رتبه‌ی سطری = رتبه‌ی ستونی} و \textbf{رتبه + پوچی = تعداد ستون‌ها}.
 
 \section{فضای سطری و فضای ستونی}
 
@@ -22,28 +22,28 @@ $\Col(A)$ همان مجموعه‌ی همه‌ی خروجی‌های $\vx\mapsto
 \end{note}
 
 \begin{theorem}\label{thm:row-space-same}
-ماتریس‌های هم‌ارز سطری فضای سطری یکسانی دارند.
+ماتریس‌های هم‌ارز سطری \enterm{Row Equivalent} فضای سطری \enterm{Row Space} یکسانی دارند.
 \end{theorem}
 \begin{proof}
-طبق قضیه‌ی \ref{thm:row-equiv-PA}، $B=PA$ با $P$ وارون‌پذیر؛ پس هر سطر $B$ ترکیب خطی سطرهای $A$ است و $\Row(B)\subseteq\Row(A)$. از $A=P^{-1}B$ عکسش هم به دست می‌آید.
+طبق قضیه‌ی \ref{thm:row-equiv-PA}، $B=PA$ با $P$ وارون‌پذیر؛ پس هر سطر $B$ ترکیب خطی \enterm{Linear Combination} سطرهای $A$ است و $\Row(B)\subseteq\Row(A)$. از $A=P^{-1}B$ عکسش هم به دست می‌آید.
 \end{proof}
 
 \begin{theorem}\label{thm:row-basis}
-اگر $B$ فرم پلکانی $A$ باشد، \textbf{سطرهای ناصفر $B$} پایه‌ای برای $\Row(A)$ هستند.
+اگر $B$ فرم پلکانی \enterm{Echelon Form} $A$ باشد، \textbf{سطرهای ناصفر $B$} پایه‌ای برای $\Row(A)$ هستند.
 \end{theorem}
 \begin{proof}
 طبق قضیه‌ی قبل این سطرها $\Row(A)$ را تولید می‌کنند. برای استقلال، در $c_1\vr_1+\dots+c_k\vr_k=\zero$ به ستون محور اول نگاه کنید: فقط $\vr_1$ آن‌جا ناصفر است، پس $c_1=0$. سپس ستون محور دوم $c_2=0$ می‌دهد و همین‌طور تا آخر.
 \end{proof}
 
 \begin{warning}
-عملیات سطری \textbf{فضای ستونی را تغییر می‌دهند}، اما روابط خطی بین ستون‌ها را حفظ می‌کنند (لم \ref{lem:col-relations}).
+عملیات سطری \enterm{Row Operations} \textbf{فضای ستونی \enterm{Column Space} را تغییر می‌دهند}، اما روابط خطی بین ستون‌ها را حفظ می‌کنند (لم \ref{lem:col-relations}).
 \end{warning}
 
 \begin{theorem}[ستون‌های محوری]\label{thm:pivot-cols-basis}
-ستون‌های محوری \textbf{خودِ} $A$ (ستون‌هایی که در $\RREF(A)$ محوری‌اند) پایه‌ای برای $\Col(A)$ هستند.
+ستون‌های محوری \enterm{Pivot Columns} \textbf{خودِ} $A$ (ستون‌هایی که در $\RREF(A)$ محوری‌اند) پایه‌ای برای $\Col(A)$ هستند.
 \end{theorem}
 \begin{proof}
-در $R=\RREF(A)$ با $r$ سطر ناصفر، ستون محوری $k$ام برابر $\ve_k$ است؛ پس ستون‌های محوری $R$ مستقل‌اند. هر ستون $R$ فقط در $r$ مؤلفه‌ی اول ناصفر است؛ پس ترکیبی از $\ve_1,\dots,\ve_r$ است.
+در $R=\RREF(A)$ با $r$ سطر ناصفر، ستون محوری \enterm{Pivot Column} $k$ام برابر $\ve_k$ است؛ پس ستون‌های محوری $R$ مستقل‌اند. هر ستون $R$ فقط در $r$ مؤلفه‌ی اول ناصفر است؛ پس ترکیبی از $\ve_1,\dots,\ve_r$ است.
 
 چون $A\vx=\zero\iff R\vx=\zero$ (لم \ref{lem:col-relations})، روابط خطی بین ستون‌های $A$ و $R$ یکی است. پس ستون‌های محوری $A$ هم مستقل‌اند و هر ستون غیرمحوری $A$ ترکیب خطی آن‌هاست؛ طبق قضیه‌ی \ref{thm:remove-dependent} پوششان $\Col(A)$ است.
 \end{proof}
@@ -54,9 +54,17 @@ $\Col(A)$ همان مجموعه‌ی همه‌ی خروجی‌های $\vx\mapsto
 
 \begin{example}
 برای
-$B=\begin{bmatrix}1&2&3&4&5\\2&5&8&11&14\\1&3&5&8&11\\4&10&16&23&30\end{bmatrix}$
+ 
+\[
+B=\begin{bmatrix}1&2&3&4&5\\2&5&8&11&14\\1&3&5&8&11\\4&10&16&23&30\end{bmatrix}
+\]
+
 با
-$\RREF(B)=\begin{bmatrix}1&0&-1&0&1\\0&1&2&0&-2\\0&0&0&1&2\\0&0&0&0&0\end{bmatrix}$،
+ 
+\[
+\RREF(B)=\begin{bmatrix}1&0&-1&0&1\\0&1&2&0&-2\\0&0&0&1&2\\0&0&0&0&0\end{bmatrix}
+\]
+
 پایه‌ی $\Col(B)$، $\Row(B)$ و جواب‌های $B\vx=\zero$ را بیابید.
 \end{example}
 \begin{solution}
@@ -84,13 +92,21 @@ $\Nul(A)$ زیرفضای $\F^n$ است.
 $A\zero=\zero$ و $A(\alpha\vu+\vv)=\alpha A\vu+A\vv=\zero$.
 \end{proof}
 
-برای یافتن پایه‌ی $\Nul(A)$، جواب $A\vx=\zero$ را به شکل برداری-پارامتری بنویسید؛ بردارهای آن پایه‌اند (قضیه‌ی \ref{thm:null-vectors-indep}). پس $\dim\Nul(A)$ = تعداد متغیرهای آزاد.
+برای یافتن پایه‌ی $\Nul(A)$، جواب $A\vx=\zero$ را به شکل برداری-پارامتری بنویسید؛ بردارهای آن پایه‌اند (قضیه‌ی \ref{thm:null-vectors-indep}). پس $\dim\Nul(A)$ = تعداد متغیرهای آزاد \enterm{Free Variables}.
 
 \begin{example}
-پایه‌ی $\Nul(A)$ را برای $A=\begin{bmatrix}0&0&0&-1\\4&-1&1&-1\\8&-2&3&-1\end{bmatrix}$ بیابید.
+پایه‌ی $\Nul(A)$ را برای 
+\[
+A=\begin{bmatrix}0&0&0&-1\\4&-1&1&-1\\8&-2&3&-1\end{bmatrix}
+\]
+ بیابید.
 \end{example}
 \begin{solution}
-$A\sim\begin{bmatrix}1&-\frac14&0&0\\0&0&1&0\\0&0&0&1\end{bmatrix}$؛ فقط $x_2$ آزاد است: $x_3=x_4=0$ و $x_1=\frac14x_2$. پس $\Nul(A)=\Span\{(1,4,0,0)\}$.\footnote{فرم کاهش‌یافته‌ی این ماتریس در اسلایدها با $A$ هم‌ارز سطری نبود؛ این‌جا از نو محاسبه شده است.}
+ 
+\[
+A\sim\begin{bmatrix}1&-\frac14&0&0\\0&0&1&0\\0&0&0&1\end{bmatrix}
+\]
+فقط $x_2$ آزاد است: $x_3=x_4=0$ و $x_1=\frac14x_2$. پس $\Nul(A)=\Span\{(1,4,0,0)\}$.\footnote{فرم کاهش‌یافته‌ی این ماتریس در اسلایدها با $A$ هم‌ارز سطری نبود؛ این‌جا از نو محاسبه شده است.}
 \end{solution}
 
 \section{رتبه و پوچی}
@@ -106,7 +122,7 @@ $A\sim\begin{bmatrix}1&-\frac14&0&0\\0&0&1&0\\0&0&0&1\end{bmatrix}$؛ فقط $x_
 $\nullity(A)+\ColRank(A)=n$.
 \end{theorem}
 \begin{proof}
-هر ستون یا محوری است یا غیرمحوری (متغیر آزاد).
+هر ستون یا محوری است یا غیرمحوری (متغیر آزاد \enterm{Free Variable}).
 \end{proof}
 
 حالا مهم‌ترین حکم فصل را با سه لم ثابت می‌کنیم.
@@ -131,7 +147,7 @@ $\ColRank(A\T A)=\ColRank(A)$.
 $\Col(BD)\subseteq\Col(B)$؛ پس $\ColRank(BD)\le\ColRank(B)$.
 \end{lemma}
 \begin{proof}
-$(BD)\vx=B(D\vx)\in\Col(B)$؛ و بُعد زیرفضا بیشتر نیست (نتیجه‌ی \ref{cor:proper-subspace}).
+$(BD)\vx=B(D\vx)\in\Col(B)$؛ و بُعد \enterm{Dimension} زیرفضا بیشتر نیست (نتیجه‌ی \ref{cor:proper-subspace}).
 \end{proof}
 
 \begin{theorem}[رتبه‌ی ستونی = رتبه‌ی سطری]\label{thm:colrank-rowrank}
@@ -172,7 +188,7 @@ $\rank(AB)\le\min\{\rank(A),\rank(B)\}$.
 برای $A_{n\times n}$ این گزاره‌ها هم‌ارزند:
 \begin{multicols}{2}
 \begin{enumerate}[label=(\alph*)]
-  \item $A$ وارون‌پذیر است.
+  \item $A$ وارون‌پذیر \enterm{Invertible} است.
   \item $\RREF(A)=I_n$.
   \item $\rank(A)=n$.
   \item $\Nul(A)=\{\zero\}$.
@@ -234,7 +250,7 @@ $\rank(AB)\le\min\{\rank(A),\rank(B)\}$.
 $\Nul(A)\perp\Row(A)$ و $\Nul(A\T)\perp\Col(A)$.
 \end{theorem}
 \begin{proof}
-اگر $A\vx=\zero$، ضرب داخلی هر سطر $A$ در $\vx$ صفر است؛ پس $\vx$ بر هر ترکیب خطی سطرها هم عمود است. بخش دوم همین استدلال برای $A\T$ است.
+اگر $A\vx=\zero$، ضرب داخلی \enterm{Inner Product} هر سطر $A$ در $\vx$ صفر است؛ پس $\vx$ بر هر ترکیب خطی سطرها هم عمود است. بخش دوم همین استدلال برای $A\T$ است.
 \end{proof}
 
 \begin{intuition}
@@ -280,7 +296,7 @@ $r<\min(m,n)$ & $r$ & $n-r$ & $r$ & $m-r$ & فقط اگر $\vb\in\Col(A)$؛ آن
 \begin{enumerate}
   \item آیا یک ماتریس $3\times5$ می‌تواند پوچی ۱ داشته باشد؟
   \item برای $A=\begin{bmatrix}1&2&0&1\\2&4&1&4\\3&6&1&5\end{bmatrix}$ پایه‌ی $\Col(A)$ و $\Nul(A)$ را بیابید.
-  \item وارون $\begin{bmatrix}1&2\\3&5\end{bmatrix}$ را با روش گاوس-جردن حساب کنید.
+  \item وارون \enterm{Inverse} $\begin{bmatrix}1&2\\3&5\end{bmatrix}$ را با روش گاوس-جردن \enterm{Gauss--Jordan Elimination} حساب کنید.
 \end{enumerate}
 
 \subsection*{پاسخ‌های کوتاه}

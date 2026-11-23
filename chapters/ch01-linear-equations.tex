@@ -1,12 +1,12 @@
 \chapter{دستگاه معادلات خطی، بردار و ماتریس}
 \label{ch:linear-equations}
 
-نقطه‌ی شروع درس یک سؤال ساده است: \emph{چند معادله‌ی خطی با چند مجهول داریم؛ جوابشان چیست؟} در این فصل بردار و ماتریس را معرفی می‌کنیم و می‌بینیم که حل دستگاه با چند «عمل سطری» ساده انجام می‌شود؛ عمل‌هایی که خودشان ضرب ماتریس‌ها هستند.
+نقطه‌ی شروع درس یک سؤال ساده است: \emph{چند معادله‌ی خطی با چند مجهول داریم؛ جوابشان چیست؟} در این فصل بردار و ماتریس را معرفی می‌کنیم و می‌بینیم که حل دستگاه با چند «عمل سطری \enterm{Row Operation}» ساده انجام می‌شود؛ عمل‌هایی که خودشان ضرب ماتریس‌ها هستند.
 
 \section{دستگاه معادلات خطی}
 
 \begin{definition}[دستگاه معادلات خطی]
-فرض کنید $\F$ یک میدان باشد. یک \term{دستگاه $m$ معادله‌ی خطی با $n$ مجهول}{System of Linear Equations} به این شکل است:
+فرض کنید $\F$ یک میدان \enterm{Field} باشد. یک \term{دستگاه $m$ معادله‌ی خطی با $n$ مجهول}{System of Linear Equations} به این شکل است:
 \[
 \begin{cases}
 A_{11}x_1+A_{12}x_2+\dots+A_{1n}x_n=y_1\\
@@ -85,7 +85,7 @@ x-2y=1\\
 \phantom{3x+{}}8y=8
 \end{cases}
 \]
-حالا $y=1$ و با جایگذاری $x=3$. ماتریس ضرایب به یک ماتریس \term{بالامثلثی}{Upper Triangular} تبدیل شد (زیر قطرش صفر است). این ایده در فصل ۲ به الگوریتم \textbf{حذف گاوسی} تبدیل می‌شود.
+حالا $y=1$ و با جایگذاری $x=3$. ماتریس ضرایب به یک ماتریس \term{بالامثلثی}{Upper Triangular} تبدیل شد (زیر قطرش صفر است). این ایده در فصل ۲ به الگوریتم \textbf{حذف گاوسی \enterm{Gaussian Elimination}} تبدیل می‌شود.
 
 \subsection{وجود و یکتایی جواب}
 یک دستگاه خطی یا \textbf{جواب ندارد} (\term{ناسازگار}{Inconsistent})، یا \textbf{دقیقاً یک جواب} دارد، یا \textbf{بی‌شمار جواب}. در دو حالت آخر دستگاه \term{سازگار}{Consistent} است. در صفحه این سه حالت یعنی دو خط موازی، متقاطع و منطبق:
@@ -220,10 +220,22 @@ a_{m1}&\cdots&a_{mn}
 ویژگی‌ها: $A(\vu+\vv)=A\vu+A\vv$، \ $(A+B)\vu=A\vu+B\vu$، \ $(\alpha A)\vu=\alpha(A\vu)=A(\alpha\vu)$، \ $A\zero=\zero$ و $I\vu=\vu$.
 
 \begin{example}
-برای $A=\begin{bmatrix}-1&2&1\\2&0&-2\end{bmatrix}$، ستون $j$-ام، سطر $i$-ام، مجموع سطرها و مجموع ستون‌ها را به شکل ضرب ماتریس و بردار بنویسید.
+برای 
+\[
+A=\begin{bmatrix}-1&2&1\\2&0&-2\end{bmatrix}
+\]
+ ستون $j$-ام، سطر $i$-ام، مجموع سطرها و مجموع ستون‌ها را به شکل ضرب ماتریس و بردار بنویسید.
 \end{example}
 \begin{solution}
-ستون $j$-ام: $A\ve_j$. سطر $i$-ام: $\ve_i\T A$. مجموع سطرها: $\begin{bmatrix}1&1\end{bmatrix}A=\begin{bmatrix}1&2&-1\end{bmatrix}$. مجموع ستون‌ها: $A\begin{bmatrix}1\\1\\1\end{bmatrix}=\begin{bmatrix}2\\0\end{bmatrix}$.
+ستون $j$-ام: $A\ve_j$. سطر $i$-ام: $\ve_i\T A$. مجموع سطرها: 
+\[
+\begin{bmatrix}1&1\end{bmatrix}A=\begin{bmatrix}1&2&-1\end{bmatrix}.
+\]
+ مجموع ستون‌ها: 
+\[
+A\begin{bmatrix}1\\1\\1\end{bmatrix}=\begin{bmatrix}2\\0\end{bmatrix}.
+\]
+
 \end{solution}
 
 \subsection{ضرب ماتریس در ماتریس}
@@ -256,10 +268,14 @@ AB=\begin{bmatrix}1&0\\0&0\end{bmatrix}\neq\begin{bmatrix}0&0\\0&1\end{bmatrix}=
 \begin{theorem}[ترانهاده و وارون]\label{thm:transpose}\label{thm:inverse-props}
 \begin{enumerate}
   \item $(AB)\T=B\T A\T$.
-  \item ماتریس مربعی $A$ \term{وارون‌پذیر}{Invertible} است اگر ماتریسی مثل $A^{-1}$ باشد که $AA^{-1}=A^{-1}A=I$. وارون یکتاست و اگر $A,B$ وارون‌پذیر باشند، $(AB)^{-1}=B^{-1}A^{-1}$.
+  \item ماتریس مربعی $A$ \term{وارون‌پذیر}{Invertible} است اگر ماتریسی مثل $A^{-1}$ باشد که $AA^{-1}=A^{-1}A=I$. وارون \enterm{Inverse} یکتاست و اگر $A,B$ وارون‌پذیر باشند، $(AB)^{-1}=B^{-1}A^{-1}$.
 \end{enumerate}
 \end{theorem}
-برای بند ۲: $(AB)(B^{-1}A^{-1})=A(BB^{-1})A^{-1}=I$. برای ماتریس $2\times2$ اگر $ad-bc\neq0$: $\begin{bmatrix}a&b\\c&d\end{bmatrix}^{-1}=\frac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}$.
+برای بند ۲: $(AB)(B^{-1}A^{-1})=A(BB^{-1})A^{-1}=I$. برای ماتریس $2\times2$ اگر $ad-bc\neq0$: 
+\[
+\begin{bmatrix}a&b\\c&d\end{bmatrix}^{-1}=\frac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}.
+\]
+
 
 \section{عملیات سطری مقدماتی}
 
@@ -307,9 +323,21 @@ AB=\begin{bmatrix}1&0\\0&0\end{bmatrix}\neq\begin{bmatrix}0&0\\0&1\end{bmatrix}=
 همه‌ی ماتریس‌های مقدماتی $2\times2$ را بنویسید.
 \end{example}
 \begin{solution}
-مقیاس‌دهی ($c\neq0$): $\begin{bmatrix}c&0\\0&1\end{bmatrix}$ و $\begin{bmatrix}1&0\\0&c\end{bmatrix}$؛ \
-جایگزینی: $\begin{bmatrix}1&c\\0&1\end{bmatrix}$ و $\begin{bmatrix}1&0\\c&1\end{bmatrix}$؛ \
-جابه‌جایی: $\begin{bmatrix}0&1\\1&0\end{bmatrix}$.
+مقیاس‌دهی ($c\neq0$): 
+\[
+\begin{bmatrix}c&0\\0&1\end{bmatrix} \quad\text{\fa{و}}\quad \begin{bmatrix}1&0\\0&c\end{bmatrix}
+\]
+ \
+جایگزینی: 
+\[
+\begin{bmatrix}1&c\\0&1\end{bmatrix} \quad\text{\fa{و}}\quad \begin{bmatrix}1&0\\c&1\end{bmatrix}
+\]
+ \
+جابه‌جایی: 
+\[
+\begin{bmatrix}0&1\\1&0\end{bmatrix}.
+\]
+
 \end{solution}
 
 \begin{theorem}\label{thm:elem-matrix}
@@ -329,11 +357,15 @@ $(EA)_{ij}=\sum_k E_{ik}A_{kj}$. برای سطرهایی که عمل به آن�
 \end{proof}
 
 \begin{intuition}
-\hl{ضرب از چپ در یک ماتریس مربعی، عملیات سطری انجام می‌دهد}؛ چون هر سطر $EA$ ترکیب خطی سطرهای $A$ است.
+\hl{ضرب از چپ در یک ماتریس مربعی، عملیات سطری \enterm{Row Operations} انجام می‌دهد}؛ چون هر سطر $EA$ ترکیب خطی سطرهای $A$ است.
 \end{intuition}
 
 \begin{example}
-ماتریس $A=\begin{bmatrix}1&0&2\\-2&0&-3\\0&2&0\end{bmatrix}$ را با عملیات سطری به $I$ برسانید.
+ماتریس 
+\[
+A=\begin{bmatrix}1&0&2\\-2&0&-3\\0&2&0\end{bmatrix}
+\]
+را با عملیات سطری به $I$ برسانید.
 \end{example}
 \begin{solution}
 \[
@@ -349,7 +381,7 @@ $(E_4E_3E_2E_1)A=I$.
 \end{solution}
 
 \begin{theorem}\label{thm:row-equiv-PA}
-ماتریس $B$ با $A$ هم‌ارز سطری است اگر و تنها اگر $B=PA$ که $P$ حاصل‌ضرب چند ماتریس مقدماتی $m\times m$ است.
+ماتریس $B$ با $A$ هم‌ارز سطری است اگر و تنها اگر $B=PA$ که $P$ حاصل‌ضرب چند ماتریس مقدماتی \enterm{Elementary Matrix} $m\times m$ است.
 \end{theorem}
 \begin{proof}
 اگر $B=e_k(\cdots e_1(A)\cdots)$ و $E_i=e_i(I)$، طبق قضیه‌ی \ref{thm:elem-matrix} و شرکت‌پذیری $B=E_k(\cdots(E_1A))=(E_k\cdots E_1)A$. برعکس، اگر $B=E_k\cdots E_1A$، هر ضرب در $E_i$ همان عمل سطری $e_i$ است؛ پس $B$ با این عمل‌ها از $A$ به دست می‌آید.
@@ -362,7 +394,11 @@ $(E_4E_3E_2E_1)A=I$.
 
 \begin{example}[دستگاه همگن روی $\C$]
 اگر ماتریس ضرایب یک دستگاه همگن روی اعداد مختلط
-$A=\begin{bmatrix}-1&i\\-i&3\\1&2\end{bmatrix}$
+ 
+\[
+A=\begin{bmatrix}-1&i\\-i&3\\1&2\end{bmatrix}
+\]
+
 باشد، همه‌ی جواب‌ها را بیابید.
 \end{example}
 \begin{solution}

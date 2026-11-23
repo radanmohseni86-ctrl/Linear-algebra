@@ -27,6 +27,7 @@ CHAPTERS = [
     ('ch-9', 'chapters/ch09-orthogonality.tex', 9),
     ('ch-10', 'chapters/ch10-inverse.tex', 10),
     ('ch-11', 'chapters/ch11-linear-maps.tex', 11),
+    ('ch-12', 'chapters/ch12-change-of-basis.tex', 12),
     ('appendix', 'chapters/appendix.tex', 'a'),
 ]
 
@@ -197,8 +198,8 @@ class Converter:
         s = re.sub(r'\\(semifont|lightfont|headfont|mediumfont|small|normalsize|large|Large|scriptsize|footnotesize)(?![A-Za-z])', '', s)
 
         s = replace_cmd(s, 'ref', 1, self.ref_text)
-        s = replace_cmd(s, 'term', 2, lambda a, b: '\\textbf{%s} (\\foreignlanguage{english}{%s})' % (a, b))
-        s = replace_cmd(s, 'enterm', 1, lambda a: '(\\foreignlanguage{english}{%s})' % a)
+        s = replace_cmd(s, 'term', 2, lambda a, b: '\\textbf{%s} \\foreignlanguage{english}{(%s)}' % (a, b))
+        s = replace_cmd(s, 'enterm', 1, lambda a: '\\foreignlanguage{english}{(%s)}' % a)
         s = replace_cmd(s, 'en', 1, lambda a: '\\foreignlanguage{english}{%s}' % a)
         s = replace_cmd(s, 'lr', 1, lambda a: '\\foreignlanguage{english}{%s}' % a)
         s = replace_cmd(s, 'fa', 1, lambda a: a)
@@ -485,7 +486,7 @@ def main():
             '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
             '<meta name="description" content="جزوه‌ی کامل درس جبر خطی (CE282) دانشگاه صنعتی شریف، با اثبات‌ها، مثال‌های حل‌شده و تمرین.">\n'
             '<meta property="og:title" content="جزوه‌ی جبر خطی">\n'
-            '<meta property="og:description" content="جزوه‌ی درس جبر خطی (CE282) دانشگاه صنعتی شریف: از دستگاه معادلات تا تعامد، وارون و تبدیل خطی.">\n'
+            '<meta property="og:description" content="جزوه‌ی درس جبر خطی (CE282) دانشگاه صنعتی شریف: از دستگاه معادلات تا تبدیل خطی و تغییر پایه.">\n'
             '<meta property="og:type" content="website">\n'
             '<meta name="theme-color" content="#1d4e89">\n')
     full_doc = head + full.replace('<!--BODY-->', '</head>\n<body>', 1) + '\n</body>\n</html>\n'
